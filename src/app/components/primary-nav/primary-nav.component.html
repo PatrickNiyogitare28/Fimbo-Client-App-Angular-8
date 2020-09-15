@@ -1,0 +1,22 @@
+<div class="primary-nav-container" *ngIf="this.displayService.displayHeaders">
+
+    <div class="auth-wrapper align-middle">
+        <ul>
+            <li class="hover-white">Serivices</li>
+            <li class="hover-white">About</li>
+            <li class="hover-white">Advatize</li>
+
+            <li class="hover-white" (click)="triggerAuthModal('open')">Become a seller</li>
+            <!--   HIDDEN BUTTON  <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+        </ul>
+    </div>
+    <div class="address">
+     <ul class="right-links">
+         <li class="cursor-pointer"><img src="../../../assets/icons/phone-removebg-preview.png" alt="phone-icon" class='header-phone-icon'> +(250) 785 436 974</li>
+         <li class="cursor-pointer"><u>fimbo@gmail.com</u></li>
+     </ul>
+ </div>
+ 
+</div>
+
+

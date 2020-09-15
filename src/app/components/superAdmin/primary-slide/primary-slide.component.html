@@ -1,0 +1,261 @@
+<div class="primarySlideWrapper" id="primarySlideWrapper" *ngIf="this.displayService.adminDisplayPrimarySlide">
+  <div class="displayDivsContainer">
+    <table class="table table-striped table-hover">
+      <!-- <caption>Striped Table Layout</caption> -->
+      <thead>
+        <tr>
+          <th>DivisionId</th>
+          <th>Div Name</th>
+          <th>Display Status</th>
+          <th>Products In</th>
+          <th>View Products</th>
+          <th>Add Product</th>
+          <th>Change</th>
+          <button id="triggerChangeStatusModal" data-toggle="modal" data-target="#changeStatusModal" hidden>Message</button>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{divOne[0].division_id}}</td>
+          <td>{{divOne[0].division_name}}</td>
+          <td>{{divOne[0].display_status}}</td>
+          <td>{{divOne[0].productsIn}}</td>
+          <td (click)="triggerViewProducts('divOne')" data-toggle="modal" data-target="#viewProductsModal"
+            class="cursor-pointer">view Products</td>
+          <td  (click)="getCurrentDivision(1)" data-toggle="modal" data-target="#addProductModal" class="cursor-pointer">Add Product</td>
+          <td class="cursor-pointer" (click)="updateTopDivisionStatus(1)">{{buttonsArr[0]}}</td>
+        </tr>
+        <tr>
+          <td>{{divTwo[0].division_id}}</td>
+          <td>{{divTwo[0].division_name}}</td>
+          <td>{{divTwo[0].display_status}}</td>
+          <td>{{divTwo[0].productsIn}}</td>
+          <td (click)="triggerViewProducts('divTwo')" data-toggle="modal" data-target="#viewProductsModal"
+            class="cursor-pointer">view Products</td>
+          <td (click)="getCurrentDivision(2)" data-toggle="modal" data-target="#addProductModal" class="cursor-pointer">Add Product</td>
+          <td class="cursor-pointer" (click)="updateTopDivisionStatus(2)">{{buttonsArr[1]}}</td>
+
+        </tr>
+        <tr>
+          <td>{{divThree[0].division_id}}</td>
+          <td>{{divThree[0].division_name}}</td>
+          <td>{{divThree[0].display_status}}</td>
+          <td>{{divThree[0].productsIn}}</td>
+          <td (click)="triggerViewProducts('divThree')" data-toggle="modal" data-target="#viewProductsModal"
+            class="cursor-pointer">view Products</td>
+          <td (click)="getCurrentDivision(3)" data-toggle="modal" data-target="#addProductModal" class="cursor-pointer">Add Product</td>
+          <td class="cursor-pointer" (click)="updateTopDivisionStatus(3)">{{buttonsArr[2]}}</td>
+        </tr>
+        <tr>
+          <td>{{divFour[0].division_id}}</td>
+          <td>{{divFour[0].division_name}}</td>
+          <td>{{divFour[0].display_status}}</td>
+          <td>{{divFour[0].productsIn}}</td>
+          <td (click)="triggerViewProducts('divFour')" data-toggle="modal" data-target="#viewProductsModal"
+            class="cursor-pointer">view Products</td>
+          <td (click)="getCurrentDivision(4)" data-toggle="modal" data-target="#addProductModal" class="cursor-pointer">Add Product</td>
+          <td class="cursor-pointer" (click)="updateTopDivisionStatus(4)">{{buttonsArr[3]}}</td>
+        </tr>
+        <tr>
+          <td>{{divFive[0].division_id}}</td>
+          <td>{{divFive[0].division_name}}</td>
+          <td>{{divFive[0].display_status}}</td>
+          <td>{{divFive[0].productsIn}}</td>
+          <td (click)="triggerViewProducts('divFive')" data-toggle="modal" data-target="#viewProductsModal"
+            class="cursor-pointer">view Products</td>
+          <td (click)="getCurrentDivision(5)"  data-toggle="modal" data-target="#addProductModal" class="cursor-pointer">Add Product</td>
+          <td class="cursor-pointer" (click)="updateTopDivisionStatus(5)">{{buttonsArr[4]}}</td>
+        </tr>
+        <tr>
+          <td>{{divSix[0].division_id}}</td>
+          <td>{{divSix[0].division_name}}</td>
+          <td>{{divSix[0].display_status}}</td>
+          <td>{{divSix[0].productsIn}}</td>
+          <td (click)="triggerViewProducts('divSix')" data-toggle="modal" data-target="#viewProductsModal"
+            class="cursor-pointer">view Products</td>
+          <td (click)="getCurrentDivision(6)" data-toggle="modal" data-target="#addProductModal" class="cursor-pointer">Add Product</td>
+          <td class="cursor-pointer" (click)="updateTopDivisionStatus(6)">{{buttonsArr[5]}}</td>
+        </tr>
+        <tr>
+          <td>{{divSeven[0].division_id}}</td>
+          <td>{{divSeven[0].division_name}}</td>
+          <td>{{divSeven[0].display_status}}</td>
+          <td>{{divSeven[0].productsIn}}</td>
+          <td (click)="triggerViewProducts('divSeven')" data-toggle="modal" data-target="#viewProductsModal"
+            class="cursor-pointer">view Products</td>
+          <td (click)="getCurrentDivision(7)" data-toggle="modal" data-target="#addProductModal" class="cursor-pointer">Add Product</td>
+          <td class="cursor-pointer" (click)="updateTopDivisionStatus(7)">{{buttonsArr[6]}}</td>
+        </tr>
+        <tr>
+          <td>{{divEight[0].division_id}}</td>
+          <td>{{divEight[0].division_name}}</td>
+          <td>{{divEight[0].display_status}}</td>
+          <td>{{divEight[0].productsIn}}</td>
+          <td (click)="triggerViewProducts('divEight')" data-toggle="modal" data-target="#viewProductsModal"
+            class="cursor-pointer">view Products</td>
+          <td (click)="getCurrentDivision(8)" data-toggle="modal" data-target="#addProductModal" class="cursor-pointer">Add Product</td>
+          <td class="cursor-pointer" (click)="updateTopDivisionStatus(8)">{{buttonsArr[7]}}</td>
+        </tr>
+        <tr>
+          <td>{{divNine[0].division_id}}</td>
+          <td>{{divNine[0].division_name}}</td>
+          <td>{{divNine[0].display_status}}</td>
+          <td>{{divNine[0].productsIn}}</td>
+          <td (click)="triggerViewProducts('divNine')" data-toggle="modal" data-target="#viewProductsModal"
+            class="cursor-pointer">view Products</td>
+          <td (click)="getCurrentDivision(9)" data-toggle="modal" data-target="#addProductModal" class="cursor-pointer">Add Product</td>
+          <td class="cursor-pointer" (click)="updateTopDivisionStatus(9)">{{buttonsArr[8]}}</td>
+        </tr>
+        <tr>
+          <td>{{divTen[0].division_id}}</td>
+          <td>{{divTen[0].division_name}}</td>
+          <td>{{divTen[0].display_status}}</td>
+          <td>{{divTen[0].productsIn}}</td>
+          <td (click)="triggerViewProducts('divTen')" data-toggle="modal" data-target="#viewProductsModal"
+            class="cursor-pointer">view Products</td>
+          <td (click)="getCurrentDivision(10)" data-toggle="modal" data-target="#addProductModal" class="cursor-pointer">Add Product</td>
+          <td class="cursor-pointer" (click)="updateTopDivisionStatus(10)">{{buttonsArr[9]}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- -----------------------------------------------View products in primary slide div modal--------------------------------------------------- -->
+<div class="modal fade" id="viewProductsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Modal cascading tabs-->
+      <div class="modal-c-tabs">
+        <!-- Tab panels -->
+        <div class="tab-content">
+          <div class="tab-pane fade fade-login in show active" id="panel7" role="tabpanel">
+            <!--------------------------- VEIW BODY--------------------------------------------->
+            <div class="message-section">
+              <p>{{removeProductMessage}}</p>
+            </div>
+            <div class="products-wrapper">
+              <div class="viewProduct-container">
+                <table class="table table-striped">
+                  <!-- <caption>Striped Table Layout</caption> -->
+                  <thead>
+                    <tr>
+                      <!-- <th>ProductId</th> -->
+                      <th>Product name</th>
+                      <th>Image</th>
+                      <th>Action</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let product of viewProductsArr">
+                      <td hidden><input type="text" value="{{product.productId}}" #productIdHolder></td>
+                      <td>{{product.productName}}</td>
+                      <td><img src="http://localhost:3000/utils/uploads/productsImages/{{product.productImage}}" alt="">
+                      </td>
+                      <td class="cursor-pointer" (click)="removeProductFromDiv(productIdHolder.value)">Remove</td>
+                    </tr>
+
+                  </tbody>
+                </table>
+                <div class="modal-footer">
+                  <button class="close-btn btn btn-outline-info waves-effect ml-auto" id="viewProduct-close-btn"
+                    data-dismiss="modal">Close</button>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!------------------------------------ VIEW PRODUCTS -------------------------------->
+      </div>
+    </div>
+  </div>
+  <!--/.Content-->
+</div>
+
+<!-- -----------------------------------------------Add product in primary slide div modal--------------------------------------------------- -->
+<div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Modal cascading tabs-->
+      <div class="modal-c-tabs">
+        <!-- Tab panels -->
+        <div class="tab-content">
+          <div class="tab-pane fade fade-login in show active" id="panel7" role="tabpanel">
+            <!--------------------------- VEIW BODY--------------------------------------------->
+            <div class="message-section">
+              <p>{{addProductMessage}}</p>
+            </div>
+            <div class="products-wrapper">
+              <div class="addProduct-container">
+                <table class="table table-striped product-table">
+                  <!-- <caption>Striped Table Layout</caption> -->
+                  <thead>
+                    <tr>
+                      
+                      <th>Product name</th>
+                      <th>Image</th>
+                      <th>Action</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let product of productData">
+                      <td hidden><input type="text" value="{{product.productId}}" #productIdHolder></td>
+                      <td>{{product.productName}}</td>
+                      <td><img src="http://localhost:3000/utils/uploads/productsImages/{{product.imageName}}" alt="">
+                      </td>
+                      <td (click)="addProductInDivision(productIdHolder.value)" class="cursor-pointer">Add</td>
+                    </tr>
+
+                  </tbody>
+                </table>
+                <div class="modal-footer">
+                  <button class="close-btn btn btn-outline-info waves-effect ml-auto" id="viewProduct-close-btn"
+                    data-dismiss="modal">Close</button>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!------------------------------------ VIEW PRODUCTS -------------------------------->
+      </div>
+    </div>
+  </div>
+  <!--/.Content-->
+</div>
+
+
+
+<!-- -----------------------------------------------Changing status in primary slide div modal--------------------------------------------------- -->
+<div class="modal fade" id="changeStatusModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Modal cascading tabs-->
+      <div class="modal-c-tabs">
+        <!-- Tab panels -->
+        <div class="tab-content">
+          <div class="tab-pane fade fade-login in show active" id="panel7" role="tabpanel">
+            <!--------------------------- VEIW BODY--------------------------------------------->
+            <div class="change-status-message">
+              <p>{{changeStatusMessage}}</p>
+            </div>
+            
+          </div>
+        </div>
+        <!------------------------------------ VIEW PRODUCTS -------------------------------->
+      </div>
+    </div>
+  </div>
+  <!--/.Content-->
+</div>

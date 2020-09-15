@@ -1,0 +1,58 @@
+#chart {
+    max-width: 650px;
+    margin: 35px auto;
+    padding-top: 2em; 
+  }
+.progress-container{
+  width: 90%;
+  margin-left: 5%;
+  /* margin-top: 1em; */
+  border-radius: 10px 10px;
+  background: #ffff;
+  height: 95%;
+} 
+h5{
+  font-family: 'Century Gothic';
+  color: rgb(49, 48, 48);
+  /* margin-left: 1em; */
+}
+#chart ul{
+  width: 100%;
+}
+#chart ul li:nth-child(1){
+  width: 40%;
+  float:left;
+  
+}
+#chart ul li:nth-child(2){
+  width: 20%;
+  float: right;
+ 
+}
+#chart ul li:nth-child(3){
+  float: right;
+  width: 20%;
+}
+#chart ul li{
+  /* display: inline; */
+  list-style-type: none;
+  /* margin-left: 1em;; */
+   
+  
+}
+#chart button{
+  background: rgb(235, 235, 235);
+  width: 100px;
+  border-radius: 20px 20px;
+  color: rgb(87, 84, 84);
+  font-size: 12px;
+  font-weight: lighter;
+  border-width: 0px;
+  
+  
+}
+#chart button:hover{
+  background: rgb(146, 145, 145);
+  color: white;
+}
+  

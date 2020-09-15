@@ -1,0 +1,319 @@
+<div class="products-container" *ngIf="this.displayService.adminDisplayProduct">
+  <div class="products-nav">
+    <ul>
+      <li (click)="displayProductOptions(1)" id="productOption" class="product-nav-link-active">Products</li>
+      <li (click)="displayProductOptions(2)" id="addProductOption">Add product</li>
+    </ul>
+  </div>
+
+  <div class="products-view-container" id="products-container">
+    <h6>All products</h6>
+
+    <div class="products-table">
+      <table class="table table-striped table-hover">
+
+        <thead>
+          <tr>
+            <th>Name ({{productData.length}})</th>
+            <th>Category</th>
+            <th>Collection</th>
+            <th>Mark</th>
+            <th>Seller</th>
+            <th>Price</th>
+            <th>Used Status</th>
+            <th colspan="3">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of productData">
+            <td>{{product.productName}}</td>
+            <td>{{product.productCategory}}</td>
+            <td>{{product.productCollection}}</td>
+            <td>{{product.productMark}}</td>
+            <td>{{product.productSeller}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.usedStatus}}</td>
+          
+            <td hidden><input type="text" value="{{product.productId}}" #productIdHolder></td>
+            
+            <td id="openModalButton" data-toggle="modal" data-target="#UpdateImageModalLRForm"
+            (click)="triggerUpdateForm(productIdHolder.value)" class="cursor-pointer">View Image</td>
+            
+   
+            <td id="openModalButton" data-toggle="modal" data-target="#UpdateModalLRForm"
+              (click)="triggerUpdateForm(productIdHolder.value)" class="cursor-pointer">Update</td>
+            <td (click)="deleteProduct(productIdHolder.value)" class="cursor-pointer">Delete</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="add-product-container" id="add-product-container" hidden="true">
+    <div class="form-container">
+      <div class="error-success-container">
+        <p class="errorMessage">{{errorMessage}}</p>
+      </div>
+      <div class="names-wrapper form-group">
+        <label>Name</label>
+        <input (click)="resetField('productName')" type="text" class="form-control" name="productName" id="productName"
+          #productName placeholder="Product name">
+      </div>
+
+      <div class="categories-wrapper">
+        <label>Category</label>
+        <select class="form-control select" #productCategory id="productCategory">
+          <!-- <option>This</option> -->
+          <option *ngFor="let category of productCategories" value="{{category.categoryId}}">{{category.categoryName}}
+          </option>
+
+        </select>
+      </div>
+
+      <div class="collections-wrapper">
+        <label>Collection</label>
+        <select class="form-control" #productCollection id="productCollection">
+          <option *ngFor="let collection of productCollections" value="{{collection.collectionId}}">
+            {{collection.collectionName}}</option>
+
+        </select>
+      </div>
+
+      <div class="marks-wrapper">
+        <label>Mark</label>
+        <select class="form-control" #productMark id="productMark">
+          <option *ngFor="let mark of productMarks" value="{{mark.markId}}">{{mark.markName}}</option>
+        </select>
+      </div>
+
+
+      <div class="product-used-status-wrapper">
+        <div class="radios-wrapper">
+          <label class="checkbox-inline">
+            <input type="radio" name="optionsRadiosinline" id="optionsRadio1" value="option1" checked
+              (change)="checkedRadio(1)"> New
+          </label>
+
+          <label class="checkbox-inline second-opt">
+            <input type="radio" name="optionsRadiosinline" id="optionsRadio2" value="option2"
+              (change)="checkedRadio(2)"> Not New
+          </label>
+        </div>
+      </div>
+
+      <div class="product-price-wrapper">
+        <label>Price RWF</label>
+        <input (click)="resetField('productPrice')" type="text" class="form-control" name="productPrice"
+          id="productPrice" #productPrice placeholder="FRW">
+
+      </div>
+
+      <div class="product-details form-group">
+        <label>Detail</label>
+        <textarea class="form-control" rows="3" #productDetail id="productDetail"></textarea>
+      </div>
+
+      <div class="product-seller-wrapper">
+        <label>Seller</label>
+        <select class="form-control" #productSeller id="productSeller">
+          <option *ngFor="let seller of productSellers" value="{{seller.sellerId}}">{{seller.sellerName}}</option>
+        </select>
+      </div>
+      <div class="add-image-wrapper form-group">
+        <label>Add Image</label>
+        <input type="file" id="inputImage" #productImage (change)="selectImage($event)">
+        <small>Accept *jpg,*jpeg,*png</small>
+      </div>
+
+      <div class="add-product-button">
+        <button
+          (click)="addProduct(productName.value,productSeller.value,productCategory.value,productCollection.value,productMark.value,productDetail.value,productPrice.value)"
+          type="button" class="btn add-product">
+          Add Product
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- -----------------------------------------------UPDATE PRODUCT MODAL--------------------------------------------------- -->
+<div class="modal fade" id="UpdateModalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Modal cascading tabs-->
+      <div class="modal-c-tabs">
+
+
+        <!-- Tab panels -->
+        <div class="tab-content">
+          <!---------------------------------------------------LOGIN Panel 7-------------------------------------->
+          <div class="tab-pane fade fade-login in show active" id="panel7" role="tabpanel">
+
+            <!---------------------------UPDATE PRODUCT BODY--------------------------------------------->
+
+
+            <div class="add-product-container" id="add-product-container">
+              <div class="form-container">
+                <div class="error-success-container">
+                  <p id="update-message" class="errorMessage">{{updateErrorMessage}}</p>
+                </div>
+                <div class="names-wrapper form-group">
+                  <label>Name</label>
+                  <input (click)="resetField('updateProductName')" (change)="onChangeProduct('name',updateProductName.value)"
+                    type="text" value="{{updatableProductName}}" class="form-control" name="productName"
+                    id="updateProductName" #updateProductName placeholder="Product name">
+                </div>
+
+                <div class="categories-wrapper">
+                  <label>Category <small>{{currentCategoryName}}</small></label>
+                  <select (change)="onChangeProduct('category',updateProductCategory.value)" class="form-control select"
+                    #updateProductCategory id="updateProductCategory">
+                    <option *ngFor="let category of productCategories" value="{{category.categoryId}}">
+                      {{category.categoryName}}</option>
+
+                  </select>
+                </div>
+
+                <div class="collections-wrapper">
+                  <label>Collection <small>{{currentCollectionName}}</small></label>
+                  <select (change)="onChangeProduct('collection',updateProductCollection.value)" class="form-control"
+                    #updateProductCollection id="updateProductCollection">
+                    <option *ngFor="let collection of productCollections" value="{{collection.collectionId}}">
+                      {{collection.collectionName}}</option>
+
+                  </select>
+                </div>
+
+                <div class="marks-wrapper">
+                  <label>Mark <small>{{currentMarkName}}</small><small></small></label>
+                  <select (change)="onChangeProduct('mark',updateProductMark.value)" class="form-control"
+                    #updateProductMark id="updateProductMark">
+                   <option *ngFor="let mark of productMarks" value="{{mark.markId}}">{{mark.markName}}</option>
+                  </select>
+                </div>
+
+                <div class="update-product-seller-wrapper">
+                  <label>Seller <small>{{currentSellerName}}</small></label>
+                  <select class="form-control" (change)="onChangeProduct('seller',updateProductSeller.value)"
+                    #updateProductSeller id="updateProductSeller">
+                    <option *ngFor="let seller of productSellers" value="{{seller.sellerId}}">{{seller.sellerName}}
+                    </option>
+                  </select>
+                </div>
+
+
+                <div class="product-used-status-wrapper">
+                  <div class="radios-wrapper">
+                    <label class="checkbox-inline update-radio-1">
+                      <input type="radio" name="optionsRadiosinline" id="optionsRadio1" value="option1" checked
+                        (change)="onChangeProduct('usedStatus','New')"> New
+                    </label>
+
+                    <label class="checkbox-inline second-opt update-radio-2">
+                      <input type="radio" name="optionsRadiosinline" id="optionsRadio2" value="option2"
+                        (change)="onChangeProduct('usedStatus','Not New')"> Not New
+                    </label>
+                  </div>
+                </div>
+
+                <div class="product-price-wrapper">
+                  <label>Price RWF</label>
+                  <input (change)="onChangeProduct('price',updateProductPrice.value)"
+                    (click)="resetField('updateProductPrice')" value="{{updatableProductPrice}}" type="text"
+                    class="form-control" name="productPrice" id="updateProductPrice" #updateProductPrice
+                    placeholder="FRW">
+
+                </div>
+
+                <div class="update-product-details form-group">
+                  <label>Detail</label>
+                  <textarea (change)="onChangeProduct('detail',updateProductDetail.value)" class="form-control" rows="3"
+                    #updateProductDetail id="updateProductDetail">{{updatableProductDetail}}</textarea>
+                </div>
+
+
+                <!--         
+                <div class="cancel-update-button">
+
+                </div> -->
+                <div class="update-add-product-button">
+                  <button type="button" id="closeModalButton"
+                    class="btn btn-outline-info waves-effect ml-auto cloase-modal-btn"
+                    data-dismiss="modal">Close</button>
+
+                  <button (click)="updateProduct()" type="button" class="btn update-btn add-product">
+                    Update Product
+                  </button>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <!------------------------------------ END OF LOGIN.Panel 7-------------------------------->
+
+
+        </div>
+
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!--Modal: Login / Register Form-->
+
+
+
+
+<!-- -----------------------------------------------View Image Modal--------------------------------------------------- -->
+<div class="modal fade" id="UpdateImageModalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Modal cascading tabs-->
+      <div class="modal-c-tabs">
+
+
+        <!-- Tab panels -->
+        <div class="tab-content">
+        
+          <div class="tab-pane fade fade-login in show active" id="panel7" role="tabpanel">
+
+            <!--------------------------- VIEW IMAGE BODY--------------------------------------------->
+             <div class="view-image-container update-image-container">
+                <p class="update-image-message">{{updateImageMessage}}</p>
+                <img src="http://localhost:3000/utils/uploads/productsImages/{{currentImageName}}" alt="">
+                <div class="update-image-wrapper form-group">
+                  <label>Update Image</label>
+                  <input type="file" id="inputImage" #productImage (change)="selectUpdateImage($event)">
+                  <small>Accept *jpg,*jpeg,*png</small>
+                </div>
+
+                <div class="update-add-product-button">
+                  <button type="button" id="closeModalButton"
+                    class="btn btn-outline-info waves-effect ml-auto update-image-close-btn"
+                    data-dismiss="modal">Close</button>
+
+                  <button (click)="updateProductImage()" type="button" class="btn update-btn add-product">
+                    Update Image
+                  </button>
+                </div>
+             </div>
+          </div>
+        </div>
+          <!------------------------------------ END OF LOGIN.Panel 7-------------------------------->
+
+
+        </div>
+
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>

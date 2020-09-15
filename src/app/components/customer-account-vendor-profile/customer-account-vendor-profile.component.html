@@ -1,0 +1,106 @@
+<div class="vendor-profile-container shadow">
+   <div class="content-wrapper">
+       <div class="left-content-wrapper">
+         <h5>Account Details <small>You can update neccessaries</small></h5>
+         <div class="image-name-wrapper" (click)="check()" *ngIf="!hasLogo">
+            {{defaultNameLogo}}
+         </div>
+         <div class="image-valid-wrapper" *ngIf="hasLogo">
+            <img [src]="url"  alt="Logo" *ngIf="url" class="uploaded-image">
+            <img src="http://localhost:3000/utils/uploads/vendorsLogos/{{logoName}}" 
+            class="uploaded-image" *ngIf="!url && hasLogo"  alt="Logo">
+         </div>
+         <div class="logo-btn-wrapper">
+            <button class="upload-button upload-btn-style" (click)="onChooseImage()">Update Logo</button>
+            <button *ngIf="url" class="upload-button save-logo-btn" (click)="onSaveLogo()">Save Logo</button>
+            <input type="file" (change)="selectFile($event)" id="logo-upload-input" 
+            accept="image/x-png,image/jpg,image/jpeg" hidden>
+         </div>
+       </div>
+       <div class="right-content-wrapper">
+         <div class="input-wrapper width-half">
+            <label>Bland/Bussiness name</label>
+            <input type="text" name="blandname"  [value]="accountDetailsObj.blandName" id="blandName"
+            #blandName (click)="resetField('blandName',0)" (change)="onUpdateDetailProperty('blandName',blandName.value)"> 
+            <small>{{formValidatorErrorHolder[0]}}</small>
+         </div>  
+         <div class="input-wrapper width-half">
+            <label>Email</label>
+            <input type="text" name="blandname" [value]="accountDetailsObj.email" id="email"
+            #email (click)="resetField('email',1)"  (change)="onUpdateDetailProperty('email',email.value)"> 
+            <small>{{formValidatorErrorHolder[1]}}</small>
+         </div>  
+         <div class="input-wrapper">
+            <label>Country</label>
+            <select name="country" id="country" [value]="accountDetailsObj.country" #country 
+            (change)="onUpdateDetailProperty('country',country.value)">
+               <option value={{accountDetailsObj.country}}>{{accountDetailsObj.country}}</option>
+                <option value="Rwanda">Rwanda</option>
+                <option value="Uganda">Uganda</option>
+                <option value="Kenya">Kenya</option>
+            </select> 
+         </div>  
+         <div class="input-wrapper">
+            <label>District</label>
+            <input type="text" name="blandname" [value]="accountDetailsObj.district" id="district" 
+            #district (click)="resetField('district',2)"  (change)="onUpdateDetailProperty('district',district.value)"> 
+            <small>{{formValidatorErrorHolder[2]}}</small>
+         </div>  
+         <div class="input-wrapper">
+            <label>Sector/Zone</label>
+            <input type="text" name="blandname" [value]="accountDetailsObj.sector" id="sector"
+            #sector (click)="resetField('sector',3)"  (change)="onUpdateDetailProperty('sector',sector.value)"> 
+            <small>{{formValidatorErrorHolder[3]}}</small>
+         </div>  
+           
+         <div class="input-wrapper">
+            <label>Town/City</label>
+            <input type="text" name="blandname" [value]="accountDetailsObj.town" id="town"
+            #town  (click)="resetField('town',4)"  (change)="onUpdateDetailProperty('town',town.value)"> 
+            <small>{{formValidatorErrorHolder[4]}}</small>
+         </div> 
+        
+         <div class="input-wrapper">
+            <label>Contact number</label>
+            <input type="text" name="blandname" [value]="accountDetailsObj.contactPhone" id="contact" 
+            #contact (click)="resetField('contact',5)"  (change)="onUpdateDetailProperty('contact',contact.value)"> 
+            <small>{{formValidatorErrorHolder[5]}}</small>
+         </div>  
+         <div class="input-wrapper">
+            <label>Whatsapp number</label>
+            <input type="text" name="blandname" [value]="accountDetailsObj.whatsappPhone" id="whatsapp"
+            #whatsapp (click)="resetField('whatsapp',6)"  (change)="onUpdateDetailProperty('whatsapp',whatsapp.value)"> 
+            <small>{{formValidatorErrorHolder[6]}}</small>
+         </div>
+         <div class="textarea-wrapper">
+            <label>Bussiness description</label> 
+            <textarea name="description" id="description" cols="10" rows="3" 
+             #description (click)="resetField('description',7)"  (change)="onUpdateDetailProperty('description',description.value)">{{accountDetailsObj.bussinessDescription}}
+            </textarea> 
+            <small>{{formValidatorErrorHolder[7]}}</small>
+
+         </div> 
+         
+         <div class="input-wrapper margin-top">
+            <button (click)="onSaveData()">Save Changes</button>
+         </div>
+       </div>
+   </div>
+</div>
+<!-- ------------------------------------Error modal----------- -->
+<div id="errorModal" class="modal">
+   <!-- Modal content -->
+   <div class="error-modal">
+     <span class="close" (click)="triggerErrorModal('close')">&times;</span>
+       <div class="modal-title">
+          <h1>{{errorTitle}}</h1>
+       </div>
+       <div class="modal-body">
+         {{errorBody}}
+       </div>
+       <div class="modal-footer">
+         <small title="Tell us">Need help? call <u>(+250) 785 436 974</u> </small> 
+         <button (click)="triggerErrorModal('close')">Got it</button>
+       </div>
+   </div>
+ </div>

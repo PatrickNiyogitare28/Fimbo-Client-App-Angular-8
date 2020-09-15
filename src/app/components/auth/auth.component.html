@@ -1,0 +1,123 @@
+<div id="authModal" class="modal">
+  <span class="close" id="authModalCloser" (click)="triggerAuthModal('close')">&times;</span>
+  <!-- Modal content -->
+  <div class="auth-container">
+
+    <div class="modal-content-wrapper">
+      <div class="change-auth-btn-container">
+        <fimbo-logo-wrapper class="logo">
+          <img src="../../../assets/logos/fimbo-logo-transp.png" alt="" id="check">
+        </fimbo-logo-wrapper>
+        <button *ngIf='(showBuyerRegister || showBuyerLogin) && !showSellerLogin' class="btn success"
+          (click)="onAuthRedirectTo('showSellerLogin')">Continue as a Seller</button>
+
+        <button *ngIf='(!showBuyerRegister || !showBuyerLogin) && showSellerLogin' class="btn success"
+          (click)="onAuthRedirectTo('showBuyerLogin')">Continue as a Buyer</button>
+        <!-- <button>Continue a buyer</button> -->
+      </div>
+      <!-- --------------------------------------------BUYER LOGIN WRAPPER -------------------------------------- -->
+
+      <div class="form-container customer-login" *ngIf="showBuyerLogin && !showBuyerRegister && !showSellerLogin">
+        <div class="form-title">
+          <h4>Login To continue</h4>
+        </div>
+        <div class="error-wrapper">
+         {{buyerLoginError}}
+        </div>
+        <div class="login-form-wrapper">
+          <label>Phone<strong>*</strong> <small> {{authValdiateErrorsHolder[0]}}</small></label>
+          <input type="text" name='loginphone' placeholder="Enter phone" (click)="onResetField('loginphone',0)"
+            id="loginphone" #loginphone>
+
+          <label>Password<strong>*</strong> <small> {{authValdiateErrorsHolder[1]}}</small></label>
+          <input type="password" name="loginpassword" (click)="onResetField('loginpassword',1)" id="loginpassword"
+            #loginpassword placeholder="Enter password">
+          <button class="continue-button" (click)="onBuyerLogin(loginphone.value,loginpassword.value)">Login as
+            buyer</button>
+          <p class="footer-text">You don't have a Buyer Accout?
+            <span (click)="onAuthRedirectTo('showBuyerRegister')" class="cursor-poiner">Creat a Buyer Account</span></p>
+        </div>
+
+      </div>
+      <!-- --------------------------------------------CREATING A BUYER ACCOUNT WRAPPER--------------------------------- -->
+      <div class="form-container customer-login" *ngIf="showBuyerRegister && !showBuyerLogin && !showSellerLogin">
+        <div class="form-title">
+          <h4>Create A Buyer Account</h4>
+        </div>
+        <div class="error-wrapper">
+          {{createBuyerValidateError}}
+        </div>
+        <div class="login-form-wrapper">
+
+
+          <div class="width-48 float-right">
+            <label>Lastname<strong>*</strong></label>
+            <input type="text" name="lastname" id="lastname" #lastname (click)="onResetField('lastname',3)"
+              placeholder="Enter lastname">
+          </div>
+
+          <div class="width-48 float-left">
+            <label>Firstname<strong>*</strong></label>
+            <input type="text" name='firstname' id="firstname" #firstname (click)="onResetField('firstname',2)"
+              placeholder="Enter firstname">
+          </div>
+
+          <label>Phone<strong>*</strong> <small> {{ authValdiateErrorsHolder[4]}}</small></label>
+          <input type="phone" name='phone' id="signupphone" #signupphone (click)="onResetField('signupphone',4)"
+            placeholder="ex: 0700000000">
+
+
+          <div class="width-48 float-right">
+            <label>Verify password<strong>*</strong></label>
+            <input type="password" name='veripassword' id="veripassword" #veripassword
+              (click)="onResetField('veripassword',6)" placeholder="Re-enter password">
+          </div>
+
+          <div class="width-48 float-left">
+            <label>Create password<strong>*</strong></label>
+            <input type="password" name='password' id="signuppassword" #signuppassword
+              (click)="onResetField('signuppassword',5)" placeholder="Create password">
+          </div>
+
+          <button class="continue-button" (click)="onCreateBuyerAccount(firstname.value, lastname.value, signupphone.value,
+      signuppassword.value, veripassword.value)">Create a Buyer Account</button>
+
+          <p class="footer-text top-1">You have a Buyer Accout? <span (click)="onAuthRedirectTo('showBuyerLogin')"
+              class="cursor-poiner">Login as a Buyer</span></p>
+        </div>
+
+      </div>
+      <div class="form-container customer-login" *ngIf="showSellerLogin && !showBuyerLogin && !showBuyerRegister">
+        <div class="form-title">
+          <h4>You're in Seller login</h4>
+        </div>
+        <div class="error-wrapper">
+           {{vendorLoginError}}
+        </div>
+        <div class="login-form-wrapper">
+          <label>Seller Phone<strong>*</strong> <small> {{authValdiateErrorsHolder[7]}}</small></label>
+          <input type="text" name='sellerphone' id="sellerphone" #sellerphone (click)="onResetField('sellerphone',7)"
+            placeholder="Enter phone">
+
+          <label>Seller Password<strong>*</strong> <small> {{authValdiateErrorsHolder[8]}}</small></label>
+          <input type="password" name="loginpassword" id="sellerpassword" #sellerpassword
+            (click)="onResetField('sellerpassword',8)" placeholder="Enter password">
+
+          <button class="continue-button" (click)="onVendorLogin(sellerphone.value,sellerpassword.value)">Login as a
+            Seller</button>
+          <p class="footer-text">You don't have a Seller Accout?
+            <span class="cursor-poiner" (click)="onAuthRedirectTo('redirectToVendorRegister')">Creat a Seller
+              Account</span></p>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="modal-right-side-wrapper">
+      <div class="side-contents-wrapper">
+
+      </div>
+    </div>
+  </div>
+</div>

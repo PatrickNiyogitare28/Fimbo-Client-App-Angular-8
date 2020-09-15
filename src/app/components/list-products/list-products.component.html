@@ -1,0 +1,83 @@
+<div class="list-products-container">
+   <div class="contents-wrapper">
+      <div class="collections-sidebar shadow">
+           <div class="collections-sidebar-header">
+               <h6>Shop by Collections</h6>
+              
+           </div>
+           <div class="collections-list">
+            <label id="example-radio-group-label">Pick collection to search in</label>
+            <mat-radio-group
+              aria-labelledby="example-radio-group-label"
+              class="example-radio-group"
+            >
+              <mat-radio-button #collectionButton (click)="getSortCollection(collection.collectionId)" class="example-radio-button" *ngFor="let collection of collections" [value]="collection">
+                {{collection.collectionName}}
+              </mat-radio-button>
+            </mat-radio-group>
+        </div>
+      </div>
+      <div class="contents-side-wrapper">
+       <div class="contents-side-wrapper-header">
+           <div class="featured-product-nav">
+           <ul>
+            <li (click)="getAllCategoriesProducts()" class="active-featured-pro-nav-link cursor-pointer"
+            id="all-category-featured-prod-nav">All</li>
+          <li (click)="getProductsByCategory('Cars')" id="car-category-featured-prod-nav" class="cursor-pointer">Cars</li>
+          <li (click)="getProductsByCategory('Motorcycles')" id="motorcycles-category-featured-prod-nav"
+            class="cursor-pointer">Motorcycles</li>
+          <li (click)="getProductsByCategory('Bicycles')" id="bicycles-category-featured-prod-nav" class="cursor-pointer">
+            Bicycles</li>
+          <li (click)="getProductsByCategory('Oils')" id="oils-category-featured-prod-nav" class="cursor-pointer">Oils
+          </li>
+           </ul>
+        </div>
+       </div>
+
+           <!-- //----------------------------------------------ALL PRODUCTS CATEGORIES PRODUCTS----------------------------------- -->
+    <div class="featured-products-wrapper" id="featured-products-all-categories-wrapper">
+      <div class="product-item shadow " *ngFor="let productItem of featuredProducts">
+        <div class="featured-image-wrapper">
+          <img src="http://localhost:3000/utils/uploads/productsImages/{{productItem.imageName}}"
+            class="featured-product-image" alt="spare image">
+
+        </div>
+        <div class="featured-product-details-wrapper">
+          <div class="left-wrapper-name">
+            <p class="featured-product-name">{{productItem.productName}}</p>
+
+          </div>
+          <div class="right-wrapper-right">
+            <p>{{productItem.price}} Frw</p>
+          </div>
+          <div class="featured-pro-seller-wrapper">
+            <strong>Seller: </strong>{{productItem.productSeller}}
+
+          </div>
+          <div class="featured-pro-collection-wrapper">
+            <strong>Collection: </strong>{{productItem.productCollection}}
+          </div>
+
+          <div class="featured-product-actions">
+            <div class="featured-pro-icon-one cursor-pointer">
+              <img src="../../../assets/icons/cart-icon.png" alt="cart icon">
+            </div>
+            <div class="featured-pro-icon-two cursor-pointer" (click)="likeProduct(productItem.productId)">
+              <img src="../../../assets/icons/{{productItem.rateStatusImage}}" alt="like icon">
+            </div>
+            <div class="featured-pro-icon-three cursor-pointer" routerLinkActive="active"
+              [routerLink]="['/exprole-product', productItem.productId]">
+              <img src="../../../assets/icons/many-opt-icon.png" alt="like icon">
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+      </div>
+   </div>
+</div>

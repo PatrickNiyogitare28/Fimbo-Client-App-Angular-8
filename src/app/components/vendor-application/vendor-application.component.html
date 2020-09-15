@@ -1,0 +1,165 @@
+<header>
+  <div class="overlay">
+    <div class="container">
+      <img (click)="triggerErrorModal('open')" src="../../../assets/logos/fimbo-logo-transp.png" alt="">
+      <h1>Become A Seller</h1>
+     <p>Register you bussiness at a free of charge <br>
+        Star <span>free products marketing</span>. We link you with customers</p>
+    </div>
+
+
+  </div>
+</header>
+<div class="application-form-container">
+  <div class="application-form-wrapper shadow" id="application-form-wrapper">
+    <!-- -----------------------------------------headers---------------------------------- -->
+    <div class="form-header" *ngIf="isFirstLevel && !isSecondLevel && !isFinalLevel && !isAccountCreated">
+      <h4>Complet the Application From</h4>
+      <p><strong>*</strong> Field required (<small>Each field is reqired</small>)</p>
+    </div>
+    <div class="form-header" *ngIf="isSecondLevel && !isFirstLevel && !isFinalLevel && !isAccountCreated">
+      <h4>Verify Email</h4>
+      <p>{{emailVerText}} <i><b>{{createdVendorEmail}}</b></i></p>
+    </div>
+    <div class="form-header" *ngIf="isFinalLevel && !isFirstLevel && !isSecondLevel && !isAccountCreated">
+      <h4>Create a Passoword</h4>
+      <p class="isAccountCreated-para">You'l use your phone number to login <strong>{{createdVendorPhone}}</strong></p>
+    </div>
+    <div class="form-header" *ngIf="isAccountCreated && !isFinalLevel && !isFirstLevel && !isSecondLevel">
+      <h4>Your vendor account have been created successfully</h4>
+      <p>You will kindly wait for admin approval to start uploading your products at Fimbo.</p>
+      <p class="isAccountCreated-para">Your Login number is <strong>{{createdVendorPhone}}</strong></p>
+
+    </div>
+   <!-- ------------------------------------end of headers-----------------------------------------  -->
+   <!-- ---------------------------------------------Registration form -------------------------------------- -->
+    <div class="form-wrapper " *ngIf="isFirstLevel && !isSecondLevel && !isFinalLevel && !isAccountCreated">
+      <form>
+        <div class="input-wrapper">
+          <label>Seller/Bussiness name<strong>*</strong> <small class="hasError">{{registrationErrorHolder[0]}}</small></label>
+          <input type="text" placeholder="Name" name="sellerName" id="sellerName" #sellerName 
+          (click)="resetField('sellerName',0)">
+        </div>
+        <div class="input-wrapper">
+          <label>Country<strong>*</strong> </label>
+          <select name="country" id="country"  #country>
+            <option value="Rwanda">Rwanda</option>
+            <option value="Uganda">Uganda</option>
+            <option value="Uganda">Kenya</option>
+          </select>
+        </div>
+        <div class="input-wrapper">
+          <label>District<strong>*</strong>  <small class="hasError">{{registrationErrorHolder[2]}}</small></label>
+          <input type="text" placeholder="Bussiness Location district" name="district" id="district" #district
+          (click)="resetField('district',2)">
+        </div>
+        <div class="input-wrapper">
+          <label>Sector/Zone<strong>*</strong>  <small class="hasError">{{registrationErrorHolder[3]}}</small></label>
+          <input type="text" placeholder="Bussiness Location sector/zone" name="sector" id="sector" #sector
+          (click)="resetField('sector',3)">
+        </div>
+        <div class="input-wrapper">
+          <label>Town/City<strong>*</strong>  <small class="hasError">{{registrationErrorHolder[4]}}</small></label>
+          <input type="text" placeholder="Ex: Kigali" name="town" id="town" #town 
+          (click)="resetField('town',4)">
+        </div>
+        <div class="input-wrapper">
+          <label>Email<strong>*</strong>  <small class="hasError">{{registrationErrorHolder[5]}}</small></label>
+          <input type="email" placeholder="ex. bussiness@gmail.com" name="email" id="email" #email
+          (click)="resetField('email',5)">
+        </div>
+        <div class="input-wrapper">
+          <label>Contact number (<small>10 digits</small>)<strong>*</strong> 
+             <small class="hasError">{{registrationErrorHolder[6]}}</small></label>
+          <input type="text" placeholder="ex. 0700000000" name="contactnumber" id="contactNumber" #contactNumber
+          (click)="resetField('contactNumber',6)">
+        </div>
+        <div class="input-wrapper">
+          <label>Whatsapp number (<small>10 digits</small>)<strong>*</strong>  
+            <small class="hasError">{{registrationErrorHolder[7]}}</small></label>
+          <input type="text" placeholder="ex. 0700000000" name="whatsappnumber" id="whatsappNumber" #whatsappNumber
+          (click)="resetField('whatsappNumber',7)">
+        </div>
+        <div class="input-wrapper">
+          <label>Describe bussiness (<small> Less 100 words | ENG,KINY,FRE,KISW arrowed</small>)<strong>*</strong>
+            <small class="hasError">{{registrationErrorHolder[8]}}</small></label>
+          <textarea name="description" id="description" #description cols="30" rows="3" 
+          (click)="resetField('description',8)"></textarea>
+        </div>
+        <div class="input-wrapper margin-top">
+          <mat-radio-group aria-label="Select an option" class="radios-container">
+            <mat-radio-button class="radio-btn-1"  value="1" (click)="onLogo(1)">My bussiness has a logo</mat-radio-button> <br>
+            <mat-radio-button class="radio-btn-2" value="2" (click)="onLogo(0)">My bussiness has no logo</mat-radio-button>
+        
+          </mat-radio-group>
+        </div>
+        
+        <div class="input-wrapper" *ngIf="hasLogo">
+          <label>Upload Logo<strong>*</strong> <small class="hasError">{{registrationErrorHolder[9]}}</small></label>
+         <input type="file" name="logo" id="logo" #logo (change)="onSelectLogo($event)" 
+         (click)="resetField('logo',9)" accept="image/x-png,image/jpg,image/jpeg"><br>
+         <small>Accepts *jpg, *png, *jpeg only</small>
+        </div>
+        <button (click)="onSubmit(sellerName.value,country.value,district.value,sector.value,
+        town.value,email.value,contactNumber.value,whatsappNumber.value,description.value)" type="submit">Submit</button>
+      </form>
+    </div>
+    <!-- ------------------------------------Verification form ------------------------------------------- -->
+    <div class="form-wrapper" *ngIf="isSecondLevel && !isFirstLevel && !isFinalLevel && !isAccountCreated">
+       <form action="">
+        <div class="input-wrapper">
+          <label>Enter verification code<strong>*</strong> <small class="hasError">{{registrationErrorHolder[10]}}</small></label>
+          <input type="text" autocomplete="false" name="code" id="code" #code (click)="resetField('code',10)">
+        </div>
+        <button type="submit" (click)="onVerifyEmail(code.value)">Verify Email</button><br>
+        <small class="resend-code cursor-pointer" (click)="onResendCode()">Resend verification code.</small>
+       </form>
+    </div>
+    
+    <!-- ------------------------------------------creating passoword form----------------------------------------- -->
+    <div class="form-wrapper" *ngIf="isFinalLevel && !isFirstLevel && !isSecondLevel && !isAccountCreated">
+      <form action="">
+       <div class="input-wrapper">
+         <label>Create password<strong>*</strong>  <small class="hasError">{{registrationErrorHolder[11]}}</small></label>
+         <input type="password" name="passowrd" id="password" #password (click)="resetField('password',11)">
+       </div>
+       <div class="input-wrapper">
+        <label>Verify password<strong>*</strong> <small class="hasError">{{registrationErrorHolder[12]}}</small></label>
+        <input type="password" name="passowrd" id="passveri" #passveri (click)="resetField('passveri',12)"> 
+      </div>
+       <button type="submit" (click)="onCreatePassword(password.value,passveri.value)">Save password</button><br>
+     
+      </form>
+   </div>
+
+ <!-- ------------------------------------------Account created wrapper----------------------------------------- -->
+ <div class="form-wrapper" *ngIf="isAccountCreated && !isFinalLevel && !isFirstLevel && !isSecondLevel">
+  
+   <div class="is-account-created-footer">
+    <button type="submit" class="btn-silver"   
+    routerLinkActive="active" [routerLink]="['/index']">Login Later</button>
+    <button type="submit" class="btn-right">Login Now</button>
+   </div>
+  
+ 
+</div>
+  </div>
+</div>
+
+<!-- ------------------------------------Error modal----------- -->
+<div id="errorModal" class="modal">
+  <!-- Modal content -->
+  <div class="error-modal">
+    <span class="close" (click)="triggerErrorModal('close')">&times;</span>
+      <div class="modal-title">
+         <h1>{{errorTitle}}</h1>
+      </div>
+      <div class="modal-body">
+        {{errorBody}}
+      </div>
+      <div class="modal-footer">
+        <small title="Tell us">Need help? call <u>(+250) 785 436 974</u> </small> 
+        <button (click)="triggerErrorModal('close')">Got it</button>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,109 @@
+<div class="products-main-container">
+    <div class="products-header-container">
+        <div class="add-pro-button">
+            <span class="products-total-wrapper cursor-pointer" title='{{vendorProductsOriginalHolder.length}} Products'>
+                {{vendorProductsOriginalHolder.length}}
+            </span>
+              <button (click)="triggerExploreProduct('addProduct',-1)">Create a Product</button>
+        </div>
+        <div class="search-pro-input">
+            <input type="text" (keyup)="onFilterProducts(search.value)" id="search" placeholder=" search product" #search>
+        </div>
+       
+      
+    </div>
+    <div class="contents-container">
+       <div class="product-items-wrapper" *ngFor="let product of vendorProducts">
+           <input type="text" value={{product.productId}} hidden #productIdHolder>
+           <div class="product-item shadow cursor-pointer" 
+           (click)="triggerExploreProduct('explore',productIdHolder.value)">
+               <div class="product-image-card">
+                  <img src="http://localhost:3000/utils/uploads/productsImages/{{product.productImage}}" alt="product-image">
+               </div>
+               <div class="product-name-card">
+                   {{product.productName}} <br> <span>{{product.price}} FRW</span>
+               </div>
+           </div>
+         </div>
+    </div>
+</div>
+<!-- ----------------------------------------------- DELETE || UPDATE || EXPLORE MODEL ---------------------------------- -->
+<div id="exploreProductModal" class="modal">
+    <!-- Modal content --> 
+    
+    <div class="explore-product-modal">
+    <span class="close" (click)="closeModal()" id="spanClosecheckProModal">&times;</span>
+   
+    <div class="explore-product-container">
+     <form id="myForm">
+        <div class="inlineProduct-wrapper float-left margin-top">
+            <label >Product Name <small>{{fieldsErrorHolder[1]}}</small></label>
+            <input type="text" name="productname" placeholder="Product name"  id="productName"
+            value={{proName}} #productName (change)="onUpdateProduct('productName',productName.value)"
+            (click)="resetField('proName')">
+        </div>
+        <div class="inlineProduct-wrapper float-right margin-top">
+            <label class="left-2">Product Used status</label>
+            
+            <mat-radio-group aria-label="Select an option"  class="radio-wrapper">
+                <mat-radio-button value="1" class="flaot-left left-2 radio" checked id="new"
+                #new (click)="onCheckRadio(new.value)">New/unused</mat-radio-button>
+                <mat-radio-button value="2" class="float-right radio" id="notNew"
+                #notNew (click)="onCheckRadio(notNew.value)">Used</mat-radio-button>
+              </mat-radio-group>
+        </div>
+        <!-- {{this.productName}} -->
+        <div class="inlineProduct-wrapper float-left margin-top">
+           <label>Category</label>
+           <select name="category" id="category" #category value="{{productCategory}}" 
+           (change)="onUpdateProduct('category',category.value)">
+              <option *ngFor="let category of categories" value={{category.categoryId}}>{{category.categoryName}}</option>
+           </select>
+        </div>
+        <div class="inlineProduct-wrapper float-right margin-top">
+            <label>Collection</label>
+            <select name="category" id="collection" #collection value="{{productCollection}}" 
+            (change)="onUpdateProduct('collection',collection.value)">
+               <option *ngFor="let collection of collections" value={{collection.collectionId}}>{{collection.collectionName}}</option>
+            </select>
+         </div>
+         <div class="inlineProduct-wrapper float-left margin-top">
+            <label>Mark</label>
+            <select name="category" id="mark" #mark value="{{productMark}}" 
+            (change)="onUpdateProduct('mark',mark.value)">
+                <option *ngFor="let mark of marks" value={{mark.markId}}>{{mark.markName}}</option>
+              
+            </select>
+         </div>
+         <div class="inlineProduct-wrapper float-right margin-top">
+            <label >Price <small>{{fieldsErrorHolder[5]}}</small></label>
+            <input type="number" name="price" placeholder="Product Price" required id="price"
+            value="{{productPrice}}" #price (change)="onUpdateProduct('price',price.value)" 
+            (click)="resetField('price')">
+        </div>
+        <div class="BlockProduct-wrapper margin-top clear-both">
+            <label>Product Description <small>{{fieldsErrorHolder[6]}}</small></label>
+            <textarea type="text" cols="30" rows="3" name="details" required id="details"
+             #details (change)="onUpdateProduct('details',details.value)" 
+             (click)="resetField('details')">{{productDetails}}
+            </textarea>    
+           
+        </div>
+        <div class="BlockProduct-wrapper margin-top">
+            <label *ngIf="newProduct">Product Image <small>{{msg}}</small></label>
+            <label *ngIf="!newProduct">You can change Image here<small>{{msg}}</small></label>
+            <input type="file" name="image" id="productImage" (change)="selectFile($event)"
+            accept="image/x-png,image/jpg,image/jpeg"><small>Arrows *jpg, *png, *jpeg only</small>
+        </div>
+        <div class="form-footer">
+            <button *ngIf="!newProduct" class="float-left button-blue" type="button" (click)="onSaveData()">Save changes</button>
+            <button *ngIf="!newProduct " class="float-left left-2 button-blue"
+            (click)="onDeleteProduct()">Delete Product</button>
+            <button *ngIf="newProduct" (click)="onSaveData()" class="float-left button-blue">Add Product</button>
+            <button class="float-right button-silver" (click)="closeModal()">Cancel</button>
+
+        </div> 
+     </form>
+    </div>
+  </div>
+  </div>

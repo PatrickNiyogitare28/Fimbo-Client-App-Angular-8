@@ -1,0 +1,23 @@
+<div class="progress-container">
+ <!-- <div class="header">
+  
+ </div>  -->
+<div id="chart">
+  <ul>
+    <li> <h5>Your Shop Progress</h5></li>
+    <li><button>Clear All</button></li>
+    <li><button>Share Shop</button></li>
+
+  </ul>
+ 
+    <!-- <p>Hello</p> -->
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [dataLabels]="chartOptions.dataLabels"
+      [plotOptions]="chartOptions.plotOptions"
+      [xaxis]="chartOptions.xaxis"
+      [stroke]="chartOptions.stroke"
+    ></apx-chart>
+  </div>
+</div>

@@ -1,0 +1,99 @@
+<div class="customer-account-wrapper">
+  <div class="top-nav-bar-wrapper">
+    <ul>
+      <li id="profileImage" class="cursor-pointer" *ngIf="!hasLogo">{{defaultNameLogo}}</li>
+      <li class="logoImage cursor-pointer" *ngIf="hasLogo">
+        <img src="http://localhost:3000/utils/uploads/vendorsLogos/{{logoName}}" alt="logo image">
+      </li>
+      <li class="cursor-pointer"><img src="../../../assets/icons/notification-icon.png" alt="Notification Icon"></li>
+      <li class="cursor-pointer" (click)="onLogout()">Logout <img src="../../../assets/icons/logout.png" alt=""></li>
+    </ul>
+  </div>
+  <div class="content-sidebar-wrapper shadow">
+    <div class="logo-wrapper">
+      <img src="../../../assets/logos/fimbo-logo.png" alt="">
+    </div>
+    <div class="navigation-list">
+      <div class="menu-list">
+
+        <div class="cursor-pointer primary-list active" id="darshboard" (click)="subpageShow('darshboard')">
+          <h6><img src="../../../assets/icons/darshboard.png" alt="profile icon"> <span>Darshboard</span> </h6>
+        </div>
+        
+        <div *ngIf ="isSeller" class="cursor-pointer primary-list" id="profile" (click)="subpageShow('profile')">
+          <h6><img src="../../../assets/icons/customer-profile-icon.png" alt="Notification icon"> <span>Profile</span> </h6>
+        </div>
+
+        <div *ngIf="!isSeller" class="" class="cursor-pointer primary-list" id="cart" (click)="subpageShow('cart')">
+          <h6><img src="../../../assets/icons/cart-icon.png" alt="cart icon"> <span>Cart</span></h6>
+
+        </div>
+
+        <div *ngIf="!isSeller"  class="cursor-pointer primary-list" id="wishlist" (click)="subpageShow('wishlist')">
+          <h6><img src="../../../assets/icons/wishlist-icon.png" alt="wishlist icon"> <span>Wishlist</span></h6>
+        </div>
+
+        <!-- <div *ngIf="!isSeller"  class="cursor-pointer primary-list" (click)="subpageShow(3)">
+          <h6><img src="../../../assets/icons/customer-likes.png" alt="loved pro icon"> <span>Prefered</span></h6>
+        </div> -->
+
+        <div *ngIf="!isSeller"  class="cursor-pointer primary-list" id="orders" (click)="subpageShow('orders')">
+          <h6><img src="../../../assets/icons/order-icon.png" alt="orders  icon"> <span>Orders</span> </h6>
+        </div>
+
+        <div class="cursor-pointer primary-list" id="products" (click)="subpageShow('products')" *ngIf="isSeller">
+          <h6><img src="../../../assets/icons/product-black-icon.png" alt="Product icon"> <span>My Products</span> </h6>
+        </div>
+        <div class="cursor-pointer primary-list" id="progress" (click)="subpageShow('progress')" *ngIf="isSeller">
+          <h6><img src="../../../assets/icons/progress-icon.png" alt="Progress icon"> <span>Progress</span> </h6>
+        </div>
+        <div class="cursor-pointer primary-list" id="notifications" (click)="subpageShow('notifications')">
+          <h6><img src="../../../assets/icons/notification-icon.png" alt="Notification icon"> <span>Notification</span> </h6>
+        </div>
+        <div class="cursor-pointer primary-list"   routerLinkActive="active" [routerLink]="['/products', 'all']">
+          <h6><img src="../../../assets/icons/store-icon.png" alt="Store icon">
+             <span>Back to Store</span> </h6>
+        </div>
+       
+ </div>
+    </div>
+    <div class="sidebar-footer">
+      &copy;2020 Fimbo
+    </div>
+  </div>
+ 
+  <div class="main-contents-wrapper">
+    <!-- ----------------------------------------------USER DARSHBOARD------------------------------------------------------------ -->
+    <div class="main-contents-container account" id="account" *ngIf="displayableDivsHolder[0]">
+      <app-customer-account-dashboard> </app-customer-account-dashboard>
+     </div>
+    <!-- ----------------------------------------------USER DARSHBOARD------------------------------------------------------------ -->
+
+    <div class="main-contents-container cart" id="cart" *ngIf="displayableDivsHolder[2]">
+      <app-customer-accoun-cart></app-customer-accoun-cart>
+ </div>
+   
+    <div class="main-contents-container wishlist" id="wishlist" *ngIf="displayableDivsHolder[3]">
+      <h1>Wish List</h1>
+    </div>
+    <!-- <div class="main-contents-container prefered" id="prefered">
+      <h1>Prefered</h1>
+    </div> -->
+    <div class="main-contents-container order" id="order" *ngIf="displayableDivsHolder[4]">
+      <app-customer-orders></app-customer-orders>
+    </div>
+    <div class="main-contents-container products" *ngIf="displayableDivsHolder[5]" id="products">
+     <app-customer-account-products></app-customer-account-products>
+    </div>
+    <div  class="main-contents-container products" *ngIf="displayableDivsHolder[6]" id="progress">
+      <app-customer-account-vendor-progress></app-customer-account-vendor-progress>
+    </div>
+    <div  class="main-contents-container products" *ngIf="isSeller && displayableDivsHolder[1]" id="vendorporfile">
+      <app-customer-account-vendor-profile></app-customer-account-vendor-profile>
+    </div>
+    
+ </div>
+</div>
+
+
+

@@ -1,0 +1,265 @@
+<div class="sellers-container" *ngIf="this.displayService.adminDisplaySellers">
+
+  <div class="top-header-wrapper">
+    <ul>
+      <li class="cursor-pointer color-black">All Sellers</li>
+      <li (click)="triggerNewSellerModal()" id="openModalButton" data-toggle="modal" data-target="#newSellerModal" class="cursor-pointer">New Seller</li>
+    </ul>
+  </div>
+
+  <div class="seller-table">
+    <table class="table table-striped table-hover">
+
+      <thead>
+        <tr>
+          <th>Brand Names</th>
+          <th>Email</th>
+          <th>Watsapp N&deg;</th>
+          <th>Contact N&deg;</th>
+          <th>Country</th>
+          <th>District</th>
+          <th>Secotr</th>
+          <th>Town</th>
+          <th>Total Products</th>
+          <th colspan="2">Actions</th>
+          <!-- <th>Update</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let seller of sellers">
+          <td>{{seller.sellerName}}</td>
+          <td>{{seller.sellerEmail}}</td>
+          <td>{{seller.watsapp}}</td>
+          <td>{{seller.contact}}</td>
+          <td>{{seller.country}}</td>
+          <td>{{seller.district}}</td>
+          <td>{{seller.sector}}</td>
+          <td>{{seller.town}}</td>
+          <td>{{seller.totalProducts}}</td>
+          <td hidden><input type="text" value="{{seller.sellerId}}" #sellerIdHolder></td>
+
+          <td id="openModalButton" data-toggle="modal" data-target="#updateSellerModal"
+            (click)="triggerUpdateSellerForm(sellerIdHolder.value)" class="cursor-pointer">Update</td>
+          <td (click)="deleteSeller(sellerIdHolder.value)" class="cursor-pointer">Delete</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+
+
+<!-- -----------------------------------------------update modal Modal--------------------------------------------------- -->
+<div class="modal fade" id="updateSellerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Modal cascading tabs-->
+      <div class="modal-c-tabs">
+        <!-- Tab panels -->
+        <div class="tab-content">
+
+          <div class="tab-pane fade fade-login in show active" id="panel7" role="tabpanel">
+
+            <!--------------------------- UPDATE SELLER BODY--------------------------------------------->
+            <div class="update-seller-container">
+
+              <div class="update-form-container">
+
+                <div class="error-wrapper">
+                  {{updateSellerErrorMessage}}
+                </div>
+                 
+                <div class="form-group seller-blandName-wrapper">
+                  <label>Bland Name</label>
+                  <input type="text" class="form-control" id="updateBlandName" #updateBlandName
+                    (change)="onChangeGetData('updateBlandName',updateBlandName.value)"
+                    (click)="resetField('updateBlandName')" value="{{updatableSellerName}}">
+                </div>
+
+                <div class="form-group seller-email-wrapper">
+                  <label for="name">Email</label>
+                  <input type="email" class="form-control" id="updateEmail" #updateEmail
+                    (change)="onChangeGetData('updateEmail',updateEmail.value)" (click)="resetField('updateEmail')"
+                    value="{{updatableSellerEmail}}">
+                </div>
+
+                <div class="form-group seller-watsapp-wrapper">
+                  <label class="">Watsapp N&deg; <small>12 Integers</small></label>
+                  <input type="text" class="form-control" id="updateWatsapp" #updateWatsapp
+                    (change)="onChangeGetData('updateWatsapp',updateWatsapp.value)"
+                    (click)="resetField('updateWatsapp')" value="{{updatableSellerWatsapp}}">
+                </div>
+
+                <div class="form-group seller-contact-wrapper">
+                  <label class="">Contact N&deg; <small>12 Integers</small></label>
+                  <input type="text" class="form-control" id="updateContact" #updateContact
+                    (change)="onChangeGetData('updateContact',updateContact.value)"
+                    (click)="resetField('updateContact')" value="{{updatableSellerContact}}">
+                </div>
+
+                <div class="country-wrapper">
+                  <label>Country</label>
+                  <input type="text" class="form-control" id="updateCountry" #updateCountry
+                    (change)="onChangeGetData('updateCountry',updateCountry.value)"
+                    (click)="resetField('updateCountry')" value="{{updatableSellerCountry}}">
+                </div>
+
+                <div class="district-wrapper">
+                  <label>District</label>
+                  <input type="text" class="form-control" id="updateDistrict" #updateDistrict
+                    (change)="onChangeGetData('updateDistrict',updateDistrict.value)"
+                    (click)="resetField('updateDistrict')" value="{{updatableSellerDistrict}}">
+
+                </div>
+
+                <div class="sector-wrapper">
+                  <label>Sector</label>
+                  <input type="text" class="form-control" id="updateSector" #updateSector
+                    (change)="onChangeGetData('updateSector',updateSector.value)" (click)="resetField('updateSector')"
+                    value="{{updatableSellerSector}}">
+                </div>
+
+                <div class="form-group seller-town-wrapper">
+                  <label class="">Town</label>
+                  <input type="text" class="form-control" id="updateTown" #updateTown
+                    (change)="onChangeGetData('updateTown',updateTown.value)" (click)="resetField('updateTown')"
+                    value="{{updatableSellerTown}}">
+                </div>
+
+
+                <div class="footer-wrapper">
+                  <button type="button" id="closeUpdateModalButton"
+                    class="btn btn-outline-info waves-effect ml-auto update-image-close-btn"
+                    data-dismiss="modal">Close</button>
+
+                  <button (click)="updateSeller()" type="button" class="btn update-btn update-seller-btn">
+                    Update Seller
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!------------------------------------ END OF UPDATE SELLER -------------------------------->
+
+
+      </div>
+
+    </div>
+  </div>
+  <!--/.Content-->
+</div>
+
+
+<!-- -----------------------------------------------add seller modal Modal--------------------------------------------------- -->
+<div class="modal fade" id="newSellerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Modal cascading tabs-->
+      <div class="modal-c-tabs">
+        <!-- Tab panels -->
+        <div class="tab-content">
+
+          <div class="tab-pane fade fade-login in show active" id="panel7" role="tabpanel">
+
+            <!--------------------------- UPDATE SELLER BODY--------------------------------------------->
+            <div class="update-seller-container">
+
+              <div class="update-form-container">
+
+                <div class="error-wrapper">
+                  {{addSellerErrorMessage}}
+                </div>
+                <div class="form-group user_id-wrapper">
+                  <label>User Id <small>Copy userId</small></label>
+                  <input type="text" class="form-control" id="userId" #userId
+                    (click)="resetField('userId')" value="">
+                </div>
+                <div class="form-group seller-blandName-wrapper">
+                  <label>Bland Name <small>Max: 30 Char</small></label>
+                  <input type="text" class="form-control" id="blandName" #blandName
+                    (change)="onChangeGetData('blandName',blandName.value)"
+                    (click)="resetField('blandName')" placeholder="Bussiness/Seller name">
+                </div>
+
+                <div class="form-group seller-email-wrapper">
+                  <label for="name">Email <small>Max 30 char</small></label>
+                  <input type="email" class="form-control" id="email" #email
+                    (change)="onChangeGetData('email',email.value)" (click)="resetField('email')" 
+                    placeholder="Ex: fimbo@gmail.com">
+                </div>
+
+                <div class="form-group seller-watsapp-wrapper">
+                  <label class="">Watsapp N&deg; <small>12 Integers</small></label>
+                  <input type="text" class="form-control" id="watsapp" #watsapp
+                    (change)="onChangeGetData('watsapp',watsapp.value)"
+                    (click)="resetField('watsapp')" placeholder="Ex: 250xxxxxxxxx">
+                </div>
+
+                <div class="form-group seller-contact-wrapper">
+                  <label class="">Contact N&deg; <small>12 Integers</small></label>
+                  <input type="text" class="form-control" id="contact" #contact
+                    (change)="onChangeGetData('contact',contact.value)"
+                    (click)="resetField('contact')" placeholder="Ex: 250xxxxxxxxx">
+                </div>
+
+                <div class="country-wrapper">
+                  <label>Country <small>Max 30 char</small></label>
+                  <input type="text" class="form-control" id="country" #country
+                    (change)="onChangeGetData('country',country.value)"
+                    (click)="resetField('country')" placeholder="Ex: Rwanda">
+                </div>
+
+                <div class="district-wrapper">
+                  <label>District <small>Max 30 char</small></label>
+                  <input type="text" class="form-control" id="district" #district
+                    (change)="onChangeGetData('district',district.value)"
+                    (click)="resetField('district')" placeholder="Ex: Nyarugenge">
+
+                </div>
+
+                <div class="sector-wrapper">
+                  <label>Sector <small>Max 30 char</small></label>
+                  <input type="text" class="form-control" id="sector" #sector
+                    (change)="onChangeGetData('sector',sector.value)" (click)="resetField('sector')"
+                    placeholder="Ex: Nyamirambo">
+                </div>
+
+                <div class="form-group seller-town-wrapper">
+                  <label class="">Town <small>Max 30 char</small></label>
+                  <input type="text" class="form-control" id="town" #town
+                    (change)="onChangeGetData('town',town.value)" (click)="resetField('town')"
+                   placeholder="Ex: Kigali">
+                </div>
+
+
+                <div class="footer-wrapper">
+                  <button type="button" id="close-add-seller-btn"
+                    class="btn btn-outline-info waves-effect ml-auto"
+                    data-dismiss="modal" >Close</button>
+
+                  <button (click)="addSeller(userId.value)" type="button" class="btn update-btn update-seller-btn">
+                    Add Seller
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!------------------------------------ END OF UPDATE USER -------------------------------->
+
+
+      </div>
+
+    </div>
+  </div>
+  <!--/.Content-->
+</div>

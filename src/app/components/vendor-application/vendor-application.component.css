@@ -1,0 +1,246 @@
+*{padding: 0; margin: 0; box-sizing: border-box;}
+body{height: 900px;}
+header {
+	/* background: url('http://www.autodatz.com/wp-content/uploads/2017/05/Old-Car-Wallpapers-Hd-36-with-Old-Car-Wallpapers-Hd.jpg'); */
+
+	width: 100%;
+	height: 400px;
+	background-size: cover;
+	background-attachment: fixed;
+	position: relative;
+	overflow: hidden;
+	border-radius: 0 0 85% 85% / 30%;
+}
+header .overlay{
+	width: 100%;
+	height: 100%;
+
+  background-image: linear-gradient( 135deg, #edffec 10%, #edffec 100%);
+
+
+}
+.overlay h1{
+    color: #7fad39;
+    font-size: 4em;
+    padding-top: 0.5em;
+    /* margin-left: 1.5em; */
+    font-weight: bolder;
+}
+.overlay img{
+    width: 100px;
+    /* margin-left: 1.5em; */
+    margin-top: 5%;
+}
+.overlay p {
+    width: 400px;
+    font-size: 20px;
+    color: rgb(64, 66, 64);
+    /* margin-left: 7em; */
+    font-family: 'Century Gothic';
+  }
+ .overlay p span{
+     color: black;
+     font-weight: bold;
+ } 
+  .container{
+      width: 90%;
+      float: right;
+  }
+  .application-form-container{
+      width: 100%;
+  }
+  .application-form-wrapper{
+      width: 60%;
+      margin-left: 20%;
+      margin-top: 4em;
+      border-top: 7px solid #7fad39;
+      border-radius: 5px 5px 0px 0px; 
+      height:1200px;
+      /* background: red; */
+      
+  }
+  .form-wrapper{
+      width: 80%;
+      /* margin-top: 1em;
+      margin-left: 10%; */
+     float: right;
+  }
+  .form-header{
+      width: 80%;
+      float: right;
+      margin-top: 2em;
+
+  }
+  .form-header p{
+      color: rgb(90, 90, 90);
+  }
+  .form-header strong{
+      color: red;
+  }
+  .form-wrapper form{
+      width: 100%;
+  }
+  .form-wrapper label{
+      font-size: 14px;
+      display: block;
+      margin-top: 1em;
+      color: rgb(54, 53, 53);
+      font-family: 'Century Gothic';
+  }
+  .form-wrapper strong{
+      color: red !important;    
+  }
+  .form-wrapper input,select,textarea{
+      width: 80%;
+      color: rgb(87, 86, 86);
+      border-radius: 5px 5px;
+      border-color: rgb(87, 86, 86);
+      border-width: 0.5px;
+      padding: 10px;
+      background: white;
+  }
+  .form-wrapper button{
+      margin-top: 2em !important;
+      width: 200px;
+      padding: 10px;
+      color:  #ffff;
+      background-color: rgb(56, 127, 221);
+      border-width: 0px;
+      border-radius: 20px 20px;
+  }
+  .form-wrapper button:hover{
+      background: rgb(37, 100, 216);
+  }
+ 
+.margin-top{
+    margin-top:4em !important;
+}
+.reduced-application-form-wrapper{
+    height: 300px !important;
+}
+.reduced-2-application-form-wrapper{
+    height: 360px !important;
+}
+.resend-code{
+    color: rgb(37, 100, 216); 
+}
+.resend-code:hover{
+    text-decoration: underline;
+}
+.cursor-pointer{
+    cursor:pointer;
+}
+.danger-field{
+    border-color: red !important;
+}
+
+.hasError{
+    display: block;
+    color: red;
+}
+
+
+/* ---------------modal box design-------------------------------- */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(75, 74, 74, 0.4); /* Black w/ opacity */
+  }
+  
+  .error-modal{
+      width: 40%;
+      margin-left: 30%;
+      margin-top: 10%;
+      background: white;
+      padding: 2em;
+      border-radius: 20px 20px;
+      /* background: red; */
+
+  }
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .modal-title{
+      width: 100%;
+  }
+  .modal-title h1{
+      color: rgb(241, 30, 30);
+      text-align: center;
+  }
+  .modal-body{
+      width: 100%;
+      height: 100px;
+      text-align: center;
+      font-family: 'Century Gothic';
+      border-left: 5px solid rgb(250, 31, 31);
+      background: rgba(250, 31, 31, 0.123);
+      font-size: 14px;
+      border-radius: 5px 0px 0px 5px;
+      margin-top: 2em;
+      padding-top: 2em;
+  }
+  .modal-footer{
+      margin-top: 1em;
+      padding-top: 3px;
+  }
+  .modal-footer button{
+      background: rgb(241, 241, 241);
+      color: rgb(59, 59, 59);
+      border-radius: 20px 20px;
+      border-width: 0px;
+      width: 120px;
+      padding: 9px;
+  }
+  .modal-footer button:hover{
+      background: rgb(199, 199, 199);
+  }
+  .modal-footer small{
+      margin-right: 2em;
+  }
+  .modal-footer small u{
+      color: rgb(30, 91, 206);
+      cursor: pointer;
+  }
+  .modal-footer small u:hover{
+    color: rgb(29, 64, 129);
+
+
+  }
+  .isAccountCreated-para{
+      font-size: 14px !important;
+  }
+  .isAccountCreated-para strong{
+    color: rgb(30, 91, 206);
+  }
+  .btn-silver{
+      background: rgb(228, 228, 228) !important;
+      color: rgb(63, 62, 62) !important;
+  }
+  .btn-silver:hover{
+     background: rgb(200, 200, 200) !important;
+  }
+.btn-right{
+    float: right;
+}
+.is-account-created-footer{
+    width: 85%;
+}

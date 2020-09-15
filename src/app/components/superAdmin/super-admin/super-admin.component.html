@@ -1,0 +1,63 @@
+<div class="main-container">
+       
+      <div class="sidebar-container">
+        <div class="sidebar-header">
+            <h4>FIMBO <span>Admin</span></h4>
+        </div>
+        <div class="menu-list">
+            <div class="section-type">
+                <h6>PRODUCTS SETTING</h6>
+            </div>
+            <div class="primary-list" (click)="adminNavigate(1)" id="productsWrapper">
+                <h6>Products</h6>
+              
+            </div>
+          
+            <div class="primary-list" (click)="adminNavigate(2)" id="categoriesWrapper">
+                    <h6>Categories</h6>
+            </div>
+           
+            <div class="primary-list" (click)="adminNavigate(3)" id="collectionsWrapper">
+                    <h6>Collections</h6>
+            </div>
+           
+            <div class="primary-list" (click)="adminNavigate(4)" id="marksWrapper">
+                    <h6>Marks</h6>
+            </div>
+           
+            <div class="section-type">
+                    <h6>ACCOUNTS SETTING</h6>
+                </div>
+            <div class="primary-list" (click)="adminNavigate(5)" id="sellersWrapper">
+                    <h6>Sellers</h6>
+            </div>
+            
+            <div class="primary-list" (click)="adminNavigate(6)" id="usersWrapper">
+                     <h6>Users</h6>
+            </div>
+
+            <div class="section-type">
+                    <h6>DISPLAY SETTING</h6>
+            </div>
+
+            <div class="primary-list" (click)="adminNavigate(7)" id="primarySlideWrapper">
+                    <h6>Primary Slide</h6>
+           </div>
+        </div>
+      </div>
+      <div class="header-container shadow">
+          <ul>
+              <li routerLinkActive="active" [routerLink]="['index']">Home</li>
+          </ul>
+      </div>
+      
+      <div class="main-contents-container">
+        <app-products></app-products>
+        <app-categories></app-categories>
+        <app-collections></app-collections>
+        <app-marks></app-marks>
+        <app-sellers></app-sellers>
+        <app-users></app-users>
+        <app-primary-slide></app-primary-slide>
+     </div>
+</div>

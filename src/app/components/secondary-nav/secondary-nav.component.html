@@ -1,0 +1,57 @@
+<div class="secondary-nav" *ngIf="this.displayService.displayHeaders">
+  <div class="main-container">
+
+
+    <div class="logo-wrapper">
+      <img src="../../../assets/logos/fimbo-logo.png" alt="fimbo logo" srcset="">
+    </div>
+    <div class="nav-links-wrapper">
+
+      <div class="search-box-wrapper">
+        <select class="form-control search-options">
+          <option>All</option>
+          <option>car pedals & collections</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+        <input type="text" class="form-control search-input" placeholder="Search a product">
+        <button type="submit"><img src="../../../assets/icons/search-icon.png" alt=""></button>
+      </div>
+
+    </div>
+
+    <div class="account-link-wrapper">
+      <ul>
+        <li class="cursor-pointer"><img src="../../../assets/icons/account-icon.png" alt="account icon"></li>
+        <li  class="cursor-pointer" id="open-cart-btn" (click)="gotToMyCart()">
+          <img src="../../../assets/icons/cart-icon.png" alt="cart icon"></li>
+        <li class="cursor-pointer">COLLECTIONS</li>
+       </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- --------------------------------------------NOT LOGGED IN ERROR MODAL------------------------------- -->
+<div id="notLoggedInErrorModal" class="modal">
+  <!-- Modal content -->
+  <div class="error-modal-content">
+      <span class="error-modal-close cursor-pointer" id="error-modal-close">&times;</span>
+
+      <div class="error-modal-content-wrapper">
+      <img src="../../../assets/images/unautholized-error.png" alt="error image">
+      <p>Please! First LogIn to countinue.</p>      
+    </div>
+    <div class="modal-auth-wrapper">
+      <div class="login-modal-btn-wrapper">
+        <button>LogIn</button>
+      </div>
+      <div class="sign-up-modal-btn-wrapper">
+          <button>SignUp</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- --------------------------------------------END NOT LOGGED IN ERROR MODAL------------------------------- -->

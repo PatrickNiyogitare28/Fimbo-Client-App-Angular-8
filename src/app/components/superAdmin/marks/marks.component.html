@@ -1,0 +1,104 @@
+<div class="marks-container" *ngIf="this.displayService.adminDisplayMarks">
+
+  <div class="top-header-wrapper">
+    <ul>
+      <li class="cursor-pointer color-black">All Marks</li>
+      <li id="openModalButton" data-toggle="modal" data-target="#NewMarkModalForm" class="cursor-pointer">New Mark</li>
+
+    </ul>
+  </div>
+
+  <div class="add-marks-wrapper shadow" id="add-marks-wrapper" hidden>
+    <div class="form">
+      <p>{{errorMessage}}</p>
+      <input type="text" placeholder="Mark Name" (click)="resetError()" #markName>
+      <button class="close-btn" (click)="showNewMarkForm(1)">Close</button>
+      <button class="add-btn" (click)="addMark(markName.value)">Add Mark</button>
+    </div>
+  </div>
+
+  <div class="mark-table">
+    <table class="table table-striped table-hover">
+
+      <thead>
+        <tr>
+          <th>Names</th>
+          <th>Products In</th>
+          <th colspan="2">Actions</th>
+          <!-- <th>Update</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let mark of marks">
+          <td>{{mark.markName}}</td>
+          <td>{{mark.productsIn}}</td>
+          <td hidden><input type="text" value="{{mark.markId}}" #markIdHolder></td>
+          <td (click)="triggerUpdateMark(markIdHolder.value)" data-toggle="modal" data-target="#updateMarkModalForm"
+          class="cursor-pointer">Update</td>
+          <td (click)="deleteMark(markIdHolder.value)" class="cursor-pointer">Delete</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- -----------------------------------------------add mark Modal--------------------------------------------------- -->
+<div class="modal fade" id="NewMarkModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Modal cascading tabs-->
+      <div class="modal-c-tabs">
+        <!-- Tab panels -->
+        <div class="tab-content">
+          <div class="tab-pane fade fade-login in show active" id="panel7" role="tabpanel">
+            <!--------------------------- ADD  MARK BODY------------------------------------------>
+            <div class="add-mark-wrapper">
+              <div class="form">
+                <p>{{errorMessage}}</p>
+                <input type="text" placeholder="mark Name" (click)="resetError()" id="markName" #markName>
+                <button class="close-btn" id="close-mark-wrapper-btn" data-dismiss="modal">Close</button>
+                <button class="add-btn" (click)="addMark(markName.value)">Add Mark</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!------------------------------------ END OF ADD MARK Panel -------------------------------->
+      </div>
+    </div>
+  </div>
+  <!--/.Content-->
+</div>
+
+<!-- -----------------------------------------------update mark Modal--------------------------------------------------- -->
+<div class="modal fade" id="updateMarkModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Modal cascading tabs-->
+      <div class="modal-c-tabs">
+        <!-- Tab panels -->
+        <div class="tab-content">
+          <div class="tab-pane fade fade-login in show active" id="panel7" role="tabpanel">
+            <!--------------------------- UPDATE COLLECTON BODY--------------------------------------------->
+            <div class="add-mark-wrapper">
+              <div class="form">
+                <p>{{updateMarkErrorMessage}}</p>
+                <input type="text" (change)="onChangeMarkName(updateMarkName.value)" value="{{updatableMarkName}}"
+                  placeholder="mark Name" (click)="resetError()" id="updateMarkName" #updateMarkName>
+                <button class="close-btn" id="update-mark-close-btn" data-dismiss="modal">Close</button>
+                <button class="add-btn" (click)="updateMark()">Update Mark</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!------------------------------------ END OF UPDATE MARK -------------------------------->
+      </div>
+    </div>
+  </div>
+  <!--/.Content-->
+</div>

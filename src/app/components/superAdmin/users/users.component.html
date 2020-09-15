@@ -1,0 +1,129 @@
+<div class="users-container" *ngIf="this.displayService.adminDisplayUsers">
+        <div class="top-header-wrapper">
+                <ul>
+                        <li class="cursor-pointer color-black">All Users</li>
+                        <li id="openAddSellerModalButton" data-toggle="modal" data-target="#newSellerModal" 
+                        class="cursor-pointer" hidden>New Seller</li>
+
+                        <!-- <li>New User</li> -->
+                </ul>
+        </div>
+    
+       <div class="user-table">
+                   <table class="table table-striped table-hover">
+                        
+                        <thead>
+                                <tr>
+                                        <th>Firstname</th>
+                                        <th>Lastname</th>
+                                        <th>Email</th>
+                                        <th>Phone N&deg;</th>
+                                        <th>Level</th>
+                                        <th>Privilege</th>
+                                        <th>Created</th>
+                                        <th>Copy Id</th>
+                                        <th colspan="2">Actions</th>
+                                        <!-- <th>Update</th> -->
+                                </tr>
+                        </thead>
+                        <tbody>
+                                <tr *ngFor="let user of users">
+                                        <td>{{user.firstname}}</td>
+                                        <td>{{user.lastname}}</td>
+                                         <td>{{user.email}}</td>
+                                        <td>{{user.phone}}</td>
+                                        <td>{{user.level}}</td>
+                                        <td class="cursor-pointer" (click)="onMakeSeller(user.privilege,user.userId)">{{user.privilege}}</td>
+                                       <td>{{user.createdDate}}</td>
+                                       <td class="_dt cursor-pointer" (click)="copyUserId(user.userId)">
+                                               <img src="../../../../assets/icons/copy-icon.png" alt="copy icon"></td>
+                                        <td hidden><input type="text" value="{{user.userId}}" #serIdHolder></td>
+                                        <td id="openModalButton" data-toggle="modal" data-target="#updateUserModal"
+                                        (click)="triggerUpdateUserForm(serIdHolder.value)" class="cursor-pointer">Update</td>
+                                        <td (click)="deleteUser(serIdHolder.value)" class="cursor-pointer  _dt-max">
+                                                <img src="../../../../assets/icons/delete-accop.png" alt="">
+                                        </td>
+                                </tr>
+                                
+                        </tbody>
+                        </table>
+</div>
+
+</div>
+
+
+<!-- -----------------------------------------------update modal Modal--------------------------------------------------- -->
+<div class="modal fade" id="updateUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Modal cascading tabs-->
+      <div class="modal-c-tabs">
+        <!-- Tab panels -->
+        <div class="tab-content">
+
+          <div class="tab-pane fade fade-login in show active" id="panel7" role="tabpanel">
+
+            <!--------------------------- UPDATE SELLER BODY--------------------------------------------->
+            <div class="update-user-container">
+
+              <div class="update-form-container">
+
+                <div class="error-wrapper">
+                {{errorMessage}}
+                </div>
+
+                <div class="form-group firstname-wrapper">
+                        <label>Firstname</label>
+                        <input type="text" class="form-control" id="firstname" #firstname value="{{updatableFirstname}}"
+                        (change)="onChangeGetData('firstname',firstname.value)" (click)="resetField('firstname')">
+                </div>
+
+                <div class="form-group lastname-wrapper">
+                        <label>Lastname</label>
+                        <input type="text" class="form-control" id="lastname" #lastname value="{{updatableLastname}}"
+                        (change)="onChangeGetData('lastname',lastname.value)" (click)="resetField('lastname')">
+                </div>
+          
+                <div class="form-group phone-wrapper">
+                        <label>Phone N&deg;</label>
+                        <input type="text" class="form-control" id="phone" #phone value="{{updatablePhone}}"
+                        (change)="onChangeGetData('phone',phone.value)" (click)="resetField('phone')">
+                </div>
+
+                <div class="form-group level-wrapper">
+                        <label>Level</label>
+                        <input type="number" class="form-control" id="level" #level value="{{updatableLevel}}"
+                        (change)="onChangeGetData('level',level.value)" (click)="resetField('level')">
+                </div>
+
+                <div class="form-group email-wrapper">
+                        <label>Email</label>
+                        <input type="email" class="form-control" id="email" #email value="{{updatableEmail}}"
+                        (change)="onChangeGetData('email',email.value)" (click)="resetField('email')">
+                </div>
+
+                <div class="footer-wrapper">
+                  <button type="button" id="openModalButton" data-target="#updateUserModal"
+                    class="btn btn-outline-info waves-effect ml-auto update-user-close-btn"
+                    data-dismiss="modal">Close</button>
+
+                  <button (click)="updateUser()" type="button" class="btn update-btn update-user-btn">
+                    Update User
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!------------------------------------ END OF UPDATE USER -------------------------------->
+
+
+      </div>
+
+    </div>
+  </div>
+  <!--/.Content-->
+</div>
