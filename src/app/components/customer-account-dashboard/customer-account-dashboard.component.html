@@ -1,0 +1,269 @@
+<div class="darshboard-card-box shadow">
+  <div class="dashboard-items-container">
+    <div class="darsh-activity-wrapper dash-act-one">
+      <div class="darsh-activity-wrapper-container">
+        
+
+        <div class="activity-name">
+          <p>My Cart</p>
+        </div>
+        <div class="activity-footer">
+          <div class="activity-icon">
+            <img src="../../../assets/icons/white-cart.png" alt="cart icon">
+          </div>
+          <div class="activity-number">
+            0
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="darsh-activity-wrapper dash-act-two">
+      <div class="darsh-activity-wrapper-container">
+
+        <div class="activity-name">
+          <p>My Prefered</p>
+        </div>
+        <div class="activity-footer">
+          <div class="activity-icon">
+            <img src="../../../assets/icons/white-heart-icon.png" alt="prefered icon">
+          </div>
+          <div class="activity-number">
+            6
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="darsh-activity-wrapper dash-act-three">
+      <div class="darsh-activity-wrapper-container">
+
+        <div class="activity-name">
+          <p>My Orders</p>
+        </div>
+        <div class="activity-footer">
+          <div class="activity-icon">
+            <img src="../../../assets/icons/white-order-2.png" alt="">
+          </div>
+          <div class="activity-number">
+            5
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="darsh-activity-wrapper dash-act-four">
+      <div class="darsh-activity-wrapper-container">
+
+        <div class="activity-name" id="productIDD">
+          <p>My Products</p>
+        </div>
+        <div class="activity-footer">
+          <div class="activity-icon">
+            <img src="../../../assets/icons/white-products-icon.png" alt="">
+          </div>
+          <div class="activity-number">
+            0
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="user-profile-container shadow">
+  <div class="user-profile-image-wrapper" *ngIf="isSeller && hasLogo">
+    <img  src="http://localhost:3000/utils/uploads/vendorsLogos/{{logoName}}" alt="user image">
+  </div>
+ 
+  <div *ngIf="(isSeller && !hasLogo) || (!isSeller)" class="image-name-wrapper">
+    {{defaultNameLogo}}
+ </div>
+  <div class="user-detailed-profile">
+    <h6 *ngIf="!isSeller">{{currentUserFirstname}} {{currentUserLastname}}</h6>
+    <h6 *ngIf="isSeller">{{sellerDetails.blandName}}</h6>
+    <p *ngIf="!isSeller">{{currentUserEmail}}
+      <br (click)="backToStore()">{{currentUserPhone}}</p>
+    <p *ngIf="isSeller">{{sellerDetails.email}} <br> {{sellerDetails.contact}}</p>  
+
+    <button *ngIf="hasLocation && !isSeller" class="view-location-data" (click)="showUserAddress(1)">View Your Location</button>
+    <button *ngIf="!hasEmail && hasLocation && !isSeller"  (click)="userAddressModal(2.1)">Add Email</button>
+    <button *ngIf="!hasLocation && hasEmail && !isSeller" (click)="userAddressModal(2.5)">Add Location</button>
+    <button *ngIf="!hasEmail && !hasLocation && !isSeller" (click)="userAddressModal(2)">Add Email & Location</button>
+    <button (click)="userAddressModal(3)" *ngIf="!isSeller">Update Data</button>
+    <button *ngIf="isSeller" (click)="subpageSellerProfile()">Account Profile</button>
+    <div *ngIf="!isSeller" class="profile-progress" title={{profileProgressTitle}}>
+      <mat-progress-bar mode="determinate" value={{profileProgrees}}></mat-progress-bar>
+      <small>{{profileProgrees}}%</small>
+    </div>
+  </div>
+</div>
+
+<!-- ------------------------------------VEIW USER ADDRESS MODAL------------------------------------------->
+<div id="userAddressModal" class="modal">
+  <div class="modal-content">
+    <span class="close cursor-pointer" id="userAddressModalCloser">&times;</span>
+    <div class="modal-content-wrapper">
+      <p>View Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+        Deleniti sunt quisquam tempore, et impedit culpa tenetur
+        assumenda doloribus quos sit dolores fugiat, aliquam quas
+        ipsam suscipit corrupti accusamus ad? Tempore.</p>
+
+    </div>
+  </div>
+</div>
+<!-- -------------------------------END VEIW USER ADDRESS MODAL-------------------------------------------->
+
+<!-- ------------------------------------ADD USER ADDRESS MODAL------------------------------------------->
+<div id="addUserAddressModal" class="modal">
+  <div class="modal-content email-address-wrapper">
+    <span class="close cursor-pointer" id="addUserAddressModalCloser">&times;</span>
+    <div class="modal-content-wrapper">
+      <div class="email-wraper" *ngIf="emailWrapper">
+        <div class="error-wrapper" id="emailVerErrorWrapper" hidden>
+          <span>{{emailResponseError}}</span>
+        </div>
+        <div class="first-level-email top-3" *ngIf="!isEmailProvided">
+          <label>{{emailLableText}}</label>
+          <input type="email" (click)="resetField()" name="email" placeholder="ex: johndoe@gmail.com"  #email>
+          <button (click)="verifyEmail(email.value)" *ngIf="!hasEmail">Verify Email</button>
+          <button (click)="updateEmail(email.value)" *ngIf="hasEmail">Verify new Email</button>
+        </div>
+        <div class="second-lever-email" *ngIf="isEmailProvided">
+          <div class="error-wrapper" id="emailCodeVerErrorWrapper" hidden>
+            <span>{{emailResponseError}}</span>
+          </div>
+          <div class="gapper-wrapper">
+
+          </div>
+          <p id="verification-guid-para">We sent you a verification code on <span> <i>{{verifiableEmail}}</i></span></p>
+          <label>Enter verfication Code</label>
+          <input type="text" (click)="resetField()" name="email-verification" #verificationCode>
+          <button *ngIf="!hasEmail && hasLocation || hasEmail && hasLocation" (click)="enterUserAddress('update',verificationCode.value)">Verify </button>
+          <button *ngIf="!hasEmail && !hasLocation" (click)="enterUserAddress('add',verificationCode.value)">Verify </button>
+          <small class="cursor-pointer"><u>Resend code</u></small>
+          <small class="cursor-pointer" (click)="reEnterEmail()"><u>Change Email</u></small>
+
+        </div>
+      </div>
+      <div class="third-level-address second-lever-email" *ngIf="!emailWrapper">
+        <div class="success-wrapper">
+          <span>{{addLocationEmailSuccess}} </span> {{addLocationGuid}}
+        </div>
+        <h6>Location Information</h6>
+        <label>Country <small>{{countryFieldError}}</small></label>
+        <!-- <input type="text" name="coutry" placeholder="ex: Rwanda"> -->
+        <select name="country" class="width-normal" value={{userCurrentCountry}} id="country" #country
+          (click)="resetAddAddressField('country')">
+          <option value="Rwanda">Rwanda</option>
+          <option *ngFor="let country of worldCountries" value={{country.name}}>{{country.name}}</option>
+        </select>
+        <label>City <small>{{cityFieldError}}</small></label>
+        <input type="text" value={{userCurrentCity}} name="city" placeholder="ex: Kigali" id="city" #city
+          (click)="resetAddAddressField('city')">
+
+        <label>Street Code <small>{{streetFieldError}}</small></label>
+        <input type="text" value={{userCurrentStreet}} name="streetCode" placeholder="ex: KK 2055" id="street" #street
+          (click)="resetAddAddressField('street')">
+
+        <button (click)="addUserAddress('set',country.value,city.value,street.value)">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- -------------------------------END ADD USER ADDRESS MODAL-------------------------------------------->
+
+<!-- ------------------------------------ADD USER ADDRESS MODAL------------------------------------------->
+<div id="updateUserDalaModal" class="modal">
+  <div class="modal-content update-data">
+    <span class="close cursor-pointer" id="updateUserDalaModalCloser">&times;</span>
+    <div class="modal-content-wrapper">
+      <div class="update-menu-bar">
+        <ul>
+          <li class="cursor-pointer active-update-list" id="profile-list" (click)="displayUpdateWrapper(1)">
+            <img src="../../../assets/icons/account-icon.png" alt="profile icon"> Account
+            Profile</li>
+          <li class="cursor-pointer" id="location-list" (click)="displayUpdateWrapper(2)">
+           <img src="../../../assets/icons/location-black-icon.png" alt="locaton icon">  Location Address</li>
+          <li class="cursor-pointer" id="email-list" (click)="displayUpdateWrapper(3)">
+            <img src="../../../assets/icons/mail-black-icon.png" alt="Mail icon"> Email</li>
+          <li class="cursor-pointer" id="password-list" (click)="displayUpdateWrapper(4)">
+           <img src="../../../assets/icons/rock-icon.png" alt="Rock Icon">  Password</li>
+
+        </ul>
+      </div>
+      <div class="update-data-container update-data-top">
+       
+        <div class="update-profile-wrapper" id="update-profile-wrapper">
+          <div class={{updateResponseEffect}} id="reseponse-wrapper">
+            {{updateProfileResponseMsg}}
+          </div>
+          <div class="update-data-top height-30">
+  
+          </div>
+          <label>Firstname  <small>{{updateProfileHasErrors[0]}}</small></label>
+          <input type="text" name="updatefirstname" value={{currentUserFirstname}}
+          (click)="resetUpdateProfileErrorField('updatableFirstname')" id="updatableFirstname" #updatableFirstname>
+
+          <label>Lastname <small>{{updateProfileHasErrors[1]}}</small></label>
+          <input type="text" id="updatableLastname" value={{currentUserLastname}} 
+          (click)="resetUpdateProfileErrorField('updatableLastname')" #upatableLastname>
+
+          <label>Phone <small>{{updateProfileHasErrors[2]}}</small></label>
+          <input type="tel"  id="updatablePhone"  value={{currentUserPhone}} 
+          (click)="resetUpdateProfileErrorField('updatablePhone')" #updatablePhone>
+        
+          <button (click)="updateUserProfiel(updatableFirstname.value,upatableLastname.value,updatablePhone.value)">Save Changes</button>
+
+        </div>
+        
+        <!-- --------------------------updating location wrapper------------------------- -->
+        <div class="update-location-wrapper" id="update-location-wrapper" hidden>
+          <label>Country <small>{{updatableCountryFieldError}}</small></label>
+          <!-- <input type="text" name="coutry" placeholder="ex: Rwanda"> -->
+          <select name="country" value={{userCurrentCountry}} class="padding-10" id="updatableCountry" #updatableCountry
+            (click)="resetAddAddressField('updatableCountry')">
+            <option value="Rwanda">Rwanda</option>
+            <option *ngFor="let country of worldCountries" value={{country.name}}>{{country.name}}</option>
+          </select>
+          <label>City <small>{{updatableCityFieldError}}</small></label>
+          <input type="text" value={{userCurrentCity}} name="city" placeholder="ex: Kigali" id="updatableCity" #updatableCity
+            (click)="resetAddAddressField('updatableCity')">
+
+          <label>Street Code <small>{{updatableStreetFieldError}}</small></label>
+          <input type="text" value={{userCurrentStreet}} name="streetCode" placeholder="ex: KK 2055" id="updatableStreet" #updatableStreet
+            (click)="resetAddAddressField('updatableStreet')">
+
+          <button (click)="addUserAddress('update',updatableCountry.value,updatableCity.value,updatableStreet.value)">Save Changes</button>
+        </div>
+        <div class="update-email-wrapper" id="update-email-wrapper" hidden>
+          <div class="update-email-container">
+            <button *ngIf="hasEmail" type="button" (click)="triggerUpdateEmailModal()">Click To change Your Email</button>
+            <button *ngIf="!hasEmail" (click)="triggerAddEmail()" type="button">Please! click to add Your email</button>
+          </div>
+        </div>
+        <div class="update-password" id="update-password-wrapper" hidden>
+          <div class={{updatePasswordResponseEffect}} id="updatePassWord-reseponse-wrapper">
+            {{updatePasswordResponseMsg}}
+          </div>
+          <div class="update-data-top height-30">
+  
+          </div>
+          <label>Old Password  <small>{{updatePasswordHasErrors[0]}}</small></label>
+          <input type="password" name="oldPassword" placeholder="Enter old Password"
+          id="oldPassword" #oldPassword (click)="resetAddAddressField('oldPassword')">
+         
+              <label>New Passoword <small>{{updatePasswordHasErrors[1]}}</small></label>
+              <input type="password" name="newPassword" placeholder="Create new password" 
+              id="newPassword" #newPassword (click)="resetAddAddressField('newPassword')">
+          
+             <label>Verify new Passoword  <small>{{updatePasswordHasErrors[2]}}</small> </label>
+              <input type="password" name="newPassVerification" placeholder="Re-enter new password" 
+              id="newPassVerification" #newPassVerification (click)="resetAddAddressField('newPassVerification')">
+          
+          <button (click)="updateAccountPassword(oldPassword.value, newPassword.value, newPassVerification.value)">
+            Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- -------------------------------END ADD USER ADDRESS MODAL-------------------------------------------->

@@ -1,0 +1,196 @@
+<div class="explore-product-container">
+  <div class="primary-content-wrapper" id="primary-content-wrapper">
+
+  </div>
+  <div class="contents-wrapper">
+    <div class="navigation-wrapper">
+      <ul>
+        <li>Home</li>
+        <li>/</li>
+        <li>Exprole product</li>
+      </ul>
+    </div>
+    <div class="main-contents-wrapper">
+      <div class="product-image-wrapper shadow">
+        <img src="http://localhost:3000/utils/uploads/productsImages/{{imageName}}" alt="">
+      </div>
+      <div class="product-description-wrapper">
+        <div class="product-name-price-wrapper">
+          <h2>{{productName}} <small>({{usedStatus}})</small></h2>
+          <div class="price-rating-wrapper">
+            <div class="price-wrapper">
+              <p>Price: <span>Rwf {{productPrice}}</span></p>
+            </div>
+            <div class="rates-wrapper">
+              <p><img src="../../../assets/icons/rate.png" alt=""> {{productsRates}} Rates</p>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="product-details">
+          <h6>Product Details</h6>
+          <div class="product-category-wrapper">
+            <p>Category: <span>{{categoryName}}</span></p>
+          </div>
+          <div class="product-collection-wrapper">
+            <p>Collection: <span>{{collectionName}}</span></p>
+          </div>
+          <div class="product-bland-wrapper">
+            <p>Bland: <span>{{markName}}</span></p>
+          </div>
+          <div class="product-seller-description-wrapper">
+            <p>{{details}}</p>
+          </div>
+
+        </div>
+
+        <div class="product-details">
+          <h6>Seller Information</h6>
+          <div class="product-category-wrapper">
+            <p>Names/BlandName: <span>{{sellerName}}</span></p>
+          </div>
+          <div class="product-collection-wrapper">
+            <p>Contact: <span><img src="../../../assets/icons/contact-seller-icon.png" alt=""> +{{sellerContact}}</span>
+            </p>
+          </div>
+          <div class="product-bland-wrapper">
+            <p>Whatsap: <span><img src="../../../assets/icons/whatsapp-seller-icon.png" alt="">
+                +{{sellerWastapp}}</span></p>
+          </div>
+
+          <div class="product-category-wrapper margin-top-1 clear-both">
+            <p>District: <span>{{sellerDistrict}}</span></p>
+          </div>
+          <div class="product-collection-wrapper margin-top-1">
+            <p>Sector: <span>{{sellerSector}}</span></p>
+          </div>
+          <div class="product-bland-wrapper margin-top-1">
+            <p>Town: <span>{{sellerTown}}</span></p>
+          </div>
+
+        </div>
+      </div>
+      <div class="take-action-wrapper">
+        <div class="quatinty-wrapper">
+          <ul>
+            <li class="quantity-list">Quanity</li>
+            <li (click)="updateQuantity(0)"> <img src="../../../assets/icons/minus-quantity-icon.png"
+                class="minus-quantity cursor-pointer" alt="Minus icon"></li>
+            <li>{{totalQuantity}}</li>
+            <li (click)="updateQuantity(1)"> <img src="../../../assets/icons/plus-quatinty-icon.png"
+                class="plus-quantity cursor-pointer" alt="Plus icon"> </li>
+          </ul>
+        </div>
+        <div class="take-action-button">
+          <button class="add-to-cart-btn" (click)="addToCart()">Add to Cart</button>
+          <button class="get-it-btn" id="getItBtn" (click)="getProductModal()">Get it Now</button>
+
+        </div>
+        <div class="guid-text">
+          <p><img src="../../../assets/icons/up-icon.png" alt="up icon"> Click "<span (click)="triggerGetItModal()">Get
+              it Now</span>" to directly
+            negotiete with the product seller</p>
+        </div>
+      </div>
+    </div>
+    <!-- -------------------------get product modal-------------------------- -->
+    <div id="getItModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close" id="closeGetIt">&times;</span>
+        <img src="../../../assets/images/avatars-pessoas-2.png" alt="guider image" class="guiderImage">
+        <p class="get-product-guides-para"> Thank you for conserning us! Now we let you negotiete with the product
+          owners for further services such as the means you can pay them for
+          product as well as delivery means. You can meet the product owner on the bellow platforms <br>(<span>Phone
+            contact</span> & <span>Whatsapp</span>)
+        </p>
+
+        <div class="get-seller-address-wrapper">
+          <div class="seller-title">
+            <h6>{{sellerName}}</h6>
+          </div>
+          <div class="get-seller-address">
+            <div class="get-seller-contact">
+              <p><img src="../../../assets/icons/contact-seller-icon.png" alt=""> +{{sellerContact}}</p>
+            </div>
+            <div class="get-seller-watsapp">
+              <p><img src="../../../assets/icons/whatsapp-seller-icon.png" alt=""> +{{sellerWastapp}}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- -------------------------end of get product modal-------------------------- -->
+
+  </div>
+  <!-- //----------------------------------------------RELATED PRODUCTS PRODUCTS----------------------------------- -->
+  <div class="related-products-wrapper">
+    <div class="featured-products-wrapper" id="featured-products-all-categories-wrapper">
+      <h5>Related Products</h5>
+      <div class="product-item shadow " *ngFor="let productItem of relatedProducts">
+        <div class="featured-image-wrapper">
+          <img src="http://localhost:3000/utils/uploads/productsImages/{{productItem.imageName}}"
+            class="featured-product-image" alt="spare image">
+
+        </div>
+        <div class="featured-product-details-wrapper">
+          <div class="left-wrapper-name">
+            <p class="featured-product-name">{{productItem.productName}}</p>
+
+          </div>
+          <div class="right-wrapper-right">
+            <p>{{productItem.price}} Frw</p>
+          </div>
+          <div class="featured-pro-seller-wrapper">
+            <strong>Seller: </strong>{{productItem.productSeller}}
+
+          </div>
+          <div class="featured-pro-collection-wrapper">
+            <strong>Collection: </strong>{{productItem.productCollection}}
+          </div>
+
+          <div class="featured-product-actions">
+            <div class="featured-pro-icon-one cursor-pointer">
+              <img src="../../../assets/icons/cart-icon.png" alt="cart icon">
+            </div>
+            <div class="featured-pro-icon-two cursor-pointer" (click)="likeProduct(productItem.productId)">
+              <img src="../../../assets/icons/{{productItem.rateStatusImage}}" alt="like icon">
+            </div>
+            <div (click)="exproleProduct(productItem.productId)" href="" class="featured-pro-icon-three cursor-pointer"
+              routerLinkActive="active" [routerLink]="['/exprole-product', productItem.productId]">
+              <img src="../../../assets/icons/many-opt-icon.png" alt="explore product icon">
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- --------------------------------------------NOT LOGGED IN ERROR MODAL------------------------------- -->
+<div id="notLoggedInErrorModal" class="modal">
+    <!-- Modal content -->
+    <div class="error-modal-content">
+        <span class="error-modal-close cursor-pointer" id="error-modal-close">&times;</span>
+
+        <div class="error-modal-content-wrapper">
+        <img src="../../../assets/images/unautholized-error.png" alt="error image">
+        <p>Please! LogIn to access your Cart.</p>      
+      </div>
+      <div class="modal-auth-wrapper">
+        <div class="login-modal-btn-wrapper">
+          <button>LogIn</button>
+        </div>
+        <div class="sign-up-modal-btn-wrapper">
+            <button>SignUp</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- --------------------------------------------END NOT LOGGED IN ERROR MODAL------------------------------- -->

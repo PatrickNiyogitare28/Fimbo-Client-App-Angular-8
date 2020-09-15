@@ -1,0 +1,590 @@
+.explore-product-container{
+    width: 100%;
+    height: 100%;
+    background: rgb(245, 243, 243);
+   
+}
+.primary-content-wrapper{
+    width: 100%;
+    background: rgb(245, 243, 243);
+    height: 10px; 
+}
+.contents-wrapper{
+    width: 90%;
+    margin-left: 5%;
+    position: relative;
+    margin-top: 1em;
+    border-width: 0px;
+    border-radius: 10px 10px;
+    background: #ffff;
+    height: 80%;
+}
+.navigation-wrapper{
+    width: 30%;
+    float: left;
+    margin-left: 2em;
+    margin-top: 1.5em;
+}
+.navigation-wrapper ul{
+    width: 100%;
+}
+.navigation-wrapper ul li{
+    font-size: 14px;
+    list-style-type: none;
+    display: inline;
+    font-weight: lighter;
+}
+.main-contents-wrapper{
+    width: 90%;
+    margin-left: 5%;
+    height: 90%;
+}
+.product-image-wrapper{
+    clear: both;
+    width: 30%;
+    float: left;
+    height: 80%;
+    /* border: 1px solid black; */
+    border-radius: 10px 10px;
+    object-fit: cover;
+   
+}
+.product-image-wrapper img{
+    width: 80%;
+    height: 80%;
+    margin: 10%;
+}
+.product-description-wrapper{
+    width: 45%;
+    float: left;
+    margin-left: 2em;
+    border-right: 1px solid grey;
+}
+.product-name-price-wrapper h2{
+    font-family: 'Century Gothic';
+    color: rgb(39, 38, 38);
+}
+.product-name-price-wrapper h2 small{
+    font-size: 12px;
+    color: rgb(233, 66, 102);  
+}
+.price-rating-wrapper{
+    width: 80%;
+    /* background: green; */
+}
+.price-wrapper{
+    width: 30%;
+    float: left;
+}
+.price-wrapper p{
+    font-size: 13px;
+    color: rgb(97, 95, 95);
+   
+
+}
+.price-wrapper p span{
+   color: rgb(233, 66, 102);  
+}
+.rates-wrapper{
+    width: 50%;
+    float: left;
+    
+}
+.rates-wrapper p{
+    font-size: 13px;
+    color: rgb(36, 79, 195);
+}
+.rates-wrapper img{
+    width: 40px
+}
+.product-details{
+    clear: both;
+    width: 100%;
+}
+.product-details h6{
+    font-family: 'Century Gothic';
+
+}
+.product-category-wrapper{
+    width: 27%;
+    float: left;
+    font-size: 13px;
+    border-radius: 5px 5px;
+    border: 0.6px solid rgb(153, 153, 153);
+}
+.product-category-wrapper p{
+    color: black;
+    font-weight: bold;
+    padding: 5px;
+}
+.product-category-wrapper p span{
+    color: rgb(71, 70, 70);
+    display: block;
+    font-weight: lighter;
+}
+.product-collection-wrapper{
+    width: 27%;
+    float: left;
+    font-size: 13px;
+    border-radius: 5px 5px;
+    border: 0.6px solid rgb(153, 153, 153);
+   margin-left: 0.8em;
+
+}
+.product-collection-wrapper img{
+    width: 20px;
+}
+.product-collection-wrapper p{
+    color: black;
+    font-weight: bold;
+    padding: 5px;
+}
+.product-collection-wrapper p span{
+    color: rgb(71, 70, 70);
+    display: block;
+    font-weight: lighter;
+}
+.product-bland-wrapper{
+    width: 27%;
+    float: left;
+    font-size: 13px;
+    border-radius: 5px 5px;
+    border: 0.6px solid rgb(153, 153, 153);
+    margin-left: 0.8em;
+}
+.product-bland-wrapper img{
+    width: 20px;
+}
+.product-bland-wrapper p{
+    color: black;
+    font-weight: bold;
+    padding: 5px;
+}
+.product-bland-wrapper p span{
+    color: rgb(71, 70, 70);
+    display: block;
+    font-weight: lighter;
+}
+.product-seller-description-wrapper{
+    clear: both;
+    border-radius: 5px 5px;
+    width: 85%;
+    background: rgba(217, 243, 217, 0.739);
+    margin-top: 6em;
+}
+.product-seller-description-wrapper p{
+    color: rgb(104, 102, 102);
+    padding: 5px;
+    font-size: 13px;
+}
+.take-action-wrapper{
+    width: 21%;
+    float: right;
+    /* background: red; */
+    height: 300px;
+}
+/* .guide-customer-wrapper{
+    border-radius: 5px 5px;
+
+}
+.guide-customer-par{
+    margin:0.4em;
+}
+.guide-customer-wrapper p{
+   
+    color: rgb(100, 97, 97);
+    font-size: 13px;
+    font-family: 'Century Gothic';
+} */
+.quatinty-wrapper{
+    width: 100%;
+}
+.quatinty-wrapper ul{
+    width: 100%;
+}
+.quatinty-wrapper ul li{
+    list-style-type: none;
+    display: inline;
+    margin-left: 1em;
+}
+.quatinty-wrapper ul li img{
+    width: 30px;
+}
+.quantity-list{
+    font-size: 15px;
+    color: rgb(70, 67, 67);
+    color: lighter;
+}
+.plus-quantity{
+    width: 25px !important;
+}
+.cursor-pointer{
+    cursor:pointer;
+}
+.take-action-button{
+    width: 100%;
+    margin-left: 10%;
+
+}
+.take-action-button button{
+    margin-top: 1em;
+    color: white;
+    width: 90%;
+    padding: 5px;
+    background: #7fad39;
+    border-radius: 3px 3px;
+    border-width: 0px;
+    font-family: 'Century Gothic';
+}
+.take-action-button button:hover{
+    background: #678d2e;
+}
+.guid-text{
+    margin-top: 1em;
+    width: 90%;
+    margin-left: 10%;
+}
+.guid-text p{
+    font-size: 13px;
+    color: rgb(90, 126, 194);
+}
+.guid-text p img{
+    width: 20px;
+}
+.guid-text p span:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.margin-top-1{
+    margin-top: 1em;
+}
+.clear-both{
+    clear: both;
+}
+
+/* ---------------modal box design-------------------------------- */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(75, 74, 74, 0.4); /* Black w/ opacity */
+  }
+  .error-modal-content{
+    background-color: white;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border-radius: 20px 20px;
+    border-width: 0px;
+    width: 40%; /* Could be more or less, depending on screen size */
+    height: 330px;
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    /* border: 1px solid #888; */
+    border-width: 20px 20px;
+    border-width: 0px;
+    width: 60%; /* Could be more or less, depending on screen size */
+   
+  }
+  .error-modal-content-wrapper{
+      width: 70%;
+      margin-left: 10%;
+      margin-top: 2em;
+      /* background: red; */
+
+  }
+  .error-modal-content-wrapper p{
+      font-size: 14px;
+      font-family: 'Century Gothic';
+      text-align: center;
+  }
+  .error-modal-content-wrapper img{
+      width: 80%;
+      margin-left: 14%;
+      /* margin-top: 2em; */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .modal-auth-wrapper{
+     /* margin-top: 1.5em; */
+     width: 70%;
+     margin-left: 15%;
+     background: red;
+  }
+  .login-modal-btn-wrapper{
+      width: 50%;
+      float: left;
+  }
+  .login-modal-btn-wrapper button{
+      width: 90%;
+      border-radius: 20px 20px;
+      padding: 5px;
+      border-width: 0px;
+      background: #7fad39;
+      color: white;
+     
+     
+  }
+  .sign-up-modal-btn-wrapper{
+      width: 50%;
+      float: right;
+  }
+  .sign-up-modal-btn-wrapper button{
+      width: 90%;
+      border-radius: 20px 20px;
+      padding: 5px;
+      border-width: 0px;
+      background: #7fad39;
+      color: white;
+      
+
+  }
+  .sign-up-modal-btn-wrapper button:hover{
+      background: #678d2e;
+  }
+  .login-modal-btn-wrapper button:hover{
+      background: #678d2e;
+  }
+
+  /* ---------------------------end of modal box css----------------------------- */
+.get-product-guides-para{
+    font-size: 13.5px;
+    color: rgb(85, 84, 84);
+    text-align: center;
+    margin-left: 2em;
+}
+.get-product-guides-para span{
+    color: rgb(38, 105, 228);
+}
+.guiderImage{
+    width: 38px;
+    border-radius: 50%;
+    /* border: 0.5px solid rgb(98, 98, 98); */
+}
+.get-seller-address-wrapper{
+    width: 100%;
+}
+.seller-title{
+    width: 100%;
+}
+.seller-title h6{
+    font-family: 'Century Gothic';
+    font-weight: bold;
+    text-align: center;
+}
+.get-seller-address{
+    width: 50%;
+    margin-left: 30%;
+}
+.get-seller-contact{
+    width: 50%;
+    float: left;
+}
+.get-seller-contact p{
+    font-size: 13px;
+    color: rgb(59, 59, 59);
+    font-weight: lighter;
+}
+.get-seller-contact p img{
+    width: 40px;
+}
+.get-seller-watsapp{
+    width: 50%;
+    float: right;
+}
+.get-seller-watsapp p{
+    font-size: 13px;
+    color: rgb(59, 59, 59);
+    font-weight: lighter;
+}
+.get-seller-watsapp p img{
+    width: 40px;
+}
+
+
+/* ----------------------------------related products css---------------------------------- */
+.related-products-wrapper{
+    width: 100%;
+    
+}
+.featured-products-wrapper {
+    width: 90%;
+    height: 500px;
+     margin-left: 10%;
+     margin-top: 7em;
+  }
+.featured-products-wrapper h5{
+    font-family: 'Century Gothic';
+}  
+
+.product-item {
+    width: 16%;
+    height: 250px;
+    background: white;
+    margin-left: 2%;
+    float: left;
+    margin-top: 1em;
+    border-radius: 5px 5px;
+  
+  }
+
+.featured-image-wrapper {
+    width: 90%;
+    margin: 0.5em 0.5em;
+    height: 60%;
+    object-fit: cover;
+    border-width: 0.5px;
+    border-style: solid;
+    border-color: rgb(207, 207, 207);
+  }
+
+ 
+.featured-product-image {
+    object-fit: cover;
+    width: 80%;
+    margin-left: 10%;
+    height: 90%;
+  
+  } 
+  .featured-product-details-wrapper {
+    width: 90%;
+    margin: 0.5em 0.5em;
+  } 
+
+.left-wrapper-name {
+    /* background: yellow; */
+    width: 60%;
+    float: left;
+    height: 20px;
+    font-size: 13px;
+  }
+  
+  .right-wrapper-right {
+    /* background: blue; */
+    color: rgb(233, 66, 102);
+    width: 40%;
+    float: right;
+    font-size: 12px;
+    height: 17px;
+  
+  }
+  
+  .featured-pro-seller-wrapper {
+    clear: both;
+    width: 100%;
+    /* background: red; */
+    font-size: 12px;
+  }
+  
+  .featured-pro-collection-wrapper {
+    clear: both;
+    width: 100%;
+    /* background: blue; */
+    font-size: 12px;
+    height: 17px;
+  
+  }
+  
+  .featured-pro-many-opt {
+    width: 60px !important;
+  }
+  
+  .featured-product-actions {
+    width: 100%;
+    /* height: 30px; */
+  }
+  
+  
+  .featured-pro-icon-one {
+    width: 20%;
+    float: left;
+  }
+  
+  .featured-pro-icon-one img {
+    width: 20px;
+  
+  }
+  
+  .featured-pro-icon-two {
+    width: 20%;
+    float: left;
+  
+  }
+  
+  .featured-pro-icon-two img {
+    width: 20px;
+  
+  }
+  
+  .featured-pro-icon-three {
+    width: 17%;
+    float: right;
+  }
+  
+  .featured-pro-icon-three img {
+    width: 20px;
+  
+  }
+
+
+@media only screen and (max-width: 600px){
+    .product-image-wrapper{
+        clear: both;
+        width: 90%;
+        height: 300px;
+       margin: 0%;
+
+      
+    }
+    .product-description-wrapper{
+        width: 90%;
+        /* float: left; */
+       clear:both;
+       margin: 0%;
+
+       
+    }
+    .take-action-wrapper{
+        clear:both;
+        width: 90%;
+       margin: 0%;
+    }
+    .modal-content{
+        width: 90%;
+    }
+    .get-seller-address{
+        width: 90%;
+        margin-left: 2em;
+    }
+    .error-modal-content{
+        width: 80%;
+        /* margin: 0% !important; */
+    }
+    .error-modal-content-wrapper{
+        width: 80%;
+    }
+}

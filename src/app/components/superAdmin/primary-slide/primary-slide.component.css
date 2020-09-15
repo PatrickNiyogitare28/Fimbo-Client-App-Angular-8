@@ -1,0 +1,98 @@
+.displayDivsContainer{
+    width: 90%;
+    margin-top: 2em;
+    margin-left: 5%;
+    height: 460px;
+    overflow-y: scroll;
+
+
+}
+.displayDivsContainer table{
+    font-size: 12px;
+}
+
+  .cursor-pointer{
+    cursor: pointer;
+  }
+  .color-black{
+    color: black !important;
+  }
+  
+  .displayDivsContainer::-webkit-scrollbar {
+  
+    width: 0.5em;
+  }
+  
+  .displayDivsContainer::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .displayDivsContainer::-webkit-scrollbar-thumb {
+    border-radius: 20px 20px;
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+  }
+  .table img{
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+
+  }
+  .table{
+      font-size: 12px;
+  }
+ 
+  .modal-footer{
+      width: 100%;
+      /* margin-left: 2em; */
+      /* margin-bottom: 1em; */
+  }
+  .modal-footer button{
+      font-size: 13px;
+  }
+  .products-wrapper{
+    height: 500px;
+    overflow-x: scroll;
+    /* background: red; */
+  }
+
+
+  .products-wrapper::-webkit-scrollbar {
+  
+    width: 0.5em;
+  }
+  
+  .products-wrapper::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .products-wrapper::-webkit-scrollbar-thumb {
+    border-radius: 20px 20px;
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+  }
+  .product-table{
+      margin-top: 1.2em;
+  }
+  .message-section{
+      height: 30px;
+      /* background: red; */
+      width: 100%;
+  }
+  .message-section p{
+      color: rgb(21, 70, 134);
+      text-align: center;
+      font-size: 12px;
+  }
+  .change-status-message{
+    margin-top: 2em;
+  }
+  .change-status-message p{
+    font-size: 20px;
+    text-align: center;
+    padding: 1em;
+    /* margin-left: 10%; */
+    color: rgb(100, 98, 98);
+    font-weight: lighter;
+
+  }

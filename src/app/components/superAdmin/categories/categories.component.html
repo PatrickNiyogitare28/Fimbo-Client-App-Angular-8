@@ -1,0 +1,97 @@
+<div class="categories-container" *ngIf="this.displayService.adminDisplayCategories">
+  <div class="top-header-wrapper">
+    <ul>
+      <li class="cursor-pointer color-black">All Categories</li>
+      <!-- <li (click)="showNewCategoryFrom(1)">New Category</li> -->
+      <li id="openModalButton" data-toggle="modal" data-target="#NewCategoryModalForm" class="cursor-pointer">New
+        Category</li>
+
+    </ul>
+  </div>
+
+  <div class="categories-table">
+    <table class="table table-striped table-hover">
+
+      <thead>
+        <tr>
+          <th>Names</th>
+          <th>Products In</th>
+          <th colspan="2">Actions</th>
+          <!-- <th>Update</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories">
+          <td>{{category.categoryName}}</td>
+          <td>{{category.productsIn}}</td>
+          <td hidden><input type="text" value="{{category.categoryId}}" #categoryIdHolder></td>
+          <td (click)="triggerUpdateCategory(categoryIdHolder.value)" data-toggle="modal"
+            data-target="#updateCategoryModalForm" class="cursor-pointer">Update</td>
+          <td (click)="deleteCategory(categoryIdHolder.value)" class="cursor-pointer">Delete</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- -----------------------------------------------add category Image Modal--------------------------------------------------- -->
+<div class="modal fade" id="NewCategoryModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Modal cascading tabs-->
+      <div class="modal-c-tabs">
+        <!-- Tab panels -->
+        <div class="tab-content">
+          <div class="tab-pane fade fade-login in show active" id="panel7" role="tabpanel">
+            <!--------------------------- ADD CATEGORY BODY--------------------------------------------->
+            <div class="add-category-wrapper">
+              <div class="form">
+                <p>{{errorMessage}}</p>
+                <input type="text" placeholder="category Name" (click)="resetError()" id="categoryName" #categoryName>
+                <button class="close-btn" id="close-category-wrapper-btn" data-dismiss="modal">Close</button>
+                <button class="add-btn" (click)="addCategory(categoryName.value)">Add Category</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!------------------------------------ END OF ADD CATEGORY Panel -------------------------------->
+      </div>
+    </div>
+  </div>
+  <!--/.Content-->
+</div>
+
+<!-- -----------------------------------------------update category Modal--------------------------------------------------- -->
+<div class="modal fade" id="updateCategoryModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Modal cascading tabs-->
+      <div class="modal-c-tabs">
+        <!-- Tab panels -->
+        <div class="tab-content">
+          <div class="tab-pane fade fade-login in show active" id="panel7" role="tabpanel">
+            <!--------------------------- UPDATE CATEGORY BODY--------------------------------------------->
+            <div class="add-category-wrapper">
+              <div class="form">
+                <p>{{updateCategoryErrorMessage}}</p>
+                <input type="text" (change)="onChangeCategoryname(updateCategoryName.value)"
+                  value="{{updatableCategoryName}}" placeholder="category Name" (click)="resetError()"
+                  id="updateCategoryName" #updateCategoryName>
+                <button class="close-btn" id="update-category-close-btn" data-dismiss="modal">Close</button>
+                <button class="add-btn" (click)="updateCategory()">Update Category</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!------------------------------------ END OF UPDATE CATEGORY -------------------------------->
+      </div>
+    </div>
+  </div>
+  <!--/.Content-->
+</div>

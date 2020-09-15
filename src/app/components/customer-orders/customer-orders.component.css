@@ -1,0 +1,240 @@
+.container{
+    width: 100%;
+    height: 100%; 
+}
+.orders-wrapper{
+    /* padding: 50px 50px; */
+    width: 90%;
+    margin: 0 5%;
+    height: 100%;
+}
+.orders-nav{
+    width: 100%;
+}
+.orders-nav button{
+    background: #7fad39;
+    color: #ffffff;
+    font-family: 'Century Gothic';
+    /* width: 100px; */
+    display: inline;
+    padding: 5px;
+    border-width: 0px;
+    border-radius: 20px 20px;
+    margin-left: 1em;
+    width: 200px !important;
+}
+.orders-nav button:hover{
+    background: #5c7e29;
+}
+.ordered-products-container{
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+
+}
+.product-item{
+    background: #ffffff;
+    padding: 8px;
+    width: 19%;
+    float: left;
+    margin-left: 1em;;
+    height: 240px;
+    object-fit: cover;
+    margin-top: 1em;
+    border-radius:  10px 10px;
+    
+}
+.product-item img{
+    width: 100%;
+    object-fit: cover;
+    height: 75%;
+}
+.image-name-price-wrapper{
+    width: 100%;
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.image-name-price-wrapper span{
+    color: #ee2a44;
+    font-size: 12px;
+    text-decoration: underline;
+    text-decoration-color: #ee2a44;
+}
+.found-1{
+    color: #008000 !important;
+    text-decoration: underline;
+    text-decoration-color: #008000 !important;
+}
+
+.product-item-header{
+    width: 100%;
+    height: 10%;
+}
+.product-item-header img{
+    width: 20px;
+    float: right
+}
+.product-item-header img:hover{
+    transform: scale(1.2);
+}
+.cursor-pointer{
+    cursor:pointer;
+}
+
+/* ---------------modal box design-------------------------------- */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(75, 74, 74, 0.4); /* Black w/ opacity */
+  }
+ 
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #ffff;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    /* border: 1px solid #888; */
+    border-radius: 20px 20px;
+    border-width: 0px;
+    margin-top: 5% !important;
+    width: 60%; /* Could be more or less, depending on screen size */
+   
+  }
+  .explore-product-modal{
+      width: 45%;
+      margin-left: 30%;
+      margin-top: 2%;
+      background: white;
+      padding: 2em;
+      border-radius: 20px 20px;
+      /* background: red; */
+
+  }
+  .found-product-modal{
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 2%;
+    height: 90%;
+    background: white;
+    padding: 2em;
+    border-radius: 20px 20px;
+    /* background: red; */
+
+}
+  
+ 
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+ 
+
+  /* ---------------------------end of modal box css----------------------------- */
+
+.order-form-wrapper{
+    margin-top:1em;
+   
+}
+.order-form-wrapper label{
+    display: block;
+    margin-top:2em;
+    font-size: 15px;
+    color: rgb(63, 63, 63);
+    font-family:'Century Gothic';
+}
+.order-form-wrapper label small{
+    color: red;
+    font-size: 12px;
+}
+.order-form-wrapper label strong{
+    color: #eb0f0f;
+}
+.order-form-wrapper label span{
+    font-size: 10px;
+    color: #eb0f0f;
+}
+.order-form-wrapper input,textarea{
+  width: 100%;
+  border-radius: 5px 5px;
+  border: 0.5px solid #aaa;
+  padding: 10px;
+  font-size: 13px;
+}
+.modal-footer{
+    width: 100%;
+}
+.modal-footer button{
+    border-radius: 20px 20px;
+    border-width: 0px;
+    padding: 5px;
+    width: 30%;
+}
+.proceed-btn{
+    float: left;
+    background-color: rgb(77, 130, 199);
+    color: #ffff;
+}
+.proceed-btn:hover{
+    background: rgb(48, 82, 128);
+}
+.cancel-btn{
+        float: right;
+    background: rgb(238, 238, 238);
+}
+.cancel-btn:hover{
+    background: rgb(202, 201, 201);
+}
+.content-header{
+    width: 100%;
+
+}
+.content-header h1{
+    color: rgb(78, 78, 78);
+    font-family: 'Century Gothic';
+    font-weight: bold;
+}
+.content-header small{
+    font-size: 13px !important;
+    color: rgb(92, 91, 91);
+    display: block;
+}
+.content-header small u{
+    color: rgb(38, 107, 185);
+}
+.display-vendors-wrapper{
+    width: 100%;
+    overflow: scroll;
+}
+.display-vendors-wrapper table{
+    font-family: 'Century Gothic';
+    width:100%;
+    overflow: scroll;
+}
+.display-vendors-wrapper table th{
+    font-size: 14px;
+}
+.display-vendors-wrapper table td{
+    font-size: 13px;
+}
+.dangerField{
+ border-color: #ff0000 !important;
+}

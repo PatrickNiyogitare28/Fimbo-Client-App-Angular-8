@@ -1,0 +1,137 @@
+<div class="cart-card-box shadow">
+  <div class="product-item-container-wrapper" *ngIf="!emptyCart">
+    <div class="product-item" *ngFor="let product of productsInCart">
+      <div class="product-image-wrapper">
+        <img src="http://localhost:3000/utils/uploads/productsImages/{{product.imageName}}" alt="product image">
+
+      </div>
+      <div class="product-name-wrapper">
+        <h5>{{product.productName}} <span>{{product.usedStatus}}</span></h5>
+      </div>
+      <div class="product-quantity-wrapper">
+        <ul>
+          <li class="cursor-pointer" (click)="changeQuantity(product.productId,1)"> <img
+              src="../../../assets/icons/plus-quatinty-icon.png" alt="add quantity icon"> </li>
+          <li>{{product.quantity}}</li>
+          <li class="cursor-pointer" (click)="changeQuantity(product.productId,-1)"> <img class="reduce-quantity-icon"
+              src="../../../assets/icons/minus-quantity-icon.png" alt="reduce quantity icon"> </li>
+        </ul>
+      </div>
+      <div class="product-price-wrapper">
+        <h6>RWF {{product.price}}</h6>
+      </div>
+      <div class="remove-from-cart-wrapper">
+        <img (click)="removeFromCart(product.productId,product.productName)" class="cursor-pointer"
+          src="../../../assets/icons/delete-accop.png" alt="delete icon">
+      </div>
+      <div class="checkout-product-wrapper cursor-pointer">
+        <h6 (click)="checkProductOutModal(product.productId)">Check out</h6>
+      </div>
+    </div>
+  </div>
+  <div class="cartIsEmp" *ngIf="cartEmpty">
+    <div class="cart-empty-container">
+      <img src="../../../assets/images/empt-cart.png" alt="cart empty image">
+      <h5>Cart Is Empty</h5>
+    </div>
+  </div>
+</div>
+<div class="check-products-out-container shadow">
+  <div class="total-wrapper">
+    <div class="shopping-summary-title">
+      <h6>Shopping Bag Summary</h6>
+    </div>
+
+    <div class="total-container margin-top">
+      <div class="total-products">
+        <h6>Total Products</h6>
+      </div>
+      <div class="total-number">
+        <h6>{{totalProducts}}</h6>
+      </div>
+    </div>
+
+    <div class="total-container">
+
+      <div class="total-title">
+        <h6>Total</h6>
+      </div>
+      <div class="total-value">
+        <h6>RWF {{totalPrice}}</h6>
+      </div>
+    </div>
+    <div class="checkout-card-box">
+      <button *ngIf="!cartEmpty" (click)="triggerProccedToCheckOut()">Procced To Checkout</button>
+      <button *ngIf="cartEmpty" routerLinkActive="active" [routerLink]="['/products', 'all']">Continue To
+        Shop</button>
+    </div>
+  </div>
+</div>
+
+<!-- -------------------------get product modal-------------------------- -->
+<div id="checkProModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span (click)="closeProCheckModal(1)" class="close" id="spanClosecheckProModal">&times;</span>
+    <img src="../../../assets/images/avatars-pessoas-2.png" alt="guider image" class="guiderImage">
+    <p class="get-product-guides-para"> Thank you for conserning us! Now we let you negotiete with the product
+      owners for further services such as the means you can pay them for
+      product as well as delivery means. You can meet the product owner on the bellow platforms <br>(<span>Phone
+        contact</span> & <span>Whatsapp</span>)
+    </p>
+
+    <div class="get-seller-address-wrapper">
+      <div class="seller-title">
+        <h6>{{sellerName}}</h6>
+      </div>
+      <div class="get-seller-address">
+        <div class="get-seller-contact">
+          <p><img src="../../../assets/icons/contact-seller-icon.png" alt=""> +{{sellerContact}}</p>
+        </div>
+        <div class="get-seller-watsapp">
+          <p><img src="../../../assets/icons/whatsapp-seller-icon.png" alt=""> +{{sellerWatsapp}}</p>
+        </div>
+      </div>
+      <div class="customer-location-wrapper">
+        <h6>Location Info</h6>
+        <div class="location-container">
+          <p>Country <span>{{sellerCountry}}</span></p>
+        </div>
+        <div class="location-container">
+          <p>District <span>{{sellerDistrict}}</span></p>
+        </div>
+        <div class="location-container">
+          <p>Secotr <span>{{sellerSector}}</span></p>
+        </div>
+        <div class="location-container">
+          <p>Town <span>{{sellerTown}}</span></p>
+        </div>
+
+      </div>
+
+      <div class="modal-footer-buttons">
+        <div class="cancel-btn">
+          <button (click)="closeProCheckModal(1)">Cancel</button>
+        </div>
+        <div class="btn-one">
+          <button (click)="closeProCheckModal(2)">Finishe & Leave in Cart</button>
+        </div>
+        <div class="btn-two">
+          <button (click)="closeProCheckModal(3)">Finishe & Remove From Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- -------------------------end of get product modal-------------------------- -->
+<!-- ------------------------------------check cart out modal wrapper----------- -->
+<div id="checkOutCartModal" class="modal">
+  <!-- Modal content -->
+  <div class="proceed-to-check-out-modal">
+    <span class="close" (click)="closeProCheckModal(1)" id="spanClosecheckProModal">&times;</span>
+    <img src="../../../assets/images/avatars-pessoas-2.png" alt="guider image" class="guiderImage">
+    <p class="get-product-guides-para"> Hello <span>{{userFirstname}}!</span> Click the "checkout" button of the product
+      to be provided with how you will get the Product.
+    </p>
+  </div>
+</div>

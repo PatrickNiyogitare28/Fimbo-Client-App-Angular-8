@@ -1,0 +1,125 @@
+/* .categories-table{
+    width: 80%;
+    margin-left:10%;
+    margin-top: 2em;
+   
+} */
+.categories-table {
+  margin-top: 2em;
+  height: 460px;
+  width: 95%;
+  margin-left: 3%;
+  /* background: blue; */
+  overflow-y: scroll;
+}
+.cursor-pointer{
+  cursor: pointer;
+}
+.color-black{
+  color: black !important;
+}
+
+.categories-table::-webkit-scrollbar {
+
+  width: 0.5em;
+}
+
+.categories-table::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.categories-table::-webkit-scrollbar-thumb {
+  border-radius: 20px 20px;
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+.categories-table table {
+  font-size: 12px;
+}
+
+.top-header-wrapper {
+  width: 100%;
+  margin-top: 1em;
+  border-bottom: 0.5px solid rgb(90, 89, 89);
+}
+
+.top-header-wrapper ul {
+  width: 100%;
+}
+
+.top-header-wrapper ul li {
+  list-style-type: none;
+  display: inline;
+  margin-left: 2em;
+  font-size: 15px;
+  color: rgb(90, 89, 89);
+  font-weight: lighter;
+  cursor: pointer;
+}
+
+.add-category-wrapper {
+  width: 80%;
+  background: white;
+  margin-left: 10%;
+ }
+
+.form {
+  width: 100%;
+  margin-top: 0.5em;
+  padding: 2em;
+  margin-bottom: 1.5em;
+  /* background: green; */
+}
+
+.form p {
+  color: red;
+  font-size: 14px;
+  position: absolute;
+  text-align: center;
+  margin-top: -1em;
+}
+
+.add-category-wrapper input {
+  width: 100%;
+  color: gray;
+  font-size: 12px;
+  padding: 0.7em;
+  border: 1px solid gray;
+  margin-top: 0.5em;
+  /* cursor:  */
+}
+
+.add-btn {
+  margin-top: 0.5em;
+  border-width: 0px;
+  background-color: #749247;
+  font-size: 13px;
+  padding: 8px;
+  width: 49%;
+  float: right;
+}
+
+.add-btn:hover {
+  background: #7fad39;
+}
+
+.close-btn {
+  margin-top: 0.5em;
+  border-width: 0px;
+  background-color: #eaebe8;
+  font-size: 13px;
+  padding: 8px;
+  width: 49%;
+  float: left;
+}
+
+.close-btn:hover:hover {
+  background: #d7d8d7;
+}
+
+@media only screen and (max-width: 600px) {
+  /* .add-category-wrapper {
+   
+  } */
+}

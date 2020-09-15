@@ -1,0 +1,328 @@
+/* ---------------modal box design-------------------------------- */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(75, 74, 74, 0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    /* border: 1px solid #888; */
+    border-width: 20px 20px;
+    border-width: 0px;
+    width: 60%; /* Could be more or less, depending on screen size */
+   
+  }
+  .update-data{
+      width: 50% !important;
+  }
+ 
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  /* ---------------------------end of modal box css----------------------------- */
+  .email-address-wrapper{
+      width: 40% !important;
+  }
+  .first-level-email{
+      width: 90%;
+      margin-left: 5%;
+      /* background: red; */
+  }
+  .first-level-email label{
+      display: block;
+      font-size: 16px;
+      color: rgb(59, 59, 59);
+      font-family: 'Century Gothic';
+  }
+  .first-level-email  input,select{
+      font-size: 14px;
+      width: 90%;
+      padding: 8px 8px 8px 20px;
+      border-width: 0.5px;
+      border-radius: 20px 20px;
+      border-color: silver;
+      background: white !important;
+  }
+  .first-level-email button{
+      margin-top: 1em;
+      background: rgb(8, 136, 241);
+      font-size: 14px;
+      width: 50%;
+      padding: 8px;
+      border-radius: 20px 20px;
+      font-family: 'Century Gothic';
+      border-width: 0px;
+      color: white;
+
+  }
+  .second-lever-email{
+    width: 90%;
+    margin-left: 5%;
+  }
+  .first-level-email button:hover{
+      background: rgb(32, 102, 160);
+  }
+  .second-lever-email input,select{
+    font-size: 14px;
+    width: 90%;
+    padding: 8px 8px 8px 20px;
+    border-width: 0.5px;
+    border-radius: 20px 20px;
+    border-color: silver;
+    background: white !important;
+  }
+  .third-level-address select{
+      padding: 10px 10px 10px 10px  !important;
+  }
+  .third-level-address label small{
+      color:  red !important; 
+  }
+  .second-lever-email button{
+    margin-top: 1em;
+    background: rgb(8, 136, 241);
+    font-size: 14px;
+    width: 50%;
+    padding: 8px;
+    border-radius: 20px 20px;
+    font-family: 'Century Gothic';
+    border-width: 0px;
+    color: white;
+
+}
+.second-lever-email label{
+    display: block;
+    font-size: 16px;
+    color: rgb(59, 59, 59);
+    font-family: 'Century Gothic';
+}
+.second-lever-email  button:hover{
+    background: rgb(32, 102, 160);
+}
+.second-lever-email small{
+    display: block;
+    color: rgb(32, 102, 160);
+}
+.second-lever-email small:hover{
+    color: rgb(33, 51, 66);
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+.second-lever-email p{
+    color: rgb(75, 73, 73);
+    font-family: 'Century Gothic';
+    font-size: 12px;
+}
+.second-lever-email p span{
+    color: black;
+}
+.third-level-address h6{
+    color: black;
+    text-align: center;
+    font-family: 'Century Gothic';
+    font-size: 18px;
+}
+.success-wrapper{
+    width: 90%;
+    height: 50px;
+    background: rgba(7, 170, 245, 0.144);
+    border-left: 5px solid rgb(35, 84, 175);
+    font-size: 13px;
+    font-family: 'Century Gothic';
+    padding: 1em;
+}
+.success-wrapper span{
+    color: black !important;
+}
+.error-wrapper{
+    width: 90%;
+    background: rgba(255, 0, 0, 0.239);
+    font-family:'Century Gothic';
+    font-size: 13px;
+    text-align: center;
+    height: 40px;
+    border-left: 5px solid red;
+    border: 5px 0px 0px 5px;
+    position: absolute;
+}
+
+.top-3{
+    padding-top: 3em;
+}
+.gapper-wrapper{
+    height: 40px;
+  
+}
+.dangerField{
+    border-color: red !important;
+}
+.update-menu-bar{
+    width: 100%;
+    /* background: red; */
+}
+.update-menu-bar img{
+    width: 20px;
+}
+.update-menu-bar ul{
+    width: 100%;
+}
+.update-menu-bar ul li{
+    display: inline;
+    list-style-type: none;
+    font-family: 'Century Gothic';
+    font-size: 15px;
+    color: rgb(29, 28, 28);
+    font-weight: bold;
+    margin-left: 2em;
+    padding-bottom: 0.4em;
+  
+}
+.update-menu-bar ul li:hover{
+    border-bottom: 5px solid rgba(8, 136, 241, 0.397);
+}
+.update-data-container{
+    width: 70%;
+    margin-left: 12%;
+    margin-top: 4em;
+}
+.update-data-top{
+    margin-top: 2em !important;
+}
+.update-data-container input,select{
+    font-size: 14px;
+    width: 100%;
+    padding: 8px 8px 8px 20px;
+    border-width: 0.5px;
+    border-radius: 20px 20px;
+    border-color: silver;
+    background: white !important;
+}
+.update-data-container button{
+    margin-top: 1em;
+    background: rgb(8, 136, 241);
+    font-size: 14px;
+    width: 50%;
+    padding: 8px;
+    border-radius: 20px 20px;
+    font-family: 'Century Gothic';
+    border-width: 0px;
+    color: white;
+}
+.update-data-container button:hover{
+    background: rgb(32, 102, 160);
+}
+.update-data-container label{
+    
+    display: block;
+    font-size: 16px;
+    color: rgb(59, 59, 59);
+    font-family: 'Century Gothic';
+}
+.update-data-container label small{
+    color:  red !important; 
+}
+.active-update-list{
+    border-bottom: 5px solid rgb(8, 136, 241);
+  }
+.padding-10{
+    padding: 10px 10px 10px 10px  !important;
+}
+.update-email-container{
+    width: 65%;
+    margin-left: 20%;
+    margin-top: 2em;
+}
+.update-email-container button{
+    width: 100% !important;
+}
+.width-normal{
+    width: 90%;
+}
+.update-pass-cont{
+    width: 100%;
+}
+.new-pass-wrapper{
+    width: 49%;
+    float: left;
+}
+.verify-newPass-wrapper{
+    width: 49;
+    float: right;
+}
+#reseponse-wrapper{
+    width: 100;
+    width: 450px;
+    height: 50px;
+    position: absolute;
+    padding-left: 2em; 
+    padding-top: 1.5em;
+    font-size: 13px; 
+    font-family: 'Century Gothic';
+    font-weight: lighter;
+   
+}
+#updatePassWord-reseponse-wrapper{
+    width: 100;
+    width: 450px;
+    height: 50px;
+    position: absolute;
+    padding-left: 2em; 
+    padding-top: 1.5em;
+    font-size: 13px; 
+    font-family: 'Century Gothic';
+    font-weight: lighter;
+}
+.updateResponseSuccessEffect{
+    border-left: 5px solid #7fad39;
+     background: #7ead3928;
+}
+.updateResponseDangerEffect{
+    border-left: 5px solid #ad3939;
+     background: #ad394c2a;
+}
+.updatePasswordResponseSuccessEffect{
+    border-left: 5px solid #7fad39;
+     background: #7ead3928;
+}
+.updatePasswordResponseDangerEffect{
+    border-left: 5px solid #ad3939;
+     background: #ad394c2a;
+}
+.height-30{
+    height: 60px;
+}
+.image-name-wrapper{
+    width: 150px;
+    height: 150px;
+    background: #7fad39;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 5.5em;
+    margin-left: 20%;
+    margin-top: 10px;
+}
+

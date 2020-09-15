@@ -1,0 +1,201 @@
+
+/* ---------------modal box design-------------------------------- */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(75, 74, 74, 0.4); /* Black w/ opacity */
+  }
+ 
+  .auth-container{
+      width: 80%;
+      margin-left: 10%;
+      margin-top: 2%;
+      background: white;
+      /* padding: 2em; */
+      height: 90%;
+      border-radius: 20px 20px;
+      z-index: 15;
+      /* background: red; */
+
+  }
+  
+  
+  /* The Close Button */
+  .close {
+    color: rgb(202, 42, 42);
+    padding: 5px;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+ 
+  .modal-content-wrapper{
+      width: 50%;
+      height: 100%;
+    float: left;
+    
+  }
+  .modal-right-side-wrapper{
+      width: 50%;
+      float: right;
+      height: 100%;
+      background: #4CAF50;
+      border-radius: 0px 20px 20px 0px;
+      background-image: url('../../../assets/images/side-image.png');
+      background-repeat: none;
+      background-size: cover;
+      
+  }
+  .modal-right-side-wrapper img{
+      width: 100%;
+      height: 100%;
+      border-radius: 0px 20px 20px 0px;
+  }
+  .change-auth-btn-container{
+      width: 90%;
+  }
+  .change-auth-btn-container button{
+      margin-top: 1em;
+      float: right;
+      width: 200px;
+      padding: 10px;
+      /* border-radius: 20px 20px;
+      border-width: 2px 2px 2px 2px;
+      border-color: #7fad39;
+      background: white;
+      color: #7fad39; */
+}
+  /* .change-auth-btn-container button:hover{
+    background: #7fad39;
+    color: #ffff;
+  }
+  */
+  fimbo-logo-wrapper{
+      width: 30%;
+      float: left;
+  }
+  .logo img{
+      width: 50px;
+      margin-top: 1em;
+      margin-left: 1em;
+  } 
+  .btn {
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 30%;
+  }
+  
+  /* Green */
+  .success {
+    border-color: #4CAF50;
+    color: green;
+  }
+  
+  .success:hover {
+    background-color: #4CAF50;
+    color: white;
+  }
+.modal-content-wrapper input{
+    width: 100%;
+    padding: 8px;
+    color: rgb(105, 105, 105);
+    border-radius: 4px 4px;
+    border-color: rgb(105, 105, 105);
+    height: 3em;
+    border-width: 0.5px;
+}
+.modal-content-wrapper label{
+    font-family:"Century Gothic";
+    font-size: 19px;
+    color: rgb(63, 63, 63);
+    margin-top: 0.8em;
+}
+.modal-content-wrapper label strong{
+    color: red;
+}
+.modal-content-wrapper label small{
+    color: red;
+    font-size: 12.5px;
+}
+.continue-button{
+    margin-top: 1em;
+    width: 100%;
+    color: #ffff;
+    border-radius: 4px 4px;
+    height: 3em;
+    border-width: 0px;
+    background: #7fad39;
+}
+.continue-button:hover{
+    background: #62852d;
+}
+.form-title{
+    padding-top: 2em;
+    margin-top: 2em;
+}
+.error-wrapper{
+    width: 100%;
+    text-align: center;
+    height: 20px;
+    /* position: absolute; */
+    color: red;
+   
+}
+.form-container{
+    clear: both;
+    margin-top: 2em;
+    width: 80%;
+    margin-left: 10%;
+}
+.footer-text{
+    width: 100%;
+    margin-top:2em;
+    font-size: 16px;
+    color: rgb(32, 32, 32);
+    
+}
+.top-1{
+margin-top: 1em !important;
+}
+.footer-text span{
+    color: #7fad39;
+    font-family:"Century Gothic";
+    color: bold;
+}
+.footer-text span:hover{
+    text-decoration: underline;
+}
+.cursor-poiner{
+    cursor:pointer;
+}
+.width-48{
+    width: 48%;
+} 
+.float-left{
+    float: left;
+}
+.float-right{
+    float: right;
+}
+.danger-auth-field{
+ border-color: red !important;
+}
