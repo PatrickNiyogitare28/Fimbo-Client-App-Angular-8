@@ -6,6 +6,7 @@ import { ProductsService } from '../../shared/products.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { NotificationService } from '../../shared/notification.service'
 import { AuthService } from '../../shared/auth.service'
+import { OrdersService } from '../../shared/orders.service'
 // import { ScrollTopService } from  '../../shared/scroll-top-service.service';
 declare var $: any;
 declare var jQuery: any;
@@ -50,7 +51,7 @@ export class IndexComponent implements OnInit {
   }
 
    constructor(public displayService: DisplayService,public productsService: ProductsService,public router: Router,
-    public route: ActivatedRoute, public notification: NotificationService,public authService: AuthService) { }
+    public route: ActivatedRoute, public notification: NotificationService,public authService: AuthService,private ordersSer: OrdersService) { }
 
 
   getDivisions(){
@@ -252,6 +253,10 @@ addToCart(productId,productName){
      })
   }
 }  
+// check(){
+//   alert("Me one")
+//   this.ordersSer.CreateOrderImage();
+// }
 errorModalTrigger(){
     var errorModal = document.getElementById("notLoggedInErrorModal");
     var spanCloseGetItModal = document.getElementById("error-modal-close");

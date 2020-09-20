@@ -2,7 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import {ActivatedRoute, Router } from '@angular/router';
 import { PLATFORM_ID, APP_ID, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-
+import { OrdersService } from './shared/orders.service'
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,8 @@ export class AppComponent implements OnInit{
 
    constructor(public router: Router,public route: ActivatedRoute,
     @Inject(PLATFORM_ID) private platformId: Object,
-    @Inject(APP_ID) private appId: string){}
+    @Inject(APP_ID) private appId: string,private orderService: OrdersService){}
+    
 
     onActivate(event: any) {
       if (isPlatformBrowser(this.platformId)) {
@@ -32,7 +33,7 @@ export class AppComponent implements OnInit{
   ngOnInit(){
    let currentPage = sessionStorage.getItem('currentPage');
    console.log("page: "+currentPage)
-   
+ 
   //  if(currentPage != null){
   //    this.router.navigate([currentPage]);
   //  }

@@ -3,6 +3,7 @@ declare var $:any;
 import { NotificationService } from '../../shared/notification.service';
 import { AuthService } from '../../shared/auth.service';
 import { OrdersService } from '../../shared/orders.service';
+import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-customer-orders',
@@ -106,11 +107,10 @@ export class CustomerOrdersComponent implements OnInit {
                this.notificationService.showError(res.message,"Ordering failed");
              }
              else if(res.success == true){
-              if(this.url != null){
-                this.ordersService.addOrderImage(res.order.insertId,this.orderImage).subscribe((result:any)=>{
-                 alert(JSON.stringify(result));
-                  if(result.success != true){
-                    alert(result)
+              if(this.url != null && this.orderImage != ""){
+                 this.ordersService.addOrderImage(res.order.insertId,this.orderImage).subscribe((result:any)=>{
+                 if(result.success != true){
+                  this.notificationService.showError('Error! Image not uploaded',"Upload image unsuccessful")
                   }
                })
               } 
@@ -155,6 +155,7 @@ export class CustomerOrdersComponent implements OnInit {
       const file = event.target.files[0];
       this.orderImage = file;
     }
+    
    }
    clearFields(){
      $(()=>{

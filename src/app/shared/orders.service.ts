@@ -18,9 +18,10 @@ export class OrdersService {
   }
 
   addOrderImage(orderId,image){
+    const strOrderId = orderId.toString();
     const formData = new FormData();
     formData.append('file',image);
-     return this.http.post(`${this.orderURL}/addOrderImage`,formData,{headers: new HttpHeaders().set('order-id',orderId)})
-   
+    return this.http.post(`${this.orderURL}/addOrderImage`,formData,{headers: new HttpHeaders().set('order-id',strOrderId)})
+    }
+    
   }
-}
