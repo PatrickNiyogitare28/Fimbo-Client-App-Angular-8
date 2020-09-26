@@ -76,4 +76,7 @@ export class VendorsService {
     return this.http.put(`${this.productsSellerURL}/updateSeller/${sellerId}`,body,{headers: new HttpHeaders()
     .set('x-auth-token',token)});
   }
+  getVendorInfo(vendorId){
+   return  this.http.get(`${this.productsSellerURL}/sellerInfo/${vendorId}`)
+  }
 }

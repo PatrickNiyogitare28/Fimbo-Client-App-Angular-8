@@ -3,7 +3,9 @@ declare var $:any;
 import { NotificationService } from '../../shared/notification.service';
 import { AuthService } from '../../shared/auth.service';
 import { OrdersService } from '../../shared/orders.service';
-import { runInThisContext } from 'vm';
+import { CustomerAccountComponent } from '../customer-account/customer-account.component';
+import { ActivatedRoute , Router} from '@angular/router'
+import { VendorsService } from '../../shared/vendors.service'
 
 @Component({
   selector: 'app-customer-orders',
@@ -11,16 +13,37 @@ import { runInThisContext } from 'vm';
   styleUrls: ['./customer-orders.component.css']
 })
 export class CustomerOrdersComponent implements OnInit {
+  isVendor:boolean  = false;
   newOrder:boolean= true;
   orderIsFound:boolean=true;
   createOrderErrorHolder=[];
   url;
   msg = "";
   orderImage="";
+  orders=[];
+  vendorCheckedOrders = [];
+  exploreOrder = {orderName:String,description:String,orderDate:String}
+  foundOrder={
+    orderName: String,
+    orderedDate: String,
+    checkedSellers:[
+      // {
+        // sellerName:String,
+        // contactPhone: String,
+        // whatsapPhone: String,
+        // country:String,
+        // district:String,
+        // sector:String,
+        // town:String,
+        // logoURL: String
+      // }
+    ]
+  }
   constructor(private notificationService: NotificationService, private authService: AuthService,
-    private ordersService: OrdersService) { }
+    private ordersService: OrdersService, private customerAccountCompo:CustomerAccountComponent,
+    private router: Router, private route: ActivatedRoute,private vendorsService: VendorsService) { }
 
-  triggerOrderModal(task){
+  triggerOrderModal(orderId,task){
     if(task=="addOrder"){
       this.newOrder=true;
       this.fadePendingProductModal('in');
@@ -32,11 +55,12 @@ export class CustomerOrdersComponent implements OnInit {
    else if(task=="exploreOrder" && this.orderIsFound == true){
     this.newOrder=false;
     this.fadeFoundProductModal('in');
+    this.fetchFoundOrderDetails(orderId)
    }
    var orderModal = document.getElementById("orderModal");
    var foundOrderModal = document.getElementById("foundOrderModal");
   
-   window.onclick = function(event) {
+   window.onclick = (event) => {
     if (event.target == foundOrderModal) {
      $(()=>{ $('#foundOrderModal').fadeOut();})
     }
@@ -77,9 +101,7 @@ export class CustomerOrdersComponent implements OnInit {
    })
     
   }
-  onRemoveOrder(){
-    this.notificationService.showSuccess('Order was permenently delete','Order1 removed');
-  }
+  
   onCreateOrder(orderName,orderDescription){
     var noSpaceOrderName = orderName.replace(/\s+/g, '').length;
     var noSpaceDescription = orderDescription.replace(/\s+/g, '').length;
@@ -114,6 +136,7 @@ export class CustomerOrdersComponent implements OnInit {
                   }
                })
               } 
+              this.onFetchUserOrders();
               this.notificationService.showSuccess('You have made an order','Ordering successful');
               this.clearFields();
              }
@@ -167,8 +190,144 @@ export class CustomerOrdersComponent implements OnInit {
       this.msg="";
    }
  
-  ngOnInit() {
+  onFetchUserOrders(){
+    this.authService.authenticateUser().subscribe((user:any)=>{
+      if(user.success == true){
+        this.orders.splice(0,this.orders.length);
+        this.ordersService.getUserOrders(user.userId).subscribe((res:any)=>{
+          res.orders.forEach(order => {
+            this.ordersService.isOrderFound(order.order_id).subscribe((isFound:any)=>{
+              if(isFound.success == true && isFound.status == 200){
+                  this.pushInOrders(order,true);
+              }
+              else if(isFound.success == true && isFound.status==404){
+                this.pushInOrders(order,false);
+              }
+            })
+            // this.pushInOrders(order);
+          });
+        
+        })
+      }
+    })
+  }
+  onRemoveOrder(orderId){
+   this.ordersService.deleteOrder(orderId).subscribe((res:any)=>{
+    if(res.success == true){
+      var index =  this.orders.findIndex(order =>{
+        return order.orderId == orderId;
+      })
+      this.orders.splice(index,1);
+      this.notificationService.showSuccess(`Order was deleted`, 'One Order removed successfully');
+      }
+   })
+  }
+
+  onFetchVendorDisplayOrders(){
+   let vendorId = this.authService.authenticateVendor().subscribe((isVendor:any)=>{
+     if(isVendor.success == true){
+       vendorId = isVendor.sellerId;
+     }
+    })
+    this.ordersService.fetchAllOrders().subscribe((res:any)=>{
+       if(res.success == true){
+            res.orders.forEach(order => {
+              this.ordersService.isOrderChecked(vendorId,order.order_id).subscribe((isChecked: any)=>{
+                if(isChecked.success == true && isChecked.status == 200){
+                 this.vendorCheckedOrders.push(order);
+                }
+                else if(isChecked.success == false && isChecked.status == 200){
+                  this.pushInOrders(order,false);
+                }
+              })
+            });
+          }
+     })
    
+  }
+  pushInOrders(order,foundStatus:boolean){
+      this.orders.push({
+      orderId: order.order_id,
+      orderName: order.order_name,
+      description: order.description,
+      imageURL: order.orderImage,
+      foundStatus: foundStatus,
+      orderDate: order.order_date
+   
+    })
+  }
+ 
+
+  deterMineAccoutType(){
+    if(this.route.snapshot.params.accountType == 'selleraccount'){
+       this.isVendor = true;
+       this.onFetchVendorDisplayOrders();
+     }
+     else if(this.route.snapshot.params.accountType == 'buyeraccount'){
+       this.onFetchUserOrders();
+     }
+     else{
+     this.router.navigate(['index']);
+     }
+  }
+  triggerExploreOrderModal(orderId,event){
+     $(()=>{
+       if(event == 'open'){
+        // this.exploreOrder.orderName=""; this.exploreOrder.orderName=""; 
+        this.orders.forEach(order => {
+          if(order.orderId == orderId){
+            this.exploreOrder.orderName = order.orderName;
+            this.exploreOrder.description = order.description;
+            this.exploreOrder.orderDate = order.orderDate
+          }
+        })
+         $('#exploreOrderModal').fadeIn()
+       }
+       else if(event == 'close'){
+        $('#exploreOrderModal').fadeOut()
+        }
+       window.onclick = (event) => {
+         if(event.target == document.getElementById('exploreOrderModal')){
+          $('#exploreOrderModal').fadeOut()
+         }
+       } 
+    })
+  }
+
+  fetchFoundOrderDetails(orderId){
+   this.orders.forEach(order=> {
+     if(order.orderId == orderId){
+        this.exploreOrder.orderName = order.orderName;
+        this.exploreOrder.description = order.description;
+        this.exploreOrder.orderDate = order.orderDate
+     }
+   })
+    
+    this.ordersService.isOrderFound(orderId).subscribe((res:any)=>{
+    res.foundOrder.forEach(foundOrder => {
+        this.vendorsService.getVendorInfo(foundOrder.seller).subscribe((vendor:any)=>{
+            this.foundOrder.orderName= this.exploreOrder.orderName;
+            this.foundOrder.orderedDate=this.exploreOrder.orderDate;
+            this.foundOrder.checkedSellers.splice(1,this.foundOrder.checkedSellers.length);
+            this.foundOrder.checkedSellers.push({
+              sellerName:vendor.info.seller_name,
+              email: vendor.info.seller_email,
+              contactPhone: vendor.info.seller_contact_phone,
+              whatsappPhone: vendor.info.seller_watsapp_phone,
+              country: vendor.info.seller_country,
+              district: vendor.info.seller_district,
+              sector: vendor.info.seller_sector,
+              town: vendor.info.seller_town,
+              logo: vendor.info.sellerLogo
+            }
+
+            )
+        })
+      });
+    })
+  }
+  ngOnInit() {
+    this.deterMineAccoutType();
   }
 
 }

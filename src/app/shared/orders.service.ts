@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class OrdersService {
   orderURL = 'http://localhost:3000/api/orders';
+  foundOrderURL = 'http://localhost:3000/api/foundOrders';
   constructor(private http: HttpClient) { }
 
   makeOrder(userId,orderName,orderDescription){
@@ -23,5 +24,26 @@ export class OrdersService {
     formData.append('file',image);
     return this.http.post(`${this.orderURL}/addOrderImage`,formData,{headers: new HttpHeaders().set('order-id',strOrderId)})
     }
-    
+
+  getUserOrders(userId){
+    const token = sessionStorage.getItem('token');
+    return this.http.get(`${this.orderURL}/userOrders/${userId}`,{headers: new HttpHeaders().set('x-auth-token',token)})
+  }  
+
+  deleteOrder(orderId){
+    const token = sessionStorage.getItem('token')
+    return this.http.delete(`${this.orderURL}/removeOrder/${orderId}`,{headers: new HttpHeaders().set('x-auth-token',token)})
+  }
+  fetchAllOrders(){
+    return this.http.get(`${this.orderURL}/allOrder`)
+  }
+  isOrderChecked(vendorId,orderId){
+    const token = sessionStorage.getItem('token');
+    return this.http.get(`${this.orderURL}/checkedout/${vendorId}/${orderId}`,{headers: new HttpHeaders()
+    .set('x-auth-token',token)})
+  }
+  isOrderFound(ordereId){
+    return this.http.get(`${this.foundOrderURL}/${ordereId}`)
+  }
+  
   }

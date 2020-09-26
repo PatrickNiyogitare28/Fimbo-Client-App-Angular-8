@@ -1,3 +1,6 @@
+:focus{
+    outline: none;
+}
 .vendor-profile-container{
     width: 90%;
     background: #ffff;

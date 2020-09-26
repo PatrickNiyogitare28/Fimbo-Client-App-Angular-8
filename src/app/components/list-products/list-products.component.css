@@ -1,4 +1,7 @@
 
+:focus{
+  outline: none;
+}
 /* *{background-color: red !important;} */
 .list-products-container{
     width: 100%;
