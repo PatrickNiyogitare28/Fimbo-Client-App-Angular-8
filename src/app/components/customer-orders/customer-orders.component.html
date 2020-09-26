@@ -1,40 +1,28 @@
 <div class="container">
   <div class="orders-wrapper">
     <div class="orders-nav">
-      <button (click)="triggerOrderModal('addOrder')">Order for product</button>
+      <button *ngIf="!isVendor" (click)="triggerOrderModal('addOrder')">Order for product</button>
       <button>Clear all</button>
+      <button *ngIf="isVendor">Checkouts</button>
     </div>
     <div class="ordered-products-container">
-      <div class="product-item shadow">
+      <div class="product-item shadow" *ngFor="let order of orders">
+        <input type="text" value={{order.orderId}} #orderIdHolder hidden>
         <div class="product-item-header">
           <img src="../../../assets/icons/delete-accop.png" class="cursor-pointer" alt="delete icon"
-            (click)="onRemoveOrder()" title="Delete Order">
+            (click)="onRemoveOrder(order.orderId)" title="Delete Order">
         </div>
-        <img src="../../../assets/productsImages/1.jpeg" alt="productImage">
-        <div class="image-name-price-wrapper cursor-pointer" (click)="triggerOrderModal('exploreOrder')">
-          My ordered Product<br> <span class="found-1">Found</span>
-        </div>
-      </div>
-      <div class="product-item shadow">
-        <div class="product-item-header">
-          <img src="../../../assets/icons/delete-accop.png" class="cursor-pointer" alt="delete icon"
-            title="Delete Order">
-        </div>
-        <img src="../../../assets/productsImages/1.jpeg" alt="productImage">
+        <img src="http://localhost:3000/utils/uploads/orderImages/{{order.imageURL}}" alt="productImage">
         <div class="image-name-price-wrapper">
-          My ordered Product <br> <span>Pending...</span>
+          {{order.orderName}}<br> 
+          <span (click)="triggerOrderModal(orderIdHolder.value,'exploreOrder')" *ngIf="order.foundStatus && !isVendor" 
+          class="found-1  cursor-pointer">Found</span>
+          <span *ngIf="!order.foundStatus && !isVendor" (click)="triggerExploreOrderModal(orderIdHolder.value,'open')"
+          class="found-0  cursor-pointer">Pending</span>
         </div>
+
       </div>
-      <div class="product-item shadow">
-        <div class="product-item-header">
-          <img src="../../../assets/icons/delete-accop.png" class="cursor-pointer" alt="delete icon"
-            title="Delete Order">
-        </div>
-        <img src="../../../assets/productsImages/1.jpeg" alt="productImage">
-        <div class="image-name-price-wrapper">
-          My ordered Product <br> <span>Pending...</span>
-        </div>
-      </div>
+     
     </div>
   </div>
 </div>
@@ -71,11 +59,11 @@
   <div class="found-product-modal">
     <span class="close" (click)="closeModal('foundOrderModal')">&times;</span>
     <div class="content-header">
-      <h1>Your Order was Found Here <small>Click on <u>Explore</u> to get vendor address</small></h1>
-
+      <h1 *ngIf="!isVendor">Your Order was Found Here <small>Click on <u>Explore</u> to get vendor address</small></h1>
+      <h1 *ngIf="isVendor">Your Checked-out Orders<small>communicate to the customer, if you didn't</small></h1>
     </div>
     <div class="display-vendors-wrapper">
-      <table class="table table-striped table-hover">
+      <table class="table table-striped table-hover" *ngIf="!isVendor">
         <thead>
           <tr>
             <th>Seller</th>
@@ -89,7 +77,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr *ngFor="let checkedSeller of foundOrder.checkedSellers">
+            <td>{{checkedSeller.sellerName}}</td>
+            <td>{{checkedSeller.town}}</td>
+            <td>{{checkedSeller.country}}</td>
+            <td>{{checkedSeller.district}}</td>
+            <td>{{checkedSeller.sector}}</td>
+            <td>{{checkedSeller.contactPhone}}</td>
+            <td>{{checkedSeller.whatsappPhone}}</td>
+            <td>{{checkedSeller.email}}</td>
+          </tr>
+          <!-- <tr>
             <td>Tanmay</td>
             <td>Bangalore</td>
             <td>560001</td>
@@ -108,6 +106,32 @@
             <td>560001</td>
             <td>Bangalore</td>
             <td>560001</td>
+          </tr> -->
+        </tbody>
+      </table>
+      <table class="table table-striped table-hover" *ngIf="isVendor">
+        <thead>
+          <tr>
+            <th>OrderName</th>
+            <th>Customer name</th>
+            <th>Customer email</th>
+            <th>Customer phone</th>
+            <th>Sector/Zone</th>
+            <th>Order details</th>
+            <th>Uncheckout Order</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tanmay</td>
+            <td>Bangalore</td>
+            <td>560001</td>
+            <td>Tanmay</td>
+            <td>Bangalore</td>
+            <td>560001</td>
+            <td>Bangalore</td>
+          
           </tr>
           <tr>
             <td>Tanmay</td>
@@ -117,11 +141,35 @@
             <td>Bangalore</td>
             <td>560001</td>
             <td>Bangalore</td>
+         
+          </tr>
+          <tr>
+            <td>Tanmay</td>
+            <td>Bangalore</td>
             <td>560001</td>
+            <td>Tanmay</td>
+            <td>Bangalore</td>
+            <td>560001</td>
+            <td>Bangalore</td>
+           
           </tr>
         </tbody>
       </table>
+
+
 </div>
 
   </div>
+</div>
+<div class="modal" id="exploreOrderModal">
+  <div class="exploreOrder-container">
+    <span class="close" (click)="triggerExploreOrderModal(-1,'close')">&times;</span>
+       <div class="exploreOrder-header" *ngIf="!isVendor">
+         <p><span>Your Order is under pending</span> 
+          We will let you Know if we find your order. Thank you for ordering</p>
+         </div>
+       <h2>{{exploreOrder.orderName}}  <small>Made on <span>{{exploreOrder.orderDate}}</span></small></h2>
+      <p>{{exploreOrder.description}}</p>
+      
+    </div>
 </div>

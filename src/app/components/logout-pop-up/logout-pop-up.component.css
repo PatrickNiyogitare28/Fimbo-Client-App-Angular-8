@@ -1,3 +1,6 @@
+:focus{
+    outline: none;
+}
 .logout-icon{
     width: 40px;
 }

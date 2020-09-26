@@ -1,3 +1,6 @@
+:focus{
+  outline: none;
+}
 .index-container {
   width: 100% !important;
   clear: both;
