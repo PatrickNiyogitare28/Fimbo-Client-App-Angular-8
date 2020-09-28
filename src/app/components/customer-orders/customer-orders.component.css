@@ -281,3 +281,56 @@
 .exploreOrder-container h2 small span{
     color: rgb(58, 57, 57);
 }
+.order-address-wrapper h5,h6{
+    font-family: 'Century Gothic';
+   /* font-weight: lighter; */
+}
+.order-address-wrapper h5{
+    margin-top: 2em;
+    font-size:14px;
+    color: black;
+}
+.order-address-wrapper h6{
+    font-size: 13px;
+    color:black;
+}
+.order-address-wrapper ul li{
+    font-size: 14px;
+
+}
+.order-address-wrapper ul li span{
+    color: rgb(93, 93, 93);
+}
+.check-product-highright{
+    font-size: 12px;
+}
+.check-product-highright span{
+    color: #5c7e29;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.checkOrder-btn{
+    width: 200px;
+    background: #7fad39;
+    color: white;
+    padding: 10px;
+    border-radius: 10px 10px;
+    border-width: 0;
+    cursor: pointer;
+}
+.checkOrder-btn:hover{
+    background: #5c7e29;
+}
+.uncheckOrder-btn{
+    width: 200px;
+    background: #f03524;
+    color: white;
+    padding: 10px;
+    border-radius: 10px 10px;
+    border-width: 0;
+    cursor: pointer;
+
+}
+.uncheckOrder-btn:hover{
+    background: rgb(173, 45, 45);
+}

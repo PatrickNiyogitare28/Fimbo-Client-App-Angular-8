@@ -1,7 +1,7 @@
 <div class="container">
   <div class="orders-wrapper">
     <div class="orders-nav">
-      <button *ngIf="!isVendor" (click)="triggerOrderModal('addOrder')">Order for product</button>
+      <button *ngIf="!isVendor" (click)="triggerOrderModal(-1,'addOrder')">Order for product</button>
       <button>Clear all</button>
       <button *ngIf="isVendor">Checkouts</button>
     </div>
@@ -16,9 +16,13 @@
         <div class="image-name-price-wrapper">
           {{order.orderName}}<br> 
           <span (click)="triggerOrderModal(orderIdHolder.value,'exploreOrder')" *ngIf="order.foundStatus && !isVendor" 
-          class="found-1  cursor-pointer">Found</span>
+          class="found-1  cursor-pointer">Found
+        </span>
           <span *ngIf="!order.foundStatus && !isVendor" (click)="triggerExploreOrderModal(orderIdHolder.value,'open')"
-          class="found-0  cursor-pointer">Pending</span>
+          class="found-0  cursor-pointer">Pending
+        </span>
+          <span (click)="triggerExploreOrderModal(orderIdHolder.value,'open')" *ngIf="isVendor" 
+          class="found-1  cursor-pointer">Explore</span>
         </div>
 
       </div>
@@ -59,7 +63,8 @@
   <div class="found-product-modal">
     <span class="close" (click)="closeModal('foundOrderModal')">&times;</span>
     <div class="content-header">
-      <h1 *ngIf="!isVendor">Your Order was Found Here <small>Click on <u>Explore</u> to get vendor address</small></h1>
+      <h1 *ngIf="!isVendor">Your Order was Found Here 
+        <small>Thank you for ordering with us, Reach on any Seller you want bellow to negotiete and get your Order.</small></h1>
       <h1 *ngIf="isVendor">Your Checked-out Orders<small>communicate to the customer, if you didn't</small></h1>
     </div>
     <div class="display-vendors-wrapper">
@@ -87,26 +92,7 @@
             <td>{{checkedSeller.whatsappPhone}}</td>
             <td>{{checkedSeller.email}}</td>
           </tr>
-          <!-- <tr>
-            <td>Tanmay</td>
-            <td>Bangalore</td>
-            <td>560001</td>
-            <td>Tanmay</td>
-            <td>Bangalore</td>
-            <td>560001</td>
-            <td>Bangalore</td>
-            <td>560001</td>
-          </tr>
-          <tr>
-            <td>Tanmay</td>
-            <td>Bangalore</td>
-            <td>560001</td>
-            <td>Tanmay</td>
-            <td>Bangalore</td>
-            <td>560001</td>
-            <td>Bangalore</td>
-            <td>560001</td>
-          </tr> -->
+         
         </tbody>
       </table>
       <table class="table table-striped table-hover" *ngIf="isVendor">
@@ -168,8 +154,26 @@
          <p><span>Your Order is under pending</span> 
           We will let you Know if we find your order. Thank you for ordering</p>
          </div>
-       <h2>{{exploreOrder.orderName}}  <small>Made on <span>{{exploreOrder.orderDate}}</span></small></h2>
-      <p>{{exploreOrder.description}}</p>
+       <h2>{{exploreOrder.orderName}}  {{exploreOrder.orderId}}<small>Made on <span>{{exploreOrder.orderDate}}</span></small></h2>
+       <p>{{exploreOrder.description}}</p>
+       
+       <p class="check-product-highright" *ngIf="isVendor && !wasChecked">You have this product? click <span>Checkout this order</span>  button to access customer contacts</p>
+       <p class="check-product-highright" *ngIf="isVendor && wasChecked">You want to cancel the checkout? click <span>Cancel Checkout</span>  button to un-do checkout</p>
       
+       <button *ngIf="isVendor && !wasChecked" class="checkOrder-btn" (click)="checkOrderOut()">
+         Checkout this order
+       </button>
+       <button *ngIf="isVendor && wasChecked" class="uncheckOrder-btn" (click)="checkOrderOut()">
+        Cancel checkout
+      </button>
+       <div class="order-address-wrapper" *ngIf="isVendor">
+              <h5>Be the first to connect to orderer</h5>
+              <h6>Orderer Address</h6>
+              <ul>
+                <li>Names: <span>{{ordererProfile.firstname}} {{ordererProfile.lastname}}</span></li>
+                <li>Phone: <span>{{ordererProfile.phone}}</span></li>
+                <li>Email: <a href = "mailto: {{ordererProfile.email}}" target="_blank">{{ordererProfile.email}}</a></li>
+              </ul>
+       </div>
     </div>
 </div>

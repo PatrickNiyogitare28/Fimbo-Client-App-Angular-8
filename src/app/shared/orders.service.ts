@@ -45,5 +45,15 @@ export class OrdersService {
   isOrderFound(ordereId){
     return this.http.get(`${this.foundOrderURL}/${ordereId}`)
   }
-  
+  getOrderDetails(orderId){
+    return this.http.get(`${this.orderURL}/${orderId}`);
+  }
+  checkoutOrder(sellerId,orderId){
+    const token = sessionStorage.getItem('token');
+    const body = {
+      order: orderId,
+      seller: sellerId
+    }
+    return this.http.post(`${this.foundOrderURL}`,body,{headers: new HttpHeaders().set('x-auth-token',token)})
+  }
   }

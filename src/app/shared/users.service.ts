@@ -110,4 +110,7 @@ export class UsersService {
     const token = sessionStorage.getItem('token')
    return this.http.put(`${this.usersURL}/updatePassword`,body,{headers: new HttpHeaders().set('x-auth-token',token)})
   }
+  getUserProfile(userId){
+    return this.http.get(`${this.usersURL}/${userId}`);
+  }
 }
