@@ -5,7 +5,9 @@ import { AuthService } from '../../shared/auth.service';
 import { OrdersService } from '../../shared/orders.service';
 import { CustomerAccountComponent } from '../customer-account/customer-account.component';
 import { ActivatedRoute , Router} from '@angular/router'
-import { VendorsService } from '../../shared/vendors.service'
+import { VendorsService } from '../../shared/vendors.service';
+import { UsersService } from '../../shared/users.service'
+import { INT_TYPE } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-customer-orders',
@@ -16,32 +18,29 @@ export class CustomerOrdersComponent implements OnInit {
   isVendor:boolean  = false;
   newOrder:boolean= true;
   orderIsFound:boolean=true;
+  wasChecked:boolean = false;
   createOrderErrorHolder=[];
   url;
   msg = "";
   orderImage="";
   orders=[];
   vendorCheckedOrders = [];
-  exploreOrder = {orderName:String,description:String,orderDate:String}
+  exploreOrder = {orderId:Number,orderName:String,description:String,orderDate:String}
   foundOrder={
     orderName: String,
     orderedDate: String,
-    checkedSellers:[
-      // {
-        // sellerName:String,
-        // contactPhone: String,
-        // whatsapPhone: String,
-        // country:String,
-        // district:String,
-        // sector:String,
-        // town:String,
-        // logoURL: String
-      // }
-    ]
+    checkedSellers:[]
+  }
+  ordererProfile = {
+    firstname:"",
+    lastname:"",
+    phone: "",
+    email: ""
   }
   constructor(private notificationService: NotificationService, private authService: AuthService,
     private ordersService: OrdersService, private customerAccountCompo:CustomerAccountComponent,
-    private router: Router, private route: ActivatedRoute,private vendorsService: VendorsService) { }
+    private router: Router, private route: ActivatedRoute,private vendorsService: VendorsService,
+    private usersService: UsersService) { }
 
   triggerOrderModal(orderId,task){
     if(task=="addOrder"){
@@ -230,6 +229,7 @@ export class CustomerOrdersComponent implements OnInit {
      }
     })
     this.ordersService.fetchAllOrders().subscribe((res:any)=>{
+      this.orders.splice(0,this.orders.length);
        if(res.success == true){
             res.orders.forEach(order => {
               this.ordersService.isOrderChecked(vendorId,order.order_id).subscribe((isChecked: any)=>{
@@ -246,7 +246,7 @@ export class CustomerOrdersComponent implements OnInit {
    
   }
   pushInOrders(order,foundStatus:boolean){
-      this.orders.push({
+     this.orders.push({
       orderId: order.order_id,
       orderName: order.order_name,
       description: order.description,
@@ -271,14 +271,15 @@ export class CustomerOrdersComponent implements OnInit {
      }
   }
   triggerExploreOrderModal(orderId,event){
+    if(this.isVendor == true && orderId != -1){
+    this.getOrdererDetails(orderId);  
+    }
      $(()=>{
        if(event == 'open'){
-        // this.exploreOrder.orderName=""; this.exploreOrder.orderName=""; 
+        this.wasChecked=false;
         this.orders.forEach(order => {
           if(order.orderId == orderId){
-            this.exploreOrder.orderName = order.orderName;
-            this.exploreOrder.description = order.description;
-            this.exploreOrder.orderDate = order.orderDate
+          this.exploreOrder = Object.assign({},order)
           }
         })
          $('#exploreOrderModal').fadeIn()
@@ -297,9 +298,7 @@ export class CustomerOrdersComponent implements OnInit {
   fetchFoundOrderDetails(orderId){
    this.orders.forEach(order=> {
      if(order.orderId == orderId){
-        this.exploreOrder.orderName = order.orderName;
-        this.exploreOrder.description = order.description;
-        this.exploreOrder.orderDate = order.orderDate
+      this.exploreOrder = Object.assign({},order);
      }
    })
     
@@ -324,6 +323,32 @@ export class CustomerOrdersComponent implements OnInit {
             )
         })
       });
+    })
+  }
+  getOrdererDetails(orderId){
+   this.ordersService.getOrderDetails(orderId).subscribe((result:any)=>{
+     if(result.success == true){
+       this.usersService.getUserProfile(result.order.user).subscribe((res:any)=>{
+         if(res.success == true){
+             this.ordererProfile= Object.assign({},res.user);
+            }
+       })
+     }
+   })
+ 
+  }
+
+  checkOrderOut(){
+    this.authService.authenticateVendor().subscribe((vendor:any)=>{
+      if(vendor.success == true){
+        this.ordersService.checkoutOrder(vendor.sellerId,this.exploreOrder.orderId).subscribe((res:any)=>{
+          if(res.success == true){
+            this.onFetchVendorDisplayOrders();
+            this.notificationService.showSuccess('Order checked','You added a new Order in checkouts');
+            this.wasChecked=true;
+          }
+        })
+      }
     })
   }
   ngOnInit() {
