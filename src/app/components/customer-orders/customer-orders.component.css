@@ -237,11 +237,15 @@
 .display-vendors-wrapper{
     width: 100%;
     overflow: scroll;
+    height:90%;
+    
 }
 .display-vendors-wrapper table{
     font-family: 'Century Gothic';
     width:100%;
     overflow: scroll;
+    height:auto;
+   
 }
 .display-vendors-wrapper table th{
     font-size: 14px;
@@ -331,6 +335,33 @@
     cursor: pointer;
 
 }
+.uncheckOrder-td-btn{
+    width: 150px;
+    background: #f03524;
+    color: white;
+    padding: 5px;
+    border-radius: 10px 10px;
+    border-width: 0;
+    cursor: pointer;
+
+}
 .uncheckOrder-btn:hover{
     background: rgb(173, 45, 45);
 }
+.uncheckOrder-td-btn:hover{
+    background: rgb(173, 45, 45);
+
+}
+.display-vendors-wrapper::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: #f8f8f8;
+    }
+        
+.display-vendors-wrapper::-webkit-scrollbar{
+        width: 8px;
+        background-color: #f8f8f8;
+    }
+.display-vendors-wrapper::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: #757780;
+    }

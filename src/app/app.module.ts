@@ -44,6 +44,7 @@ import { VendorApplicationComponent } from './components/vendor-application/vend
 import { LogoutPopUpComponent } from './components/logout-pop-up/logout-pop-up.component';
 import { CustomerAccountVendorProfileComponent } from './components/customer-account-vendor-profile/customer-account-vendor-profile.component';
 import { CustomerOrdersComponent } from './components/customer-orders/customer-orders.component';
+import { PlansComponent } from './components/plans/plans.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,7 +74,8 @@ import { CustomerOrdersComponent } from './components/customer-orders/customer-o
     VendorApplicationComponent,
     LogoutPopUpComponent,
     CustomerAccountVendorProfileComponent,
-    CustomerOrdersComponent
+    CustomerOrdersComponent,
+    PlansComponent
   
   ],
   entryComponents: [

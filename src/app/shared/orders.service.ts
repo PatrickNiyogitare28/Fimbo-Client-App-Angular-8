@@ -56,4 +56,10 @@ export class OrdersService {
     }
     return this.http.post(`${this.foundOrderURL}`,body,{headers: new HttpHeaders().set('x-auth-token',token)})
   }
+
+  uncheckOrder(vendorId,orderId){
+   const token = sessionStorage.getItem('token'); 
+   return this.http.put(`${this.foundOrderURL}/uncheckOrder/${vendorId}/${orderId}`,
+   {headers: new HttpHeaders().set('x-auth-token',token)})
+  }
   }

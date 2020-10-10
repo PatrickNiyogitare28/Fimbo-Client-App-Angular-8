@@ -7,7 +7,8 @@ import { CustomerAccountComponent } from '../customer-account/customer-account.c
 import { ActivatedRoute , Router} from '@angular/router'
 import { VendorsService } from '../../shared/vendors.service';
 import { UsersService } from '../../shared/users.service'
-import { INT_TYPE } from '@angular/compiler/src/output/output_ast';
+import  {ToastrService } from 'ngx-toastr'
+
 
 @Component({
   selector: 'app-customer-orders',
@@ -25,10 +26,10 @@ export class CustomerOrdersComponent implements OnInit {
   orderImage="";
   orders=[];
   vendorCheckedOrders = [];
-  exploreOrder = {orderId:Number,orderName:String,description:String,orderDate:String}
+  exploreOrder = {orderId:"",orderName:"",description:"",orderDate:"String"}
   foundOrder={
-    orderName: String,
-    orderedDate: String,
+    orderName: "",
+    orderedDate: "",
     checkedSellers:[]
   }
   ordererProfile = {
@@ -40,12 +41,12 @@ export class CustomerOrdersComponent implements OnInit {
   constructor(private notificationService: NotificationService, private authService: AuthService,
     private ordersService: OrdersService, private customerAccountCompo:CustomerAccountComponent,
     private router: Router, private route: ActivatedRoute,private vendorsService: VendorsService,
-    private usersService: UsersService) { }
+    private usersService: UsersService, private toastrService: ToastrService) { }
 
   triggerOrderModal(orderId,task){
     if(task=="addOrder"){
       this.newOrder=true;
-      this.fadePendingProductModal('in');
+      this.firstCheckEmail();
    }
    else if(task=="exploreOrder" && this.orderIsFound != true){
     this.newOrder=false;
@@ -231,10 +232,12 @@ export class CustomerOrdersComponent implements OnInit {
     this.ordersService.fetchAllOrders().subscribe((res:any)=>{
       this.orders.splice(0,this.orders.length);
        if(res.success == true){
-            res.orders.forEach(order => {
+             this.vendorCheckedOrders.splice(0,this.vendorCheckedOrders.length);
+             res.orders.forEach(order => {
               this.ordersService.isOrderChecked(vendorId,order.order_id).subscribe((isChecked: any)=>{
                 if(isChecked.success == true && isChecked.status == 200){
-                 this.vendorCheckedOrders.push(order);
+                //  this.vendorCheckedOrders.push(order);
+                 this.getVendorCheckedOuts(order);
                 }
                 else if(isChecked.success == false && isChecked.status == 200){
                   this.pushInOrders(order,false);
@@ -349,6 +352,71 @@ export class CustomerOrdersComponent implements OnInit {
           }
         })
       }
+    })
+  }
+  getVendorCheckedOuts(orderObj){
+   this.usersService.getUserProfile(orderObj.user).subscribe((res:any)=>{
+     if(res.success == true){
+     this.vendorCheckedOrders.push({
+          order:{
+            orderId:orderObj.order_id,
+            orderName: orderObj.order_name,
+            description: orderObj.description,
+            orderDate:orderObj.order_date,
+            orderImageURL: orderObj.orderImage
+          },
+          customer:{
+            firstname: res.user.firstname,
+            lastname: res.user.lastname,
+            email: res.user.email,
+            phone: res.user.phone
+          }
+       })
+     }
+   })
+  }
+  triggerVendorCheckedOutModal(){
+   this.fadeFoundProductModal('in');
+    // (()=>{
+    //   $('#foundOrderModal').fadeIn();
+    // })
+  }
+  removeCheckout(orderId){
+   this.authService.authenticateVendor().subscribe((auth:any)=>{
+       this.ordersService.uncheckOrder(auth.sellerId,orderId).subscribe((res:any)=>{
+         if(res.success == true){
+            let removeIndex = 0;
+            for(let i = 0; i < this.vendorCheckedOrders.length; i++){
+              if(this.vendorCheckedOrders[i].orderId == orderId){
+                removeIndex = i;
+              }
+            }
+            this.vendorCheckedOrders.splice(removeIndex,1);
+            this.notificationService.showSuccess('You unchecked the order','1 order unchecked');
+            this.onFetchVendorDisplayOrders();
+         }
+       })
+    })
+  }
+
+  onDirectCancelCheckout(){
+    this.removeCheckout(this.exploreOrder.orderId);
+    this.wasChecked=false;
+  }
+
+  firstCheckEmail(){
+    this.authService.authenticateUser().subscribe((auth:any)=>{
+    if(auth.email == 'NULL'){
+        // this.toastrService.error(
+        //   'Error: Email is required',
+        //   'You need to have an email before ordering. Go to -> Dashboard -> Add Email to add your email'
+        //   ,)
+        alert("Error: You need to have an email before ordering. Go to '-> Dashboard -> Add Email' to add your email")
+      }
+      else{
+      this.fadePendingProductModal('in');
+     }
+
     })
   }
   ngOnInit() {
