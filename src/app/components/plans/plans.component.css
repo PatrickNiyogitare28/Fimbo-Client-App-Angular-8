@@ -1,0 +1,78 @@
+.container-fluid{
+    width: 100%;
+    /* background: red; */
+    padding: 3% 6% 3% 6%;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Century Gothic';
+}
+.left-wrapper{
+    width:50%;
+}
+.left-wrapper h1{
+  color: #7fad39;
+  font-size: 4em;
+  /* padding-top: 0.5em; */
+  /* margin-left: 1.5em; */
+  font-weight: bolder;
+}
+.left-wrapper p{
+    font-size: 15px;
+    color: #949494;
+}
+.left-wrapper p span{
+    color: rgb(90, 90, 90);
+    font-weight: bold;
+}
+.left-wrapper ul{
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+}
+.left-wrapper ul li{
+    list-style-type: none;
+    font-size: 13px;
+    width: 80px;
+    text-align: center;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 20px 20px;
+    
+}
+.bronze{
+    background: #cd7f32;
+    color: white;
+}
+.silver{
+    background: #C0C0C0;
+    color: white;
+ 
+}
+.gold{
+    background: #D4AF37;
+    color: white;
+   
+}
+.platinum{
+    background:  #e5e4e2;
+    color: rgb(98, 98, 98);
+   
+    border-radius: 20px 20px;
+}
+.left-wrapper button{
+  
+  color: white;
+  border-width: 0px;
+  border-radius: 20px 20px;
+  background-color: #7fad39;
+  width: 200px;
+  padding: 5px;
+  margin-top: 2em;
+}
+.right-wrapper{
+    width: 40%;
+   
+}
+.right-wrapper img{
+    width: 90%;
+}

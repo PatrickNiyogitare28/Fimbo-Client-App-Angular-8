@@ -12,8 +12,7 @@ import { VendorApplicationComponent} from './components/vendor-application/vendo
 
 
 const routes: Routes = [
-  { path: 'index', redirectTo: 'index' },
-  // { path: 'panel7', component: AuthComponent},
+  { path: '', pathMatch: 'full', redirectTo: 'index' },
   {path: 'index',component:IndexComponent},
   {path: 'myaccount/superadmin/index', component:IndexComponent},
   {path: 'myaccount/superadmin', component: SuperAdminComponent},

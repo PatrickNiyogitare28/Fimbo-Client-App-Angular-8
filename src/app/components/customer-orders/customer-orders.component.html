@@ -3,30 +3,30 @@
     <div class="orders-nav">
       <button *ngIf="!isVendor" (click)="triggerOrderModal(-1,'addOrder')">Order for product</button>
       <button>Clear all</button>
-      <button *ngIf="isVendor">Checkouts</button>
+      <button *ngIf="isVendor" (click)="triggerVendorCheckedOutModal()">Checkouts</button>
     </div>
     <div class="ordered-products-container">
       <div class="product-item shadow" *ngFor="let order of orders">
         <input type="text" value={{order.orderId}} #orderIdHolder hidden>
         <div class="product-item-header">
-          <img src="../../../assets/icons/delete-accop.png" class="cursor-pointer" alt="delete icon"
+          <img *ngIf="!isVendor" src="../../../assets/icons/delete-accop.png" class="cursor-pointer" alt="delete icon"
             (click)="onRemoveOrder(order.orderId)" title="Delete Order">
         </div>
         <img src="http://localhost:3000/utils/uploads/orderImages/{{order.imageURL}}" alt="productImage">
         <div class="image-name-price-wrapper">
-          {{order.orderName}}<br> 
-          <span (click)="triggerOrderModal(orderIdHolder.value,'exploreOrder')" *ngIf="order.foundStatus && !isVendor" 
-          class="found-1  cursor-pointer">Found
-        </span>
+          {{order.orderName}}<br>
+          <span (click)="triggerOrderModal(orderIdHolder.value,'exploreOrder')" *ngIf="order.foundStatus && !isVendor"
+            class="found-1  cursor-pointer">Found
+          </span>
           <span *ngIf="!order.foundStatus && !isVendor" (click)="triggerExploreOrderModal(orderIdHolder.value,'open')"
-          class="found-0  cursor-pointer">Pending
-        </span>
-          <span (click)="triggerExploreOrderModal(orderIdHolder.value,'open')" *ngIf="isVendor" 
-          class="found-1  cursor-pointer">Explore</span>
+            class="found-0  cursor-pointer">Pending
+          </span>
+          <span (click)="triggerExploreOrderModal(orderIdHolder.value,'open')" *ngIf="isVendor"
+            class="found-1  cursor-pointer">Explore</span>
         </div>
 
       </div>
-     
+
     </div>
   </div>
 </div>
@@ -39,14 +39,17 @@
 
     <div class="order-form-wrapper">
       <label>Product Name<strong>*</strong> <small>{{createOrderErrorHolder[0]}}</small></label>
-      <input type="text" placeholder="Product name to order" (click)="resetField('orderName',0)" id="orderName" #orderName>
+      <input type="text" placeholder="Product name to order" (click)="resetField('orderName',0)" id="orderName"
+        #orderName>
 
+        
       <label>Product Description<strong>*</strong> <small>{{createOrderErrorHolder[1]}}</small></label>
-      <textarea name="description" id="description" cols="10" rows="3" (click)="resetField('description',1)" #description></textarea>
+      <textarea name="description" id="description" cols="10" rows="3" (click)="resetField('description',1)"
+        #description></textarea>
 
       <label>Order product's Image (<span>Optional</span>) <small> {{msg}}</small></label>
       <input type="file" name="product image" id="productImage" (change)="selectFile($event)"
-       accept="image/x-png,image/jpg,image/jpeg">
+        accept="image/x-png,image/jpg,image/jpeg">
 
       <div class="modal-footer">
         <button class="proceed-btn" *ngIf="newOrder" (click)="onCreateOrder(orderName.value,description.value)">
@@ -63,8 +66,9 @@
   <div class="found-product-modal">
     <span class="close" (click)="closeModal('foundOrderModal')">&times;</span>
     <div class="content-header">
-      <h1 *ngIf="!isVendor">Your Order was Found Here 
-        <small>Thank you for ordering with us, Reach on any Seller you want bellow to negotiete and get your Order.</small></h1>
+      <h1 *ngIf="!isVendor">Your Order was Found Here
+        <small>Thank you for ordering with us, Reach on any Seller you want bellow to negotiete and get your
+          Order.</small></h1>
       <h1 *ngIf="isVendor">Your Checked-out Orders<small>communicate to the customer, if you didn't</small></h1>
     </div>
     <div class="display-vendors-wrapper">
@@ -92,88 +96,69 @@
             <td>{{checkedSeller.whatsappPhone}}</td>
             <td>{{checkedSeller.email}}</td>
           </tr>
-         
+
         </tbody>
       </table>
       <table class="table table-striped table-hover" *ngIf="isVendor">
         <thead>
           <tr>
             <th>OrderName</th>
-            <th>Customer name</th>
+            <th>Made date</th>
+            <th>Customer Name</th>
             <th>Customer email</th>
             <th>Customer phone</th>
-            <th>Sector/Zone</th>
-            <th>Order details</th>
-            <th>Uncheckout Order</th>
-           
+            <th>Cancel Checkout</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Tanmay</td>
-            <td>Bangalore</td>
-            <td>560001</td>
-            <td>Tanmay</td>
-            <td>Bangalore</td>
-            <td>560001</td>
-            <td>Bangalore</td>
-          
-          </tr>
-          <tr>
-            <td>Tanmay</td>
-            <td>Bangalore</td>
-            <td>560001</td>
-            <td>Tanmay</td>
-            <td>Bangalore</td>
-            <td>560001</td>
-            <td>Bangalore</td>
-         
-          </tr>
-          <tr>
-            <td>Tanmay</td>
-            <td>Bangalore</td>
-            <td>560001</td>
-            <td>Tanmay</td>
-            <td>Bangalore</td>
-            <td>560001</td>
-            <td>Bangalore</td>
-           
+          <tr *ngFor="let orderItem of vendorCheckedOrders">
+            <input type="text" hidden #checkedOrderIdHolder value={{orderItem.order.orderId}}>
+            <td>{{orderItem.order.orderName}}</td>
+            <td>{{orderItem.order.orderDate}}</td>
+            <td>{{orderItem.customer.firstname}} {{orderItem .customer.lastname}}</td>
+            <td>{{orderItem.customer.email}}</td>
+            <td>{{orderItem.customer.phone}}</td>
+            <td>
+              <button class="uncheckOrder-td-btn" (click)="removeCheckout(checkedOrderIdHolder.value)">
+                Remove Order
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
-
-
-</div>
-
+    </div>
   </div>
 </div>
 <div class="modal" id="exploreOrderModal">
   <div class="exploreOrder-container">
     <span class="close" (click)="triggerExploreOrderModal(-1,'close')">&times;</span>
-       <div class="exploreOrder-header" *ngIf="!isVendor">
-         <p><span>Your Order is under pending</span> 
-          We will let you Know if we find your order. Thank you for ordering</p>
-         </div>
-       <h2>{{exploreOrder.orderName}}  {{exploreOrder.orderId}}<small>Made on <span>{{exploreOrder.orderDate}}</span></small></h2>
-       <p>{{exploreOrder.description}}</p>
-       
-       <p class="check-product-highright" *ngIf="isVendor && !wasChecked">You have this product? click <span>Checkout this order</span>  button to access customer contacts</p>
-       <p class="check-product-highright" *ngIf="isVendor && wasChecked">You want to cancel the checkout? click <span>Cancel Checkout</span>  button to un-do checkout</p>
-      
-       <button *ngIf="isVendor && !wasChecked" class="checkOrder-btn" (click)="checkOrderOut()">
-         Checkout this order
-       </button>
-       <button *ngIf="isVendor && wasChecked" class="uncheckOrder-btn" (click)="checkOrderOut()">
-        Cancel checkout
-      </button>
-       <div class="order-address-wrapper" *ngIf="isVendor">
-              <h5>Be the first to connect to orderer</h5>
-              <h6>Orderer Address</h6>
-              <ul>
-                <li>Names: <span>{{ordererProfile.firstname}} {{ordererProfile.lastname}}</span></li>
-                <li>Phone: <span>{{ordererProfile.phone}}</span></li>
-                <li>Email: <a href = "mailto: {{ordererProfile.email}}" target="_blank">{{ordererProfile.email}}</a></li>
-              </ul>
-       </div>
+    <div class="exploreOrder-header" *ngIf="!isVendor">
+      <p><span>Your Order is under pending</span>
+        We will let you Know if we find your order. Thank you for ordering</p>
     </div>
+    <h2>{{exploreOrder.orderName}} {{exploreOrder.orderId}}<small>Made on
+        <span>{{exploreOrder.orderDate}}</span></small></h2>
+    <p>{{exploreOrder.description}}</p>
+
+    <p class="check-product-highright" *ngIf="isVendor && !wasChecked">You have this product? click <span>Checkout this
+        order</span> button to access customer contacts</p>
+    <p class="check-product-highright" *ngIf="isVendor && wasChecked">You want to cancel the checkout? click
+      <span>Cancel Checkout</span> button to un-do checkout</p>
+
+    <button *ngIf="isVendor && !wasChecked" class="checkOrder-btn" (click)="checkOrderOut()">
+      Checkout this order
+    </button>
+    <button *ngIf="isVendor && wasChecked" class="uncheckOrder-btn" (click)="onDirectCancelCheckout()">
+      Cancel checkout
+    </button>
+    <div class="order-address-wrapper" *ngIf="isVendor">
+      <h5>Be the first to connect to orderer</h5>
+      <h6>Orderer Address</h6>
+      <ul>
+        <li>Names: <span>{{ordererProfile.firstname}} {{ordererProfile.lastname}}</span></li>
+        <li>Phone: <span>{{ordererProfile.phone}}</span></li>
+        <li>Email: <a href="mailto: {{ordererProfile.email}}" target="_blank">{{ordererProfile.email}}</a></li>
+      </ul>
+    </div>
+  </div>
 </div>
