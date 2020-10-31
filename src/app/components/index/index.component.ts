@@ -17,15 +17,37 @@ declare var jQuery: any;
 })
 
 export class IndexComponent implements OnInit {
-   displayDivisions = [];
-   divOne=[];divTwo=[]; divThree=[]; divFour=[]; divFive=[]; 
-   divSix=[]; divSeven=[]; divEight=[]; divNine=[];divTen=[];
+  
    featuredProducts=[];
    featuredSpecificCategoProducts=[];
    categories=[];
    selected = 'option2';
    currentCategory='all';
 
+    secondaryCarsoulCustomOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    navSpeed: 700,
+ 
+    responsive: {
+      0: {
+        items: 1 
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      990: {
+        items: 4
+      }
+     
+    }
+   
+  }
 
    customOptions: OwlOptions = {
     loop: true,
@@ -278,387 +300,7 @@ errorModalTrigger(){
     sessionStorage.setItem('displayHeaders','displayHeaders');
     sessionStorage.setItem('currentPage','index');
    //----------------------------------------------division initial states-------------------------------------
-   this.divOne.splice(0, this.divOne.length)
-    this.divTwo.splice(0, this.divTwo.length)
-    this.divThree.splice(0, this.divThree.length)
-    this.divFour.splice(0, this.divFour.length)
-    this.divFive.splice(0, this.divFive.length)
-    this.divSix.splice(0, this.divSix.length)
-    this.divSeven.splice(0, this.divSeven.length)
-    this.divEight.splice(0, this.divEight.length)
-    this.divNine.splice(0, this.divNine.length)
-    this.divTen.splice(0, this.divTen.length)
-    
-    this.divOne.push({
-      itemId:0,
-      division_id: 1,
-      division_name: "divOne",
-      display_status: 0,
-      productsIn: 0,
-      product_id: "NOT DEFINED",
-      product_name: "NOT DEFINED",
-      product_image: "NOT_DEFINED.png"
-     
-    })
-    this.divTwo.push({
-
-      division_id: 2,
-      division_name: "divTwo",
-      display_status: 0,
-      productsIn: 0,
-      product_id: "NOT DEFINED",
-      product_name: "NOT DEFINED",
-      product_image: "NOT_DEFINED.png"
-
-     })
-     this.divThree.push({
-
-      division_id: 3,
-      division_name: "divThree",
-      display_status: 0,
-      productsIn: 0,
-      product_id: "NOT DEFINED",
-      product_name: "NOT DEFINED",
-      product_image: "NOT_DEFINED.png"
-
-     })
-     this.divFour.push({
-
-      division_id: 4,
-      division_name: "divFour",
-      display_status: 0,
-      productsIn: 0,
-      product_id: "NOT DEFINED",
-      product_name: "NOT DEFINED",
-      product_image: "NOT_DEFINED.png"
-
-     })
-     this.divFive.push({
-
-      division_id: 5,
-      division_name: "divFive",
-      display_status: 0,
-      productsIn: 0,
-      product_id: "NOT DEFINED",
-      product_name: "NOT DEFINED",
-      product_image: "NOT_DEFINED.png"
-
-     })
-     this.divSix.push({
-
-      division_id: 6,
-      division_name: "divSix",
-      display_status: 0,
-      productsIn: 0,
-      product_id: "NOT DEFINED",
-      product_name: "NOT DEFINED",
-      product_image: "NOT_DEFINED.png"
-
-     })
-     this.divSeven.push({
-
-      division_id: 7,
-      division_name: "divSeven",
-      display_status: 0,
-      productsIn: 0,
-      product_id: "NOT DEFINED",
-      product_name: "NOT DEFINED",
-      product_image: "NOT_DEFINED.png"
-
-     })
-
-     this.divEight.push({
-
-      division_id: 8,
-      division_name: "divEight",
-      display_status: 0,
-      productsIn: 0,
-      product_id: "NOT DEFINED",
-      product_name: "NOT DEFINED",
-      product_image: "NOT_DEFINED.png"
-
-     })
-
-     this.divNine.push({
-
-      division_id: 9,
-      division_name: "divNine",
-      display_status: 0,
-      productsIn: 0,
-      product_id: "NOT DEFINED",
-      product_name: "NOT DEFINED",
-      product_image: "NOT_DEFINED.png"
-
-     })
-     this.divTen.push({
-
-      division_id: 10,
-      division_name: "divTen",
-      display_status: 0,
-      productsIn: 0,
-      product_id: "NOT DEFINED",
-      product_name: "NOT DEFINED",
-      product_image: "NOT_DEFINED.png"
-
-     }) 
-  //------------------------------------------getting primary divs form server------------------------------  
-  this.displayService.getTopSlideDivisions().subscribe((res: any)=>{
-    for(var i =0; i< res.topDivisions.length;i++){
-      this.displayDivisions.push(res.topDivisions[i]);
-    }
-    console.log(this.displayDivisions.length+" "+res.topDivisions.length)
-    localStorage.setItem('topDivisions',JSON.stringify(this.displayDivisions))
-   })
-
- //-----------------------------------------------getting products in divs------------------------------------
- this.displayService.getTopSlideDivisions().subscribe((devision: any)=>{
-  for(var i=0;i<devision.topDivisions.length;i++){
-     this.displayService.getDivisionsWithProducts(devision.topDivisions[i].division_id).subscribe((res: any)=>{
-      for(var k=0;k<res.contents.length;k++){
-       
-       this.productsService.getProductData(res.contents[k].product).subscribe((proData: any)=>{
-        if(res.division_id == 1){
-           if(res.found > 0){
-             for(var i=0;i<this.divOne.length;i++){
-               var index;
-               if(this.divOne[i].product_id=='NOT DEFINED'){
-                 index=i;
-                  this.divOne.splice(index,1)
-               }
-              }
-
-             this.divOne.push({
-               itemId : 0,
-               division_id: res.division_id,
-               division_name: res.division_name,
-               display_status: res.division_status,
-               productsIn: res.contents.length,
-               product_id: proData.productId,
-               product_name: proData.productName,
-               product_image: proData.imageName
-              })
-           }
-          
-         }
-
-         if(res.division_id == 2){
-           if(res.found > 0){
-             for(var i=0;i<this.divTwo.length;i++){
-               var index;
-               if(this.divTwo[i].product_id=='NOT DEFINED'){
-                 index=i;
-                  this.divTwo.splice(index,1)
-               }
-              }
-             this.divTwo.push({
-
-               division_id: res.division_id,
-               division_name: res.division_name,
-               display_status: res.division_status,
-               productsIn: res.contents.length,
-               product_id: proData.productId,
-               product_name: proData.productName,
-               product_image: proData.imageName
-
-              })
-           }
-         
-         }
-         else if(res.division_id == 3){
-           if(res.found > 0){
-             for(var i=0;i<this.divThree.length;i++){
-               var index;
-               if(this.divThree[i].product_id=='NOT DEFINED'){
-                 index=i;
-                  this.divThree.splice(index,1)
-               }
-              }
-             this.divThree.push({
-
-               division_id: res.division_id,
-               division_name: res.division_name,
-               display_status: res.division_status,
-               productsIn: res.contents.length,
-               product_id: proData.productId,
-               product_name: proData.productName,
-               product_image: proData.imageName
-
-              })
-           }
-       
-         }
-         else if(res.division_id == 4){
-           if(res.found > 0){
-             for(var i=0;i<this.divFour.length;i++){
-               var index;
-               if(this.divFour[i].product_id=='NOT DEFINED'){
-                 index=i;
-                  this.divFour.splice(index,1)
-               }
-              }
-             this.divFour.push({
-
-               division_id: res.division_id,
-               division_name: res.division_name,
-               display_status: res.division_status,
-               productsIn: res.contents.length,
-               product_id: proData.productId,
-               product_name: proData.productName,
-               product_image: proData.imageName
-
-              })
-             }
-           }
-           
-         else if(res.division_id == 5){
-           if(res.found > 0){
-             for(var i=0;i<this.divFive.length;i++){
-               var index;
-               if(this.divFive[i].product_id=='NOT DEFINED'){
-                 index=i;
-                  this.divFive.splice(index,1)
-               }
-              }
-             this.divFive.push({
-
-               division_id: res.division_id,
-               division_name: res.division_name,
-               display_status: res.division_status,
-               productsIn: res.contents.length,
-               product_id: proData.productId,
-               product_name: proData.productName,
-               product_image: proData.imageName
-
-              })
-           }
-           
-         }
-         
-         else if(res.division_id == 6){
-           if(res.found > 0){
-             for(var i=0;i<this.divSix.length;i++){
-               var index;
-               if(this.divSix[i].product_id=='NOT DEFINED'){
-                 index=i;
-                  this.divSix.splice(index,1)
-               }
-              }
-             this.divSix.push({
-
-               division_id: res.division_id,
-               division_name: res.division_name,
-               display_status: res.division_status,
-               productsIn: res.contents.length,
-               product_id: proData.productId,
-               product_name: proData.productName,
-               product_image: proData.imageName
-
-              })
-           }
-         
-         }
-         else if(res.division_id == 7){
-           if(res.found > 0){
-             for(var i=0;i<this.divSeven.length;i++){
-               var index;
-               if(this.divSeven[i].product_id=='NOT DEFINED'){
-                 index=i;
-                  this.divSeven.splice(index,1)
-               }
-              }
-             this.divSeven.push({
-
-               division_id: res.division_id,
-               division_name: res.division_name,
-               display_status: res.division_status,
-               productsIn: res.contents.length,
-               product_id: proData.productId,
-               product_name: proData.productName,
-               product_image: proData.imageName
-
-              })
-           }
-       
-         }
-         else if(res.division_id == 8){
-           if(res.found > 0){
-             for(var i=0;i<this.divEight.length;i++){
-               var index;
-               if(this.divEight[i].product_id=='NOT DEFINED'){
-                 index=i;
-                  this.divEight.splice(index,1)
-               }
-              }
-             this.divEight.push({
-
-               division_id: res.division_id,
-               division_name: res.division_name,
-               display_status: res.division_status,
-               productsIn: res.contents.length,
-               product_id: proData.productId,
-               product_name: proData.productName,
-               product_image: proData.imageName
-
-              })
-           }
-           
-         }
-         else if(res.division_id == 9){
-           if(res.found > 0){
-             for(var i=0;i<this.divNine.length;i++){
-               var index;
-               if(this.divNine[i].product_id=='NOT DEFINED'){
-                 index=i;
-                  this.divNine.splice(index,1)
-               }
-              }
-             this.divNine.push({
-
-               division_id: res.division_id,
-               division_name: res.division_name,
-               display_status: res.division_status,
-               productsIn: res.contents.length,
-               product_id: proData.productId,
-               product_name: proData.productName,
-               product_image: proData.imageName
-
-              })
-           }
-         
-         }
-         else if(res.division_id == 10){
-           if(res.found > 0){
-             for(var i=0;i<this.divTen.length;i++){
-               var index;
-               if(this.divTen[i].product_id=='NOT DEFINED'){
-                 index=i;
-                  this.divTen.splice(index,1)
-               }
-              }
-             this.divTen.push({
-
-               division_id: res.division_id,
-               division_name: res.division_name,
-               display_status: res.division_status,
-               productsIn: res.contents.length,
-               product_id: proData.productId,
-               product_name: proData.productName,
-               product_image: proData.imageName
-
-              })
-           }
-          
-         }
-
-           
-         })
-        }
-           
-       //  }
-      })
-   }
    
-})
 
 //-------------------------------------GETTING ALL PRODUCTS---------------------------------------------------
 
@@ -682,10 +324,6 @@ this.productsService.getProductsCategories().subscribe((res:any)=>{
 })
 document.getElementById('all-category-featured-prod-nav').classList.toggle('active-featured-pro-nav-link');
 //------------------------------adding the product Item id---------------------------------
-for(var i=0;i<this.divOne.length;i++){
-  this.divOne[i].itemId = i+1;
- 
-}
 
 }
 }
