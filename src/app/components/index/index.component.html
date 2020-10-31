@@ -1,154 +1,134 @@
 <div class="index-container">
 
   <div class="primary-products-wrapper">
-
-    <div class="top-banner-wrapper">
+ <!-- <div id="carouselExampleControls" class="carousel slide carsal-slide-wrapper" data-ride="carousel">
+ <div class="carousel-inner">
+   <div class="carousel-item">
+    <div class="top-banner-wrapper ">
       <h1>Get <span>Spare parts</span></h1>
       <p>We consider suitable price & Quality</p>
       <button class="banner-shop-btn shadow">
         Shop Now
       </button>
     </div>
-    <!-- <div class="bd-example"> -->
-    <div id="carouselExampleControls" class="carousel slide carsal-slide-wrapper" data-ride="carousel">
+   </div>
+    <div class=" carousel-item">
+      <div class="top-banner-wrapper">
+        <h1>Get <span>Spare parts</span></h1>
+        <p>We consider suitable price & Quality</p>
+        <button class="banner-shop-btn shadow">
+          Shop Now
+        </button>
+      </div>
+    </div>
+    
+    </div>
+   </div> -->
+
+
+
+
+   <div class="carsoul-container">
+    
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+  
+      <!-- Wrapper for slides -->
       <div class="carousel-inner">
-        <!-- ------------------------------------------top slide division one--------------------------------------------                             -->
-        <div class="carousel-item iteration-one">
-          <div *ngFor="let division of divOne" class="crsol-container">
-            <div class="carsousel-product shadow" data-holder-rendered="true" id="productItem">
-              <img src="http://localhost:3000/utils/uploads/productsImages/{{division.product_image}}">
-              <div class="carsousel-prod-description">
-
-                <h6>{{division.product_name}}</h6>
-              </div>
-            </div>
+        <div class="item active">
+          <!-- <img src="../../../assets/images/empt-cart.png" alt="Los Angeles" style="width:100%;"> -->
+          <div class="top-banner-wrapper ">
+            <h1>Get <span>Spare parts</span></h1>
+            <p>We consider suitable price & Quality</p>
+            <button class="banner-shop-btn shadow">
+              Shop Now
+            </button>
           </div>
         </div>
-
-        <!-- ------------------------------------------------------top slide division two----------------------------------------------                         -->
-        <div class="carousel-item active iteration-two">
-          <div *ngFor="let division of divTwo">
-            <div class="carsousel-product shadow d-block" data-holder-rendered="true">
-              <img src="http://localhost:3000/utils/uploads/productsImages/{{division.product_image}}">
-              <div class="carsousel-prod-description">
-                <h6>{{division.product_name}}</h6>
-              </div>
-            </div>
+  
+        <div class="item">
+          <div class="top-banner-wrapper ">
+            <h1>Get <span>Your Own Shop</span></h1>
+            <p>Register a shop & start free marketing</p>
+            <button class="banner-shop-btn shadow">
+             Create Shop
+            </button>
           </div>
         </div>
-        <!-- --------------------------------------------------top slide division three---------------------------------------                        -->
-        <div class="carousel-item iteration-three">
-          <div *ngFor="let division of divThree">
-            <div class="carsousel-product shadow d-block" data-holder-rendered="true">
-              <img src="http://localhost:3000/utils/uploads/productsImages/{{division.product_image}}">
-              <div class="carsousel-prod-description">
-                <h6>{{division.product_name}}</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- --------------------------------------------------top slide division four---------------------------------------                        -->
-        <div class="carousel-item iteration-three">
-          <div *ngFor="let division of divFour">
-            <div class="carsousel-product shadow d-block" data-holder-rendered="true">
-              <img src="http://localhost:3000/utils/uploads/productsImages/{{division.product_image}}">
-              <div class="carsousel-prod-description">
-                <h6>{{division.product_name}}</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <!-- --------------------------------------------------top slide division five---------------------------------------                        -->
-        <div class="carousel-item iteration-three">
-          <div *ngFor="let division of divFive">
-            <div class="carsousel-product shadow d-block" data-holder-rendered="true">
-              <img src="http://localhost:3000/utils/uploads/productsImages/{{division.product_image}}">
-              <div class="carsousel-prod-description">
-                <h6>{{division.product_name}}</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <!-- --------------------------------------------------top slide division six---------------------------------------                        -->
-        <div class="carousel-item iteration-three">
-
-          <div *ngFor="let division of divSix">
-            <div class="carsousel-product shadow d-block" data-holder-rendered="true">
-              <img src="http://localhost:3000/utils/uploads/productsImages/{{division.product_image}}">
-              <div class="carsousel-prod-description">
-                <h6>{{division.product_name}}</h6>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <!-- --------------------------------------------------top slide division seven---------------------------------------                        -->
-        <div class="carousel-item iteration-three">
-          <div *ngFor="let division of divSeven">
-            <div class="carsousel-product shadow d-block" data-holder-rendered="true">
-              <img src="http://localhost:3000/utils/uploads/productsImages/{{division.product_image}}">
-              <div class="carsousel-prod-description">
-                <h6>{{division.product_name}}</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- --------------------------------------------------top slide division eight---------------------------------------                        -->
-        <div class="carousel-item iteration-three">
-          <div *ngFor="let division of divEight">
-            <div class="carsousel-product shadow d-block" data-holder-rendered="true">
-              <img src="http://localhost:3000/utils/uploads/productsImages/{{division.product_image}}">
-              <div class="carsousel-prod-description">
-                <h6>{{division.product_name}}</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- --------------------------------------------------top slide division nine---------------------------------------                        -->
-        <div class="carousel-item iteration-three">
-          <div *ngFor="let division of divNine">
-            <div class="carsousel-product shadow d-block" data-holder-rendered="true">
-              <img src="http://localhost:3000/utils/uploads/productsImages/{{division.product_image}}">
-              <div class="carsousel-prod-description">
-                <h6>{{division.product_name}}</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- --------------------------------------------------top slide division Ten---------------------------------------                        -->
-        <div class="carousel-item iteration-three">
-          <div *ngFor="let division of divTen">
-            <div class="carsousel-product shadow d-block" data-holder-rendered="true">
-              <img src="http://localhost:3000/utils/uploads/productsImages/{{division.product_image}}">
-              <div class="carsousel-prod-description">
-                <h6>{{division.product_name}}</h6>
-              </div>
-            </div>
+      
+        <div class="item">
+          <div class="top-banner-wrapper ">
+            <h1>Enjoy<span>Free Market</span></h1>
+            <p>Build your bussiness with free marketing</p>
+            <button class="banner-shop-btn shadow">
+              Start Marketing
+            </button>
           </div>
         </div>
       </div>
-      <a class="carousel-control-prev carousel-shift-control" href="#carouselExampleControls" role="button"
-        data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  
+      <!-- Left and right controls -->
+      <!-- <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
         <span class="sr-only">Previous</span>
       </a>
-      <a class="carousel-control-next carousel-shift-control" href="#carouselExampleControls" role="button"
-        data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
         <span class="sr-only">Next</span>
-      </a>
+      </a> -->
     </div>
-    <!-- </div> -->
-
-
   </div>
+  
+
+
+<!-- ----------secondary slider-------------------- -->
+<div class="secondary-carsoul-container">
+  <owl-carousel-o [options]="secondaryCarsoulCustomOptions">
+    
+    
+    <ng-template carouselSlide class="padding">
+     <div class="slide-item shadow">
+       <img src="../../../assets/productsImages/1.jpeg" alt="slider image">
+     </div>
+    </ng-template>
+
+
+    <ng-template carouselSlide class="padding">
+      <div class="slide-item shadow">
+        <img src="../../../assets/productsImages/1.jpeg" alt="slider image">
+      </div>
+    </ng-template>
+
+    <ng-template carouselSlide class="padding">
+      <div class="slide-item shadow">
+        <img src="../../../assets/productsImages/1.jpeg" alt="slider image">
+      </div>
+    </ng-template>
+
+    <ng-template carouselSlide class="shadow">
+      <div class="slide-item shadow">
+        <img src="../../../assets/productsImages/1.jpeg" alt="slider image">
+      </div>
+    </ng-template>
+
+    <ng-template carouselSlide class="padding">
+      <div class="slide-item shadow">
+        <img src="../../../assets/productsImages/1.jpeg" alt="slider image">
+      </div>
+    </ng-template>
+
+
+  
+  </owl-carousel-o>
+</div>
+
+
+
   <div class="secondary-products-wrapper">
     <div class="header-title">
       <h3>Featured Products</h3>
