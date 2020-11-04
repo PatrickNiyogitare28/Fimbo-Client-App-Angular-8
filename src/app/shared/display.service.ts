@@ -6,6 +6,7 @@ import { HttpClient,HttpHeaders} from '@angular/common/http'
 })
 export class DisplayService {
   topDisplayDivisionsURL = 'http://localhost:3000/api/topDisplayDivisions';
+  secondarySliderURL = 'http://localhost:3000/api/secondarySlider';
 
   constructor(public http: HttpClient) { }
 
@@ -150,5 +151,14 @@ export class DisplayService {
      return (divisions[9].division_status == 1) ? true : false
   }
 
+    
+ fetchSecondarySliderProducts(){
+   return this.http.get(`${this.secondarySliderURL}/getProducts`)
+ }
+
+ addSecondarySliderProduct(productId:boolean){
+   
+   return this.http.post(`${this.secondarySliderURL}/addProduct/product/${productId}`,null);
+ }
 }
 

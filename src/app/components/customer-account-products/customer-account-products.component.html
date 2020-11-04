@@ -4,7 +4,7 @@
             <span class="products-total-wrapper cursor-pointer" title='{{vendorProductsOriginalHolder.length}} Products'>
                 {{vendorProductsOriginalHolder.length}}
             </span>
-              <button (click)="triggerExploreProduct('addProduct',-1)">Create a Product</button>
+              <button (click)="triggerExploreProduct('addProduct',-1)" class="mini-button">Create a Product</button>
         </div>
         <div class="search-pro-input">
             <input type="text" (keyup)="onFilterProducts(search.value)" id="search" placeholder=" search product" #search>

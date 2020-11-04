@@ -61,8 +61,8 @@
       </div>
     </div>
     <div class="checkout-card-box">
-      <button *ngIf="!cartEmpty" (click)="triggerProccedToCheckOut()">Procced To Checkout</button>
-      <button *ngIf="cartEmpty" routerLinkActive="active" [routerLink]="['/products', 'all']">Continue To
+      <button class="mini-button" *ngIf="!cartEmpty" (click)="triggerProccedToCheckOut()">Procced To Checkout</button>
+      <button class="mini-button" *ngIf="cartEmpty" routerLinkActive="active" [routerLink]="['/products', 'all']">Continue To
         Shop</button>
     </div>
   </div>
