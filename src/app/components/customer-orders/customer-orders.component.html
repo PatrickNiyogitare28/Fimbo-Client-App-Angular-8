@@ -1,9 +1,9 @@
 <div class="container">
   <div class="orders-wrapper">
     <div class="orders-nav">
-      <button *ngIf="!isVendor" (click)="triggerOrderModal(-1,'addOrder')">Order for product</button>
-      <button>Clear all</button>
-      <button *ngIf="isVendor" (click)="triggerVendorCheckedOutModal()">Checkouts</button>
+      <button *ngIf="!isVendor" (click)="triggerOrderModal(-1,'addOrder')" class="mini-button">Order for product</button>
+      <button class="mini-button">Clear all</button>
+      <button *ngIf="isVendor" (click)="triggerVendorCheckedOutModal()" class="mini-button">Checkouts</button>
     </div>
     <div class="ordered-products-container">
       <div class="product-item shadow" *ngFor="let order of orders">

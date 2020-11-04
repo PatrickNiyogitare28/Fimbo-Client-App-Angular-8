@@ -84,12 +84,12 @@
       <br (click)="backToStore()">{{currentUserPhone}}</p>
     <p *ngIf="isSeller">{{sellerDetails.email}} <br> {{sellerDetails.contact}}</p>  
 
-    <button *ngIf="hasLocation && !isSeller" class="view-location-data" (click)="showUserAddress(1)">View Your Location</button>
-    <button *ngIf="!hasEmail && hasLocation && !isSeller"  (click)="userAddressModal(2.1)">Add Email</button>
-    <button *ngIf="!hasLocation && hasEmail && !isSeller" (click)="userAddressModal(2.5)">Add Location</button>
-    <button *ngIf="!hasEmail && !hasLocation && !isSeller" (click)="userAddressModal(2)">Add Email & Location</button>
-    <button (click)="userAddressModal(3)" *ngIf="!isSeller">Update Data</button>
-    <button *ngIf="isSeller" (click)="subpageSellerProfile()">Account Profile</button>
+    <button *ngIf="hasLocation && !isSeller" class="view-location-data mini-button" (click)="showUserAddress(1)">View Your Location</button>
+    <button *ngIf="!hasEmail && hasLocation && !isSeller"  (click)="userAddressModal(2.1)" class="mini-button">Add Email</button>
+    <button *ngIf="!hasLocation && hasEmail && !isSeller" (click)="userAddressModal(2.5)" class="mini-button">Add Location</button>
+    <button *ngIf="!hasEmail && !hasLocation && !isSeller" (click)="userAddressModal(2)" class="mini-button">Add Email & Location</button>
+    <button (click)="userAddressModal(3)" *ngIf="!isSeller" class="mini-button">Update Data</button>
+    <button *ngIf="isSeller" (click)="subpageSellerProfile()" class="mini-button">Account Profile</button>
     <div *ngIf="!isSeller" class="profile-progress" title={{profileProgressTitle}}>
       <mat-progress-bar mode="determinate" value={{profileProgrees}}></mat-progress-bar>
       <small>{{profileProgrees}}%</small>
